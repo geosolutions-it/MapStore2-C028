@@ -9,14 +9,12 @@ const React = require('react');
 const {connect} = require('react-redux');
 const Page = require('../../MapStore2/web/client/containers/Page');
 const {resetControls} = require('../../MapStore2/web/client/actions/controls');
-
-require('../../assets/css/custom.css');
+const ConfigUtils = require('../../MapStore2/web/client/utils/ConfigUtils');
 
 const Home = React.createClass({
     propTypes: {
         name: React.PropTypes.string,
         mode: React.PropTypes.string,
-        geoStoreUrl: React.PropTypes.string,
         params: React.PropTypes.object,
         loadMaps: React.PropTypes.func,
         reset: React.PropTypes.func,
@@ -28,7 +26,7 @@ const Home = React.createClass({
     },
     getDefaultProps() {
         return {
-            name: "maps",
+            name: "manager",
             mode: 'desktop',
             loadMaps: () => {},
             reset: () => {},
@@ -37,12 +35,7 @@ const Home = React.createClass({
     },
     componentDidMount() {
         this.props.reset();
-        this.props.loadMaps(this.props.geoStoreUrl);
-    },
-    componentWillReceiveProps(nextProps) {
-        if (this.props.geoStoreUrl !== nextProps.geoStoreUrl) {
-            this.props.loadMaps(nextProps.geoStoreUrl);
-        }
+        this.props.loadMaps(ConfigUtils.getDefaults().geoStoreUrl);
     },
     render() {
         let plugins = this.props.pluginsConfig;
@@ -56,7 +49,7 @@ const Home = React.createClass({
         };
 
         return (<Page
-            id="maps"
+            id="page-manager"
             pagePluginsConfig={pagePlugins}
             pluginsConfig={pluginsConfig}
             plugins={this.props.plugins}
@@ -68,8 +61,7 @@ const Home = React.createClass({
 module.exports = connect((state) => {
     return {
         mode: 'desktop',
-        geoStoreUrl: (state.localConfig && state.localConfig.geoStoreUrl) || null,
-        pluginsConfig: (state.localConfig && state.localConfig.plugins) || null
+        pluginsConfig: (state.localConfig && state.localConfig.plugins) || ConfigUtils.getConfigProp('plugins') || null
     };
 }, {
     reset: resetControls

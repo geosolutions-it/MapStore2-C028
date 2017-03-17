@@ -1,4 +1,4 @@
-MapStore2
+Sistema Informativo Territoriale della città di Bolzano
 ==========
 
 Quick Start
