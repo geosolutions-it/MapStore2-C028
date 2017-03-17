@@ -1,5 +1,5 @@
 /**
- * Copyright 2016, GeoSolutions Sas.
+ * Copyright 2017, GeoSolutions Sas.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -12,13 +12,74 @@ module.exports = {
         path: "/",
         component: require('./pages/Home')
     }, {
-        name: "main",
-        path: "/main",
-        component: require('./pages/Main')
-    }],
+        name: "viewer",
+        path: "/viewer",
+        component: require('./pages/MapViewer')
+    }, {
+        name: "mapviewer",
+        path: "/viewer/:mapType/:mapId",
+        component: require('./pages/MapViewer')
+    }, {
+         name: "manager",
+         path: "/manager",
+         component: require('./pages/Manager')
+     }, {
+         name: "manager",
+         path: "/manager/:tool",
+         component: require('./pages/Manager')
+     }],
     pluginsDef: require('./plugins.js'),
     initialState: {
-        defaultState: {},
-        mobile: {}
+         defaultState: {
+             mousePosition: {enabled: false, "crs": "EPSG:4326"},
+             controls: {
+                 styler: {
+                     enabled: true
+                 },
+                 help: {
+                     enabled: false
+                 },
+                 print: {
+                     enabled: true
+                 },
+                 toolbar: {
+                     active: null,
+                     expanded: false
+                 },
+                 drawer: {
+                     enabled: false,
+                     menu: "1"
+                 },
+                 saveAs: {
+                     allowedRoles: ["ADMIN"]
+                 }
+             },
+             "maps": {
+                     "mapType": "leaflet"
+             },
+             catalog: {
+                 format: "wms",
+                 "supportedFormats": [{"name": "wms", "label": "WMS"}, {"name": "csw", "label": "CSW"}]
+             }
+         },
+         mobile: {
+             mapInfo: {enabled: true, infoFormat: 'text/html' },
+             mousePosition: {enabled: true, crs: "EPSG:4326", showCenter: true},
+             "maps": {
+                     "mapType": "leaflet"
+             },
+             "home": {
+                     "mapType": "leaflet"
+             },
+             catalog: {
+                 format: "wms",
+                 "supportedFormats": [{"name": "wms", "label": "WMS"}, {"name": "csw", "label": "CSW"}]
+             }
+        }
+    },
+    storeOpts: {
+        persist: {
+            whitelist: ['security']
+        }
     }
 };
