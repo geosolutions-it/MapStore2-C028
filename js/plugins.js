@@ -55,7 +55,7 @@ module.exports = {
         TutorialPlugin: require('../MapStore2/web/client/plugins/Tutorial'),
         HeaderPlugin: require('./plugins/Header'),
         FooterPlugin: require('./plugins/Footer'),
-        AttributionPlugin: require('./plugins/Attribution')
+        HomeDescriptionPlugin: require('./plugins/HomeDescription')
     },
     requires: {
         ReactSwipe: require('react-swipeable-views').default,

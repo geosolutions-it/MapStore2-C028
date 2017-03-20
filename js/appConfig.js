@@ -7,13 +7,14 @@
  */
 
 module.exports = {
+    printingEnabled: true,
     pages: [{
         name: "home",
         path: "/",
         component: require('./pages/Home')
     }, {
-        name: "viewer",
-        path: "/viewer",
+        name: "maps",
+        path: "/maps",
         component: require('./pages/MapViewer')
     }, {
         name: "mapviewer",

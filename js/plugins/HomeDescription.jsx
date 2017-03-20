@@ -1,12 +1,12 @@
 /**
- * Copyright 2016, GeoSolutions Sas.
+ * Copyright 2017, GeoSolutions Sas.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  */
 const React = require('react');
-const HTML = require('../../components/I18N/HTML');
+const HTML = require('../../MapStore2/web/client/components/I18N/HTML');
 
 require('./homedescription/homedescription.css');
 

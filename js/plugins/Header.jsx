@@ -7,7 +7,6 @@
  */
 var React = require('react');
 
-var assign = require('object-assign');
 var Header = React.createClass({
     propTypes: {
         style: React.PropTypes.object,
@@ -15,20 +14,11 @@ var Header = React.createClass({
     },
     render() {
         return (
-            <div style={this.props.style} className="mapstore-header">
-                <div className="logo" />
-            </div>
+            <div style={this.props.style} className="mapstore-header"></div>
         );
     }
 });
 
 module.exports = {
-    HeaderPlugin: assign(Header, {
-        OmniBar: {
-            name: 'header',
-            position: 0,
-            tool: true,
-            priority: 1
-        }
-    })
+    HeaderPlugin: Header
 };
