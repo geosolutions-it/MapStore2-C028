@@ -10,7 +10,7 @@ const {connect} = require('react-redux');
 const Page = require('../../MapStore2/web/client/containers/Page');
 const {resetControls} = require('../../MapStore2/web/client/actions/controls');
 
-require('../../assets/css/custom.css');
+require("../../assets/css/maps.css");
 
 const Home = React.createClass({
     propTypes: {

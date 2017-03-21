@@ -11,15 +11,14 @@ const {connect} = require('react-redux');
 
 const StandardApp = require('../MapStore2/web/client/components/app/StandardApp');
 
-const {pages, pluginsDef, initialState, storeOpts} = require('./appConfig');
+const {pages, pluginsDef, initialState, storeOpts, printingEnabled} = require('./appConfig');
 
 const StandardRouter = connect((state) => ({
     locale: state.locale || {},
     pages
 }))(require('../MapStore2/web/client/components/app/StandardRouter'));
 
-const initialActions = [
-];
+const initialActions = [];
 const appStore = require('../MapStore2/web/client/stores/StandardStore').bind(null, initialState, {
     maps: require('../MapStore2/web/client/reducers/maps'),
     security: require('../MapStore2/web/client/reducers/security')
@@ -30,7 +29,7 @@ const appConfig = {
     pluginsDef,
     initialActions,
     appComponent: StandardRouter,
-    printingEnabled: false
+    printingEnabled
 };
 
 ReactDOM.render(

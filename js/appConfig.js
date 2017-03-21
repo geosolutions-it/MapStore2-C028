@@ -7,6 +7,7 @@
  */
 
 module.exports = {
+    printingEnabled: true,
     pages: [{
         name: "home",
         path: "/",

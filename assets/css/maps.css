@@ -1,0 +1,37 @@
+.page-maps .mapstore-header {
+    background-image: url('../img/mapstore-header.jpg');
+    height: 300px;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-position: center;
+    position: relative;
+    top: -20px;
+}
+
+.page-maps .MapSearchBar.maps-search {
+    top: -80px;
+}
+.page-maps  .navbar-home {
+    z-index: 1;
+}
+.page-maps > .container-fluid {
+    width: 80%
+}
+
+#mapstore-navbar #mapstore-langselector {
+    float: right;
+    margin-top: 8px;
+    margin-right: 10px;
+    width: auto;
+}
+
+
+div#mapstore-maptype {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    margin-top: -35px;
+}

@@ -1,11 +1,11 @@
 {
-  "geoStoreUrl": "rest/geostore/",
-  "printUrl": "https://demo.geo-solutions.it/geoserver/pdf/info.json",
-	"translationsPath": "./MapStore2/web/client/translations",
   "proxyUrl": {
     "url": "/MapStore2/proxy/?url=",
     "useCORS": ["http://nominatim.openstreetmap.org", "https://nominatim.openstreetmap.org"]
   },
+  "geoStoreUrl": "rest/geostore/",
+  "printUrl": "/geoserver/pdf/info.json",
+	"translationsPath": "./translations",
   "mapquestApiKey": "__API_KEY_MAPQUEST__",
   "initialMapFilter": "",
   "ignoreMobileCss" : true,
@@ -14,9 +14,6 @@
     {
       "urlPattern": ".*geostore.*",
       "method": "basic"
-    }, {
-      "urlPattern": "\\/geoserver.*",
-      "method": "authkey"
     }
   ],
   "plugins": {
@@ -117,7 +114,6 @@
         }
        }
     },
-    "Attribution",
     {
         "name": "Locate",
         "override": {
@@ -135,7 +131,13 @@
         "cfg": {
           "showResults": false
         }
-    }, "MeasureResults", "Print", "ShapeFile", {
+    }, "MeasureResults",
+    {
+     "name": "Print",
+     "cfg": {
+       "useFixedScales": true
+     }
+   }, "ShapeFile", {
       "name": "Settings",
       "cfg": {
         "wrap": true
@@ -145,9 +147,7 @@
         "cfg": {
           "wrap": true,
           "initialCatalogURL": {
-            "csw": "/geoserver/csw",
-            "wms": "/geoserver/wms",
-            "wmts": "/geoserver/gwc/service/wmts"
+            "wms": "geoserver/wms"
           }
         }
     }, "MousePosition", {
@@ -286,8 +286,22 @@
       "cfg": {
         "className": "navbar shadow navbar-home"
       }
-    },"ManagerMenu", "Login", "Language"],
-    "maps": [{"name": "Header", "hide": true }, "MapSearch", "CreateNewMap", "Maps", "Footer"],
+    }, "ManagerMenu", "Login", {
+      "name": "Language",
+      "cfg": {
+        "locales": {
+             "it": {
+                 "code": "it-IT",
+                 "description": "Italiano"
+             },
+             "de": {
+               "code": "de-DE",
+               "description": "Deutsch"
+             }
+           }
+         }
+    }],
+    "maps": ["Header", "MapSearch", "HomeDescription", "CreateNewMap", "Maps", "Footer"],
     "manager": ["Header", "Redirect", "Manager", "Home", "UserManager", "GroupManager", "Footer"]
   }
 }
