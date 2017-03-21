@@ -1,10 +1,10 @@
 {
   "proxyUrl": {
-    "url": "/MapStore2/proxy/?url=",
+    "url": "/mapstore2/proxy/?url=",
     "useCORS": ["http://nominatim.openstreetmap.org", "https://nominatim.openstreetmap.org"]
   },
   "geoStoreUrl": "rest/geostore/",
-  "printUrl": "/geoserver/pdf/info.json",
+  "printUrl": "http://geoserv02:8082/geoserver/pdf/info.json",
 	"translationsPath": "./translations",
   "mapquestApiKey": "__API_KEY_MAPQUEST__",
   "initialMapFilter": "",
@@ -147,7 +147,7 @@
         "cfg": {
           "wrap": true,
           "initialCatalogURL": {
-            "wms": "geoserver/wms"
+            "wms": "http://geoserv02:8082/geoserver/wms"
           }
         }
     }, "MousePosition", {
