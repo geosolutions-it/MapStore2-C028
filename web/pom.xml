@@ -2,13 +2,13 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>it.geosolutions.MapStore2</groupId>
-    <artifactId>MapStore2-root</artifactId>
+    <groupId>it.geosolutions.MapStore2-C028</groupId>
+    <artifactId>MapStore2-C028-root</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>MapStore2-web</artifactId>
+  <artifactId>MapStore2-C028-web</artifactId>
   <packaging>war</packaging>
-  <name>MapStore2 - WAR</name>
+  <name>MapStore2-C028 - WAR</name>
   <url>http://www.geo-solutions.it</url>
 
   <properties>
@@ -20,8 +20,8 @@
     <!-- MapStore2 modules -->
     <!-- ================================================================ -->
     <dependency>
-        <groupId>it.geosolutions.MapStore2</groupId>
-        <artifactId>MapStore2-backend</artifactId>
+        <groupId>it.geosolutions.MapStore2-C028</groupId>
+        <artifactId>MapStore2-C028-backend</artifactId>
         <version>${project.version}</version>
     </dependency>
     <!-- ================================================================ -->
