@@ -286,7 +286,21 @@
       "cfg": {
         "className": "navbar shadow navbar-home"
       }
-    },"ManagerMenu", "Login", "Language"],
+    }, "ManagerMenu", "Login", {
+      "name": "Language",
+      "cfg": {
+        "locales": {
+             "it": {
+                 "code": "it-IT",
+                 "description": "Italiano"
+             },
+             "de": {
+               "code": "de-DE",
+               "description": "Deutsch"
+             }
+           }
+         }
+    }],
     "maps": ["Header", "MapSearch", "HomeDescription", "CreateNewMap", "Maps", "Footer"],
     "manager": ["Header", "Redirect", "Manager", "Home", "UserManager", "GroupManager", "Footer"]
   }

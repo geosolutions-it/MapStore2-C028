@@ -65,7 +65,9 @@
     "permissions": "Permessi",
     "home":{
         "open": "Apri",
+        "footer": "Città di Bolzano - vicolo Gumer 7 - 39100 Bolzano - centralino: 0471 997111 – codice fiscale/partita IVA: 00389240219 <br/> PEC: bz@legalmail.it :: <a target=\"_blank\" href=\"http://www.comune.bolzano.it/context.jsp?ID_LINK=4179&area=155\">Orari</a> - <a target=\"_blank\" href=\"http://www.comune.bolzano.it/context.jsp?ID_LINK=3871&area=155\">Copyright</a> - <a target=\"_blank\" href=\"http://www.comune.bolzano.it/context.jsp?ID_LINK=3872&area=155\">Privacy Policy</a> - <a target=\"_blank\" href=\"http://www.geo-solutions.it/\">Credits</a> - <a target=\"_blank\" href=\"http://www.comune.bolzano.it/context.jsp?ID_LINK=4620&area=155\">Informativa estesa - cookies</a>",
         "description": "Servizio Informativo territoriale della città di Bolzano",
+        "descriptionLogo": "Città di Bolzano",
         "Applications": "Applicazioni",
         "Examples": "Esempi",
         "LinkedinGroup": "Gruppo Linkedin Mapstore",

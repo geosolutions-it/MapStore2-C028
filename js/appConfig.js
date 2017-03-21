@@ -13,8 +13,8 @@ module.exports = {
         path: "/",
         component: require('./pages/Home')
     }, {
-        name: "maps",
-        path: "/maps",
+        name: "viewer",
+        path: "/viewer",
         component: require('./pages/MapViewer')
     }, {
         name: "mapviewer",

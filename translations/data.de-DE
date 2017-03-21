@@ -65,7 +65,9 @@
         "permissions": "Genehmigungen",
         "home":{
             "open": "Öffnen",
+            "footer": "Stadt Bozen - Gumergasse 7 - 39100 Bozen - Telefonzentrale: 0471 997111 – Steuernr./MwSt.: 00389240219 - PEC: bz@legalmail.it :: <a target=\"_blank\" href=\"http://www.gemeinde.bozen.it/context.jsp?ID_LINK=4179&area=155\">Parteienverkehr</a> - <a target=\"_blank\" href=\"http://www.gemeinde.bozen.it/context.jsp?ID_LINK=3871&area=155\">Copyright</a> - <a target=\"_blank\" href=\"http://www.gemeinde.bozen.it/context.jsp?ID_LINK=3872&area=155\">Privacy Policy</a> - <a target=\"_blank\" href=\"http://www.geo-solutions.it/\">Credits</a> - <a target=\"_blank\" href=\"http://www.gemeinde.bozen.it/context.jsp?ID_LINK=4620&area=155\">Ausführliche Information - Cookies</a>",
             "description": "Geografische Informationsdienst der Stadt Bozen",
+            "descriptionLogo": "Stadt Bozen",
             "Examples": "Beispiele",
             "LinkedinGroup": "Mapstore Linkedin Gruppe",
             "ml": {
