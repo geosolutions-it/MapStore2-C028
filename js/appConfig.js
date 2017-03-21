@@ -60,7 +60,7 @@ module.exports = {
              },
              catalog: {
                  format: "wms",
-                 "supportedFormats": [{"name": "wms", "label": "WMS"}, {"name": "csw", "label": "CSW"}]
+                 "supportedFormats": [{"name": "wms", "label": "WMS"}]
              }
          },
          mobile: {
