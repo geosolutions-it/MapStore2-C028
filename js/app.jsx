@@ -10,7 +10,7 @@ const ReactDOM = require('react-dom');
 const {connect} = require('react-redux');
 
 const StandardApp = require('../MapStore2/web/client/components/app/StandardApp');
-
+const {registerSearchServiceEpic} = require('./epics/search');
 const {pages, pluginsDef, initialState, storeOpts, printingEnabled} = require('./appConfig');
 
 const StandardRouter = connect((state) => ({
@@ -22,7 +22,7 @@ const initialActions = [];
 const appStore = require('../MapStore2/web/client/stores/StandardStore').bind(null, initialState, {
     maps: require('../MapStore2/web/client/reducers/maps'),
     security: require('../MapStore2/web/client/reducers/security')
-});
+}, {registerSearchServiceEpic});
 const appConfig = {
     appStore,
     storeOpts,

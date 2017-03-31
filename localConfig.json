@@ -4,7 +4,7 @@
     "useCORS": ["http://nominatim.openstreetmap.org", "https://nominatim.openstreetmap.org"]
   },
   "geoStoreUrl": "rest/geostore/",
-  "printUrl": "http://geoserv02:8082/geoserver/pdf/info.json",
+  "printUrl": "http://geoserv02:8080/geoserver/pdf/info.json",
 	"translationsPath": "./translations",
   "mapquestApiKey": "__API_KEY_MAPQUEST__",
   "initialMapFilter": "",
@@ -21,7 +21,14 @@
       {
         "name": "Map",
         "cfg": {
-          "tools": ["locate"]
+          "tools": ["locate"],
+          "toolsOptions": {
+            "measurement": {
+              "leaflet": {
+                "metric": true
+              }
+            }
+          }
         }
       }, "DrawerMenu",
       {
@@ -70,10 +77,58 @@
       }
     },
     {
-      "name": "Search",
-      "cfg": {
-        "withToggle": ["max-width: 768px", "min-width: 768px"]
-      }
+        "name": "Search",
+        "cfg": {
+          "searchOptions": {"services": [
+            {
+              "type": "nominatim",
+              "priority": 0
+            }, {
+              "type": "bzVie",
+              "displayName": "${properties.desc}",
+              "options": {
+                "protocol": "window.location.protocol",
+                "host": "sit.comune.bolzano.it",
+                "pathname": "/GeoInfo/VieServlet",
+                "lang": "it"
+              },
+              "priority": 1,
+              "nestedPlaceholderMsgId": "search.nestedPlaceholder",
+              "geomService" : {
+                "type": "wfs",
+                "options": {
+                  "url": "/geoserver/wfs",
+                  "typeName": "ctn_base:grafo_vie",
+                  "srsName": "EPSG:4326",
+                  "staticFilter": "ID_STRASSE = ${properties.code}"
+                }
+              },
+              "then" : [
+                {
+                  "type": "bzCivico",
+                  "searchTextTemplate": "${properties.desc}",
+                  "displayName": "${properties.desc}",
+                  "options": {
+                    "protocol": "window.location.protocol",
+                    "host": "sit.comune.bolzano.it",
+                    "pathname": "/GeoInfo/CiviciServlet",
+                    "idVia": "${properties.code}"
+                  },
+                "priority": 2,
+                "geomService" : {
+                  "type": "wfs",
+                  "options": {
+                    "url": "/geoserver/wfs",
+                    "typeName": "Cartografia:civici",
+                    "srsName": "EPSG:4326",
+                    "staticFilter": "ID = ${properties.code}"
+                  }
+                }
+              }]
+            }
+          ]},
+          "withToggle": ["max-width: 768px", "min-width: 768px"]
+        }
     }, {
       "name": "Toolbar",
       "id": "NavigationBar",
@@ -99,7 +154,19 @@
     }, "Login",
     "OmniBar", "BurgerMenu", "Expander"
   ],
-  "desktop": ["Map", "Help", "Share", "DrawerMenu",
+  "desktop": [
+    {
+      "name": "Map",
+      "cfg": {
+        "toolsOptions": {
+          "measurement": {
+            "leaflet": {
+              "metric": true
+            }
+          }
+        }
+      }
+    }, "Help", "Share", "DrawerMenu",
     {
        "name": "Identify",
        "showIn": ["IdentifyBar", "Settings"],
@@ -147,12 +214,60 @@
         "cfg": {
           "wrap": true,
           "initialCatalogURL": {
-            "wms": "http://geoserv02:8082/geoserver/wms"
+            "wms": "http://geoserv02:8080/geoserver/wms"
           }
         }
     }, "MousePosition", {
         "name": "Search",
         "cfg": {
+          "searchOptions": {"services": [
+            {
+              "type": "nominatim",
+              "priority": 0
+            }, {
+              "type": "bzVie",
+              "displayName": "${properties.desc}",
+              "options": {
+                "protocol": "window.location.protocol",
+                "host": "sit.comune.bolzano.it",
+                "pathname": "/GeoInfo/VieServlet",
+                "lang": "it"
+              },
+              "priority": 1,
+              "nestedPlaceholderMsgId": "search.nestedPlaceholder",
+              "geomService" : {
+                "type": "wfs",
+                "options": {
+                  "url": "/geoserver/wfs",
+                  "typeName": "ctn_base:grafo_vie",
+                  "srsName": "EPSG:4326",
+                  "staticFilter": "ID_STRASSE = ${properties.code}"
+                }
+              },
+              "then" : [
+                {
+                  "type": "bzCivico",
+                  "searchTextTemplate": "${properties.desc}",
+                  "displayName": "${properties.desc}",
+                  "options": {
+                    "protocol": "window.location.protocol",
+                    "host": "sit.comune.bolzano.it",
+                    "pathname": "/GeoInfo/CiviciServlet",
+                    "idVia": "${properties.code}"
+                  },
+                "priority": 2,
+                "geomService" : {
+                  "type": "wfs",
+                  "options": {
+                    "url": "/geoserver/wfs",
+                    "typeName": "Cartografia:civici",
+                    "srsName": "EPSG:4326",
+                    "staticFilter": "ID = ${properties.code}"
+                  }
+                }
+              }]
+            }
+          ]},
           "withToggle": ["max-width: 768px", "min-width: 768px"]
         }
     }, {
@@ -169,8 +284,7 @@
         "id": "identifyBar"
       },
       "isDefault": false
-    },
-    "ScaleBox", "ZoomAll",
+    }, "ScaleBox", "ZoomAll",
     {
       "name": "MapLoading",
       "override": {
@@ -207,7 +321,14 @@
       {
         "name": "Map",
         "cfg": {
-          "tools": ["locate"]
+          "tools": ["locate"],
+          "toolsOptions": {
+            "measurement": {
+              "leaflet": {
+                "metric": true
+              }
+            }
+          }
         }
       }, "Help", "DrawerMenu",
       {
@@ -254,6 +375,54 @@
       {
           "name": "Search",
           "cfg": {
+            "searchOptions": {"services": [
+              {
+                "type": "nominatim",
+                "priority": 0
+              }, {
+                "type": "bzVie",
+                "displayName": "${properties.desc}",
+                "options": {
+                  "protocol": "window.location.protocol",
+                  "host": "sit.comune.bolzano.it",
+                  "pathname": "/GeoInfo/VieServlet",
+                  "lang": "it"
+                },
+                "priority": 1,
+                "nestedPlaceholderMsgId": "search.nestedPlaceholder",
+                "geomService" : {
+                  "type": "wfs",
+                  "options": {
+                    "url": "/geoserver/wfs",
+                    "typeName": "ctn_base:grafo_vie",
+                    "srsName": "EPSG:4326",
+                    "staticFilter": "ID_STRASSE = ${properties.code}"
+                  }
+                },
+                "then" : [
+                  {
+                    "type": "bzCivico",
+                    "searchTextTemplate": "${properties.desc}",
+                    "displayName": "${properties.desc}",
+                    "options": {
+                      "protocol": "window.location.protocol",
+                      "host": "sit.comune.bolzano.it",
+                      "pathname": "/GeoInfo/CiviciServlet",
+                      "idVia": "${properties.code}"
+                    },
+                  "priority": 2,
+                  "geomService" : {
+                    "type": "wfs",
+                    "options": {
+                      "url": "/geoserver/wfs",
+                      "typeName": "Cartografia:civici",
+                      "srsName": "EPSG:4326",
+                      "staticFilter": "ID = ${properties.code}"
+                    }
+                  }
+                }]
+              }
+            ]},
             "withToggle": ["max-width: 768px", "min-width: 768px"]
           }
       }, {

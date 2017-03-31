@@ -134,6 +134,9 @@ module.exports = {
             },
             '/geoserver': {
                 target: "http://sit.comune.bolzano.it"
+            },
+            '/GeoInfo': {
+                target: "http://sit.comune.bolzano.it"
             }
         }
     },
