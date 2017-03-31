@@ -97,7 +97,7 @@
               "geomService" : {
                 "type": "wfs",
                 "options": {
-                  "url": "/geoserver/wfs",
+                  "url": "http://geoserv02:8080/geoserver/wfs",
                   "typeName": "ctn_base:grafo_vie",
                   "srsName": "EPSG:4326",
                   "staticFilter": "ID_STRASSE = ${properties.code}"
@@ -118,7 +118,7 @@
                 "geomService" : {
                   "type": "wfs",
                   "options": {
-                    "url": "/geoserver/wfs",
+                    "url": "http://geoserv02:8080/geoserver/wfs",
                     "typeName": "Cartografia:civici",
                     "srsName": "EPSG:4326",
                     "staticFilter": "ID = ${properties.code}"
@@ -238,7 +238,7 @@
               "geomService" : {
                 "type": "wfs",
                 "options": {
-                  "url": "/geoserver/wfs",
+                  "url": "http://geoserv02:8080/geoserver/wfs",
                   "typeName": "ctn_base:grafo_vie",
                   "srsName": "EPSG:4326",
                   "staticFilter": "ID_STRASSE = ${properties.code}"
@@ -259,7 +259,7 @@
                 "geomService" : {
                   "type": "wfs",
                   "options": {
-                    "url": "/geoserver/wfs",
+                    "url": "http://geoserv02:8080/geoserver/wfs",
                     "typeName": "Cartografia:civici",
                     "srsName": "EPSG:4326",
                     "staticFilter": "ID = ${properties.code}"
@@ -393,7 +393,7 @@
                 "geomService" : {
                   "type": "wfs",
                   "options": {
-                    "url": "/geoserver/wfs",
+                    "url": "http://geoserv02:8080/geoserver/wfs",
                     "typeName": "ctn_base:grafo_vie",
                     "srsName": "EPSG:4326",
                     "staticFilter": "ID_STRASSE = ${properties.code}"
@@ -414,7 +414,7 @@
                   "geomService" : {
                     "type": "wfs",
                     "options": {
-                      "url": "/geoserver/wfs",
+                      "url": "http://geoserv02:8080/geoserver/wfs",
                       "typeName": "Cartografia:civici",
                       "srsName": "EPSG:4326",
                       "staticFilter": "ID = ${properties.code}"
