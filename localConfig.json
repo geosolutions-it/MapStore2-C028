@@ -9,7 +9,7 @@
   "mapquestApiKey": "__API_KEY_MAPQUEST__",
   "initialMapFilter": "",
   "ignoreMobileCss" : true,
-  "useAuthenticationRules": false,
+  "useAuthenticationRules": true,
   "authenticationRules": [
     {
       "urlPattern": ".*geostore.*",
