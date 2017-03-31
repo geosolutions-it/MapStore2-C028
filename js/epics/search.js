@@ -16,9 +16,11 @@ const urlUtil = require('url');
 const registerSearchServiceEpic = action$ => action$.ofType(LOCAL_CONFIG_LOADED).switchMap(() => {
     // registering the custom Services
 
-    const bzVie = (searchText, {pathname, lang}) => {
+    const bzVie = (searchText, {protocol, host, pathname, lang}) => {
         let params = assign({}, {query: searchText, lang});
         let url = urlUtil.format({
+            protocol,
+            host,
             pathname,
             query: params
         });
@@ -37,9 +39,11 @@ const registerSearchServiceEpic = action$ => action$.ofType(LOCAL_CONFIG_LOADED)
             return [];
         });
     };
-    const bzCivico = (searchText, {pathname, item}) => {
+    const bzCivico = (searchText, {protocol, host, pathname, item}) => {
         let params = assign({}, {query: searchText, idVia: item.properties.code});
         let url = urlUtil.format({
+            protocol,
+            host,
             pathname,
             query: params
         });
