@@ -71,6 +71,7 @@
             "Applications": "Applications",
             "Examples": "Examples",
             "LinkedinGroup": "Mapstore Linkedin Group",
+            "scrollTop": "Scroll to the top of the page",
             "ml": {
                 "title": "Keep in touch and stay up-to-date with the mailing lists",
                 "subscribe_users": "Subscribe Users Mailing List",
@@ -249,7 +250,8 @@
             "bearingLabel": "Bearing"
         },
         "search":{
-            "placeholder": "Search by location name or coordinates ..."
+            "placeholder": "Search by location name or coordinates ...",
+            "nestedPlaceholder": "Insert a civic number"
         },
         "drawLocal": {
             "draw": {
