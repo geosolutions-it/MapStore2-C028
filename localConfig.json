@@ -87,7 +87,7 @@
               "type": "bzVie",
               "displayName": "${properties.desc}",
               "options": {
-                "protocol": "window.location.protocol",
+                "protocol": "http",
                 "host": "sit.comune.bolzano.it",
                 "pathname": "/GeoInfo/VieServlet",
                 "lang": "it"
@@ -109,7 +109,7 @@
                   "searchTextTemplate": "${properties.desc}",
                   "displayName": "${properties.desc}",
                   "options": {
-                    "protocol": "window.location.protocol",
+                    "protocol": "http",
                     "host": "sit.comune.bolzano.it",
                     "pathname": "/GeoInfo/CiviciServlet",
                     "idVia": "${properties.code}"
@@ -228,7 +228,7 @@
               "type": "bzVie",
               "displayName": "${properties.desc}",
               "options": {
-                "protocol": "window.location.protocol",
+                "protocol": "http",
                 "host": "sit.comune.bolzano.it",
                 "pathname": "/GeoInfo/VieServlet",
                 "lang": "it"
@@ -250,7 +250,7 @@
                   "searchTextTemplate": "${properties.desc}",
                   "displayName": "${properties.desc}",
                   "options": {
-                    "protocol": "window.location.protocol",
+                    "protocol": "http",
                     "host": "sit.comune.bolzano.it",
                     "pathname": "/GeoInfo/CiviciServlet",
                     "idVia": "${properties.code}"
@@ -383,7 +383,7 @@
                 "type": "bzVie",
                 "displayName": "${properties.desc}",
                 "options": {
-                  "protocol": "window.location.protocol",
+                  "protocol": "http",
                   "host": "sit.comune.bolzano.it",
                   "pathname": "/GeoInfo/VieServlet",
                   "lang": "it"
@@ -405,7 +405,7 @@
                     "searchTextTemplate": "${properties.desc}",
                     "displayName": "${properties.desc}",
                     "options": {
-                      "protocol": "window.location.protocol",
+                      "protocol": "http",
                       "host": "sit.comune.bolzano.it",
                       "pathname": "/GeoInfo/CiviciServlet",
                       "idVia": "${properties.code}"
