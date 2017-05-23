@@ -5,7 +5,7 @@
   },
   "geoStoreUrl": "rest/geostore/",
   "printUrl": "http://geoserv02:8080/geoserver/pdf/info.json",
-	"translationsPath": "./translations",
+	"translationsPath": ["./MapStore2/web/client/translations", "./translations"],
   "mapquestApiKey": "__API_KEY_MAPQUEST__",
   "initialMapFilter": "",
   "ignoreMobileCss" : true,
@@ -60,11 +60,24 @@
         }
       }
     }, "Home", "TOC", {
-        "name": "Tutorial",
-        "cfg": {
-          "preset": "mapMobile"
+      "name": "BackgroundSelector",
+      "cfg": {
+        "thumbs":{
+          "bolzano":{
+            "Cartografia:mosaico_2016": "assets/img/bolzano-2016.png",
+            "Cartografia:ortofoto2014": "assets/img/bolzano-2014.png"
+          }
+        },
+        "dimensions": {
+          "side": 65,
+          "sidePreview": 65,
+          "frame": 3,
+          "margin": 5,
+          "label": false,
+          "vertical": true
         }
-    }, "BackgroundSwitcher", {
+      }
+    }, {
       "name": "Settings",
       "cfg": {
         "wrap": true
@@ -195,17 +208,26 @@
         "cfg": {
           "activateQueryTool": true
         }
-    }, "Tutorial", "BackgroundSwitcher", {
-        "name": "Measure",
-        "cfg": {
-          "showResults": false
+    }, {
+        "name": "BackgroundSelector",
+        "cfg":{
+          "thumbs":{
+            "bolzano":{
+              "Cartografia:mosaico_2016": "assets/img/bolzano-2016.png",
+              "Cartografia:ortofoto2014": "assets/img/bolzano-2014.png"
+            }
+          }
         }
-    }, "MeasureResults",
+    }, "Measure",
     {
-     "name": "Print",
-     "cfg": {
-       "useFixedScales": true
-     }
+      "name": "Print",
+      "cfg": {
+        "useFixedScales": true,
+        "mapPreviewOptions": {
+          "enableScalebox": true,
+          "enableRefresh": false
+        }
+      }
    }, "ShapeFile", {
       "name": "Settings",
       "cfg": {
@@ -364,7 +386,26 @@
               "alwaysVisible": true
             }
           }
-      }, "TOC", "BackgroundSwitcher", {
+      }, "TOC",
+      {
+          "name": "BackgroundSelector",
+          "cfg": {
+            "thumbs":{
+              "bolzano":{
+                "Cartografia:mosaico_2016": "assets/img/bolzano-2016.png",
+                "Cartografia:ortofoto2014": "assets/img/bolzano-2014.png"
+              }
+            },
+            "dimensions": {
+              "side": 65,
+              "sidePreview": 65,
+              "frame": 3,
+              "margin": 5,
+              "label": false,
+              "vertical": true
+            }
+          }
+      }, {
           "name": "Settings",
           "cfg": {
             "wrap": true

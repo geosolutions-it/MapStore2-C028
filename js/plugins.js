@@ -12,7 +12,7 @@ module.exports = {
         PrintPlugin: require('../MapStore2/web/client/plugins/Print'),
         IdentifyPlugin: require('../MapStore2/web/client/plugins/Identify'),
         TOCPlugin: require('../MapStore2/web/client/plugins/TOC'),
-        BackgroundSwitcherPlugin: require('../MapStore2/web/client/plugins/BackgroundSwitcher'),
+        BackgroundSelectorPlugin: require('../MapStore2/web/client/plugins/BackgroundSelector'),
         MeasurePlugin: require('../MapStore2/web/client/plugins/Measure'),
         MeasureResultsPlugin: require('../MapStore2/web/client/plugins/MeasureResults'),
         MapPlugin: require('../MapStore2/web/client/plugins/Map'),
@@ -52,7 +52,6 @@ module.exports = {
         CreateNewMapPlugin: require('../MapStore2/web/client/plugins/CreateNewMap'),
         QueryPanelPlugin: require('../MapStore2/web/client/plugins/QueryPanel'),
         FeatureGridPlugin: require('../MapStore2/web/client/plugins/FeatureGrid'),
-        TutorialPlugin: require('../MapStore2/web/client/plugins/Tutorial'),
         HeaderPlugin: require('./plugins/Header'),
         FooterPlugin: require('./plugins/Footer'),
         HomeDescriptionPlugin: require('./plugins/HomeDescription')
