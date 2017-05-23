@@ -181,7 +181,7 @@
           }
         }
       }
-    }, "Help", "Share", "DrawerMenu",
+    }, "Share", "DrawerMenu",
     {
        "name": "Identify",
        "showIn": ["IdentifyBar", "Settings"],
@@ -320,12 +320,6 @@
       }
     },
     {
-        "name": "Snapshot",
-        "cfg": {
-          "wrap": true
-        }
-    },
-    {
       "name":"ZoomIn",
       "override": {
         "Toolbar": {
@@ -356,7 +350,7 @@
             }
           }
         }
-      }, "Help", "DrawerMenu",
+      }, "DrawerMenu",
       {
          "name": "Identify",
          "showIn": ["Settings"],
