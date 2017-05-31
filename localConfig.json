@@ -178,7 +178,7 @@
           }
         }
       }
-    }, "Share", "DrawerMenu",
+    }, {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
     {
        "name": "Identify",
        "showIn": ["IdentifyBar", "Settings"],
@@ -344,7 +344,10 @@
             }
           }
         }
-      }, "DrawerMenu",
+      }, {
+        "name": "DrawerMenu",
+        "hide": "{!(request.query && request.query.forceDrawer)}"
+        },
       {
          "name": "Identify",
          "showIn": ["Settings"],

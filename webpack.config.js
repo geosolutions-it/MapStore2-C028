@@ -11,8 +11,7 @@ module.exports = {
         'webpack': 'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
         'MapStore2-C028': path.join(__dirname, "js", "app"),
         "themes/default": path.join(__dirname, "assets", "themes", "default", "theme.less"),
-        "embedded": path.join(__dirname, "MapStore2", "web", "client", "product", "embedded"),
-        "ms2-api": path.join(__dirname, "MapStore2", "web", "client", "product", "api")
+        "embedded": path.join(__dirname, "MapStore2", "web", "client", "product", "embedded")
     },
     output: {
         path: path.join(__dirname, "dist"),
