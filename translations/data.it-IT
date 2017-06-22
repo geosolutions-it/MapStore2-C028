@@ -9,6 +9,10 @@
       "description": "Servizio Informativo territoriale della città di Bolzano",
       "descriptionLogo": "Città di Bolzano"
     },
+    "example": {
+        "title": "Esempio",
+        "tooltip": "Esempio tooltip"
+    },
     "toc": {
       "loadingerror": "Il livello non è stato caricato correttamente"
     },

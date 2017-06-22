@@ -8,7 +8,8 @@ const Example = React.createClass({
         onSync: React.PropTypes.func,
         onAsync: React.PropTypes.func,
         onComplex: React.PropTypes.func,
-        onChangeIP: React.PropTypes.func
+        onChangeIP: React.PropTypes.func,
+        show: React.PropTypes.bool
     },
     getDefaultProps() {
         return {
@@ -16,7 +17,7 @@ const Example = React.createClass({
         };
     },
     render() {
-        return (<div style={{position: "absolute", zIndex: 1000, top: "50%", left: "50%", cursor: "pointer", backgroundColor: "white"}}
+        return (this.props.show ? <div id="mapstore-example"
             >
             This is my plugin<br/>
             Message: {this.props.message}<br/>
@@ -25,7 +26,7 @@ const Example = React.createClass({
             <button onClick={this.sync}>Sync</button>
             <button onClick={this.async}>Async</button>
             <button onClick={this.complex}>Complex</button>
-            </div>);
+            </div> : null);
     },
     sync() {
         this.props.onSync('sync');
