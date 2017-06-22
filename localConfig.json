@@ -1,7 +1,7 @@
 {
   "proxyUrl": {
     "url": "/mapstore2/proxy/?url=",
-    "useCORS": ["http://nominatim.openstreetmap.org", "https://nominatim.openstreetmap.org"]
+    "useCORS": ["http://nominatim.openstreetmap.org", "https://nominatim.openstreetmap.org", "https://api.ip2country.info/ip"]
   },
   "geoStoreUrl": "rest/geostore/",
   "printUrl": "http://geoserv02:8080/geoserver/pdf/info.json",
@@ -170,6 +170,9 @@
     "OmniBar", "BurgerMenu", "Expander"
   ],
   "desktop": [
+    {
+      "name": "Example"
+    },
     {
       "name": "Map",
       "cfg": {
