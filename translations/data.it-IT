@@ -1,6 +1,9 @@
 {
   "locale": "it-IT",
   "messages": {
+    "infortuni": {
+        "update": "Aggiorna"
+    },
     "layerProperties": {
       "featureTypeError": "Impossibile caricare gli attributi del layer"
     },
@@ -13,7 +16,8 @@
       "loadingerror": "Il livello non è stato caricato correttamente"
     },
     "search": {
-      "nestedPlaceholder": "Inserisci un civico"
+      "nestedPlaceholder": "Inserisci un civico",
+      "partNestedPlaceholder": "Inserisci numero particella"
     },
     "queryform": {
       "attributefilter": {

@@ -1,6 +1,6 @@
 {
   "proxyUrl": {
-    "url": "/mapstore2/proxy/?url=",
+    "url": "/MapStore2/proxy/?url=",
     "useCORS": ["http://nominatim.openstreetmap.org", "https://nominatim.openstreetmap.org"]
   },
   "geoStoreUrl": "rest/geostore/",
@@ -93,11 +93,8 @@
         "name": "Search",
         "cfg": {
           "searchOptions": {"services": [
-            {
-              "type": "nominatim",
-              "priority": 0
-            }, {
-              "type": "bzVie",
+           {
+                "type": "bzVie",
               "displayName": "${properties.desc}",
               "subTitle": "Bolzano / Bozen",
               "options": {
@@ -170,6 +167,7 @@
     "OmniBar", "BurgerMenu", "Expander"
   ],
   "desktop": [
+    "Example", "Infortuni",
     {
       "name": "Map",
       "cfg": {
@@ -246,8 +244,38 @@
         "cfg": {
           "searchOptions": {"services": [
             {
-              "type": "nominatim",
-              "priority": 0
+              "type": "bzComuniCatastali",
+              "displayName": "${properties.title}",
+              "subTitle": "${properties.description}",
+              "geomService" : {
+                "type": "wfs",
+                "options": {
+                  "url": "http://sit.comune.bolzano.it/geoserver/wfs",
+                  "typeName": "Ambiente:comuni_catast",
+                  "srsName": "EPSG:4326",
+                  "staticFilter": "CCAT_CODIC = ${properties.code}"
+                }
+              },
+              "nestedPlaceholderMsgId": "search.partNestedPlaceholder",
+              "then" : [{
+                  "type": "bzParticella",
+                  "displayName": "${properties.codice}",
+                  "subTitle": "${properties.descTipo}",
+                  "geomService" : {
+                    "type": "wfs",
+                    "options": {
+                      "url": "http://sit.comune.bolzano.it/geoserver/wfs",
+                      "typeName": "Cartografia:particelle",
+                      "srsName": "EPSG:4326",
+                      "staticFilter": "NUM = '${properties.codice}' AND COM = ${properties.comcat}"
+                    }
+                  },
+                  "options": {
+                    "protocol": "http",
+                    "host": "sit.comune.bolzano.it",
+                    "pathname": "/GeoInfo/ParticelleServlet"
+                  }
+                }]
             }, {
               "type": "bzVie",
               "displayName": "${properties.desc}",

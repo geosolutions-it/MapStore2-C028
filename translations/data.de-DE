@@ -13,7 +13,8 @@
             "loadingerror": "Diese Ebene wurde nicht korrekt geladen"
         },
         "search":{
-            "nestedPlaceholder": "Bitte, legen Sie auf Bürgernummer"
+            "nestedPlaceholder": "Bitte, legen Sie auf Bürgernummer",
+            "partNestedPlaceholder": "Inserisci numero particella [ DA TRADURRE ]"
         },
         "queryform": {
             "attributefilter":{

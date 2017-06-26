@@ -52,7 +52,9 @@ module.exports = {
         FeatureGridPlugin: require('../MapStore2/web/client/plugins/FeatureGrid'),
         HeaderPlugin: require('./plugins/Header'),
         FooterPlugin: require('./plugins/Footer'),
-        HomeDescriptionPlugin: require('./plugins/HomeDescription')
+        HomeDescriptionPlugin: require('./plugins/HomeDescription'),
+        ExamplePlugin: require('./plugins/Example'),
+        InfortuniPlugin: require('./plugins/Infortuni')
     },
     requires: {
         ReactSwipe: require('react-swipeable-views').default,
