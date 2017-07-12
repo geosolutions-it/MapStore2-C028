@@ -14,8 +14,10 @@
     {
       "urlPattern": ".*geostore.*",
       "method": "basic"
-    }
-  ],
+    }, {
+    "urlPattern": "\\/geoserver.*",
+    "method": "authkey"
+  }],
   "plugins": {
     "mobile": [
       {
