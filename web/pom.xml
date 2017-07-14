@@ -72,6 +72,7 @@
             <artifactId>maven-antrun-plugin</artifactId>
             <version>1.6</version>
             <executions>
+                <!--
                 <execution>
                     <id>download-files</id>
                     <phase>compile</phase>
@@ -80,7 +81,7 @@
                     </goals>
                     <configuration>
                         <target>
-                            <!-- download file -->
+                            < download file >
                             <get src=" https://cesiumjs.org/releases/Cesium-1.17.zip"
                                  dest="${basedir}/cesium.zip"
                                  verbose="true"
@@ -92,6 +93,7 @@
                         </target>
                     </configuration>
                 </execution>
+            -->
             </executions>
         </plugin>
         <plugin>
@@ -194,6 +196,7 @@
                         </resources>
                     </configuration>
                 </execution>
+                <!--
                 <execution>
                     <id>CesiumJS</id>
                     <phase>process-classes</phase>
@@ -226,7 +229,7 @@
                         </resources>
                     </configuration>
                 </execution>
-
+                -->
                 <execution>
                     <id>proxy properties files</id>
                     <phase>process-classes</phase>
