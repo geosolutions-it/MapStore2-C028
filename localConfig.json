@@ -1,7 +1,7 @@
 {
   "proxyUrl": {
     "url": "/mapstore2/proxy/?url=",
-    "useCORS": ["http://nominatim.openstreetmap.org", "https://nominatim.openstreetmap.org"]
+    "useCORS": []
   },
   "geoStoreUrl": "rest/geostore/",
   "printUrl": "http://geoserv02:8080/geoserver/pdf/info.json",
@@ -96,9 +96,6 @@
         "cfg": {
           "searchOptions": {"services": [
             {
-              "type": "nominatim",
-              "priority": 0
-            }, {
               "type": "bzVie",
               "displayName": "${properties.desc}",
               "subTitle": "Bolzano / Bozen",
@@ -183,7 +180,7 @@
           }
         }
       }
-    }, "Share", "DrawerMenu",
+    }, {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
     {
        "name": "Identify",
        "showIn": ["IdentifyBar", "Settings"],
@@ -247,10 +244,7 @@
         "name": "Search",
         "cfg": {
           "searchOptions": {"services": [
-            {
-              "type": "nominatim",
-              "priority": 0
-            }, {
+             {
               "type": "bzVie",
               "displayName": "${properties.desc}",
               "subTitle": "Bolzano / Bozen",
@@ -352,7 +346,10 @@
             }
           }
         }
-      }, "DrawerMenu",
+      }, {
+        "name": "DrawerMenu",
+        "hide": "{!(request.query && request.query.forceDrawer)}"
+        },
       {
          "name": "Identify",
          "showIn": ["Settings"],
@@ -417,10 +414,7 @@
           "name": "Search",
           "cfg": {
             "searchOptions": {"services": [
-              {
-                "type": "nominatim",
-                "priority": 0
-              }, {
+               {
                 "type": "bzVie",
                 "displayName": "${properties.desc}",
                 "subTitle": "Bolzano / Bozen",
