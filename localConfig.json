@@ -331,7 +331,21 @@
         }
       }
     },
-    "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo"
+    {
+      "name": "AutoMapUpdate",
+      "cfg": {
+        "options": {
+          "bbox": true,
+          "title": true,
+          "dimensions": true,
+          "search": true,
+          "style": true,
+          "availableStyles": true,
+          "groups": true
+        }
+      }
+    },
+    "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "Notifications"
   ],
     "embedded": [
       {

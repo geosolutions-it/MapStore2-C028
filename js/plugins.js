@@ -29,7 +29,6 @@ module.exports = {
         ZoomAllPlugin: require('../MapStore2/web/client/plugins/ZoomAll'),
         MapLoadingPlugin: require('../MapStore2/web/client/plugins/MapLoading'),
         HomePlugin: require('../MapStore2/web/client/plugins/Home'),
-        MetadataExplorerPlugin: require('../MapStore2/web/client/plugins/MetadataExplorer'),
         LoginPlugin: require('../MapStore2/web/client/plugins/Login'),
         OmniBarPlugin: require('../MapStore2/web/client/plugins/OmniBar'),
         BurgerMenuPlugin: require('../MapStore2/web/client/plugins/BurgerMenu'),
@@ -50,9 +49,12 @@ module.exports = {
         CreateNewMapPlugin: require('../MapStore2/web/client/plugins/CreateNewMap'),
         QueryPanelPlugin: require('../MapStore2/web/client/plugins/QueryPanel'),
         FeatureGridPlugin: require('../MapStore2/web/client/plugins/FeatureGrid'),
+        NotificationsPlugin: require('../MapStore2/web/client/plugins/Notifications'),
+        AutoMapUpdatePlugin: require('./plugins/AutoMapUpdate'),
         HeaderPlugin: require('./plugins/Header'),
         FooterPlugin: require('./plugins/Footer'),
-        HomeDescriptionPlugin: require('./plugins/HomeDescription')
+        HomeDescriptionPlugin: require('./plugins/HomeDescription'),
+        MetadataExplorerPlugin: require('./plugins/MetadataExplorer')
     },
     requires: {
         ReactSwipe: require('react-swipeable-views').default,
