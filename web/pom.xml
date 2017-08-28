@@ -19,11 +19,11 @@
     <!-- ================================================================ -->
     <!-- MapStore2 modules -->
     <!-- ================================================================ -->
-    <dependency>
+    <!--dependency>
         <groupId>it.geosolutions.MapStore2-C028</groupId>
         <artifactId>MapStore2-C028-backend</artifactId>
         <version>${project.version}</version>
-    </dependency>
+    </dependency-->
     <!-- ================================================================ -->
     <!-- GeoStore modules -->
     <!-- ================================================================ -->

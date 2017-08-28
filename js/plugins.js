@@ -48,13 +48,14 @@ module.exports = {
         SaveAsPlugin: require('../MapStore2/web/client/plugins/SaveAs'),
         CreateNewMapPlugin: require('../MapStore2/web/client/plugins/CreateNewMap'),
         QueryPanelPlugin: require('../MapStore2/web/client/plugins/QueryPanel'),
-        FeatureGridPlugin: require('../MapStore2/web/client/plugins/FeatureGrid'),
         NotificationsPlugin: require('../MapStore2/web/client/plugins/Notifications'),
         AutoMapUpdatePlugin: require('./plugins/AutoMapUpdate'),
         HeaderPlugin: require('./plugins/Header'),
         FooterPlugin: require('./plugins/Footer'),
         HomeDescriptionPlugin: require('./plugins/HomeDescription'),
-        MetadataExplorerPlugin: require('./plugins/MetadataExplorer')
+        MetadataExplorerPlugin: require('./plugins/MetadataExplorer'),
+        FeatureEditorPlugin: require('../MapStore2/web/client/plugins/FeatureEditor'),
+        WFSDownloadPlugin: require('../MapStore2/web/client/plugins/WFSDownload')
     },
     requires: {
         ReactSwipe: require('react-swipeable-views').default,

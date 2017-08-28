@@ -60,7 +60,8 @@ class AutoMapUpdate extends React.Component {
                 count={this.props.count}
                 length={this.props.length}
                 label={this.props.label}
-                unit={this.props.unit}/>
+                unit={this.props.unit}
+                spinner={'circle'}/>
         );
     }
 }
