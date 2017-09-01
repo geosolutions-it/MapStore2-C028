@@ -117,12 +117,7 @@ class RecordItem extends React.Component {
     renderThumb = (thumbURL, record) => {
         let thumbSrc = thumbURL || defaultThumb;
 
-        return (<Image src={thumbSrc} alt={record && this.getTitle(record.title)} style={{
-            "float": "left",
-            width: "150px",
-            maxHeight: "150px",
-            marginRight: "20px"
-        }}/>);
+        return (<Image className="preview" src={thumbSrc} alt={record && this.getTitle(record.title)}/>);
 
     };
 
@@ -143,7 +138,7 @@ class RecordItem extends React.Component {
                 <Button
                     key="wms-button"
                     className="record-button"
-                    bsStyle="success"
+                    bsStyle="primary"
                     bsSize={this.props.buttonSize}
                     onClick={() => { this.addLayer(wms); }}
                     key="addlayer">
@@ -156,7 +151,7 @@ class RecordItem extends React.Component {
                 <Button
                     key="wmts-button"
                     className="record-button"
-                    bsStyle="success"
+                    bsStyle="primary"
                     bsSize={this.props.buttonSize}
                     onClick={() => { this.addwmtsLayer(wmts); }}
                     key="addwmtsLayer">
@@ -194,12 +189,12 @@ class RecordItem extends React.Component {
     render() {
         let record = this.props.record;
         return (
-            <Panel className="record-item">
+            <Panel className="record-item" style={{padding: 0}}>
                 {this.renderThumb(record && record.thumbnail, record)}
                 <div>
-                    <h4>{record && this.getTitle(record.title)}</h4>
-                    <h4><small>{record && record.identifier}</small></h4>
-                    <p className="record-item-description">{this.renderDescription(record)}</p>
+                    <h4 className="truncateText">{record && this.getTitle(record.title)}</h4>
+                    <h4 className="truncateText"><small>{record && record.identifier}</small></h4>
+                    <p className="truncateText record-item-description">{this.renderDescription(record)}</p>
                 </div>
                   {this.renderButtons(record)}
             </Panel>

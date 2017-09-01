@@ -18,6 +18,36 @@
     "urlPattern": "\\/geoserver.*",
     "method": "authkey"
   }],
+  "initialState": {
+    "defaultState": {
+      "catalog":{
+        "default": {
+          "newService": {
+              "url": "",
+              "type": "wms",
+              "title": "",
+              "isNew": true,
+              "autoload": false
+          },
+          "selectedService": "WMS",
+          "services": {
+            "WMS": {
+              "url": "http://geoserv02:8080/geoserver/wms",
+              "type": "wms",
+              "title": "WMS",
+              "autoload": false
+            }
+          }
+        },
+        "newService": {
+            "title": "",
+            "type": "wms",
+            "url": "",
+            "autoload": false
+        }
+      }
+    }
+  },
   "plugins": {
     "mobile": [
       {
@@ -254,10 +284,7 @@
     }, {
         "name": "MetadataExplorer",
         "cfg": {
-          "wrap": true,
-          "initialCatalogURL": {
-            "wms": "http://geoserv02:8080/geoserver/wms"
-          }
+          "wrap": true
         }
     }, "MousePosition", {
         "name": "Search",
