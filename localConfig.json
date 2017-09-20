@@ -8,7 +8,7 @@
 	"translationsPath": ["./MapStore2/web/client/translations", "./translations"],
   "mapquestApiKey": "__API_KEY_MAPQUEST__",
   "initialMapFilter": "",
-  "ignoreMobileCss" : true,
+  "ignoreMobileCss" : false,
   "useAuthenticationRules": true,
   "authenticationRules": [
     {
@@ -91,7 +91,13 @@
           "alwaysVisible": true
         }
       }
-    }, "Home", "TOC", {
+    }, "Home", {
+      "name": "TOC",
+      "cfg": {
+        "activateMapTitle": false,
+        "activateSortLayer": false
+      }
+    }, {
       "name": "BackgroundSelector",
       "cfg": {
         "thumbs":{
@@ -113,12 +119,6 @@
       "name": "Settings",
       "cfg": {
         "wrap": true
-      }
-    },
-    {
-      "name": "MousePosition",
-      "cfg": {
-        "id": "mapstore-mouseposition-mobile"
       }
     },
     {
@@ -208,22 +208,43 @@
               "metric": true
             }
           }
+        },
+        "mapOptions": {
+          "openlayers": {
+            "attribution": {
+              "container": "#mapstore-map-footer-container"
+            }
+          },
+          "leaflet": {
+            "attribution": {
+              "container": "#mapstore-map-footer-container"
+            }
+          }
+        },
+        "toolsOptions": {
+          "scalebar": {
+            "container" : "#mapstore-map-footer-container"
+          }
         }
       }
-    }, {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
+    }, "MapFooter", {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
     {
-       "name": "Identify",
-       "showIn": ["IdentifyBar", "Settings"],
-       "cfg": {
-         "viewerOptions": {
-             "container": "{context.ReactSwipe}",
-             "header": "{context.SwipeHeader}",
-             "collapsible": false,
-             "headerOptions": {
-                "useButtons": true
-             }
+        "name": "Identify",
+        "cfg": {
+            "viewerOptions": {
+                "container": "{context.ReactSwipe}",
+                "header": "{context.SwipeHeader}",
+                "headerOptions": {
+                    "useButtons": true
+                }
+            }
+        },
+        "override": {
+          "Toolbar": {
+            "position": 11,
+            "alwaysVisible": true
+          }
         }
-       }
     },
     {
         "name": "Locate",
@@ -254,7 +275,8 @@
     }, {
         "name": "TOC",
         "cfg": {
-          "activateQueryTool": true
+          "activateQueryTool": true,
+          "activateAddLayerButton": true
         }
     }, {
         "name": "BackgroundSelector",
@@ -404,9 +426,26 @@
                 "metric": true
               }
             }
+          },
+          "mapOptions": {
+            "openlayers": {
+              "attribution": {
+                "container": "#mapstore-map-footer-container"
+              }
+            },
+            "leaflet": {
+              "attribution": {
+                "container": "#mapstore-map-footer-container"
+              }
+            }
+          },
+          "toolsOptions": {
+            "scalebar": {
+              "container" : "#mapstore-map-footer-container"
+            }
           }
         }
-      }, {
+      }, "MapFooter", {
         "name": "DrawerMenu",
         "hide": "{!(request.query && request.query.forceDrawer)}"
         },
@@ -439,7 +478,14 @@
               "alwaysVisible": true
             }
           }
-      }, "TOC",
+      }, {
+          "name": "TOC",
+          "cfg": {
+            "activateMapTitle": false,
+            "activateRemoveLayer": false,
+            "activateSettingsTool": false
+          }
+      },
       {
           "name": "BackgroundSelector",
           "cfg": {
@@ -463,12 +509,6 @@
           "cfg": {
             "wrap": true
           }
-      },
-      {
-         "name": "MousePosition",
-         "cfg": {
-           "id": "mapstore-mouseposition-mobile"
-         }
       },
       {
           "name": "Search",

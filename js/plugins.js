@@ -55,7 +55,8 @@ module.exports = {
         HomeDescriptionPlugin: require('./plugins/HomeDescription'),
         MetadataExplorerPlugin: require('./plugins/MetadataExplorer'),
         FeatureEditorPlugin: require('../MapStore2/web/client/plugins/FeatureEditor'),
-        WFSDownloadPlugin: require('../MapStore2/web/client/plugins/WFSDownload')
+        WFSDownloadPlugin: require('../MapStore2/web/client/plugins/WFSDownload'),
+        MapFooterPlugin: require('../MapStore2/web/client/plugins/MapFooter')
     },
     requires: {
         ReactSwipe: require('react-swipeable-views').default,
