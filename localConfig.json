@@ -106,6 +106,7 @@
             "Cartografia:ortofoto2014": "assets/img/bolzano-2014.png"
           }
         },
+        "bottom": 25,
         "dimensions": {
           "side": 65,
           "sidePreview": 65,
