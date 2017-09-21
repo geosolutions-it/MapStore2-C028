@@ -99,6 +99,26 @@
         <plugin>
             <artifactId>maven-resources-plugin</artifactId>
             <version>2.6</version>
+            <execution>
+                <id>LDAP configuration</id>
+                <phase>process-sources</phase>
+                <goals>
+                    <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                    <outputDirectory>${basedir}/src/main/webapp/WEB-INF/classes</outputDirectory>
+                    <encoding>UTF-8</encoding>
+                    <filters>
+                      <filter>${basedir}/ldap.properties</filter>
+                    </filters>
+                    <resources>
+                        <resource>
+                            <directory>${basedir}/src/main/resources-filtered/WEB-INF/classes</directory>
+                            <filtering>true</filtering>
+                        </resource>
+                    </resources>
+                </configuration>
+            </execution>
             <executions>
                 <execution>
                     <id>html, configuration files and images</id>
