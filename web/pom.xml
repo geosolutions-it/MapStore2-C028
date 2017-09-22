@@ -99,6 +99,7 @@
         <plugin>
             <artifactId>maven-resources-plugin</artifactId>
             <version>2.6</version>
+            <executions>
             <execution>
                 <id>LDAP configuration</id>
                 <phase>process-sources</phase>
@@ -119,7 +120,6 @@
                     </resources>
                 </configuration>
             </execution>
-            <executions>
                 <execution>
                     <id>html, configuration files and images</id>
                     <phase>process-classes</phase>
