@@ -18,6 +18,10 @@
     "urlPattern": "\\/geoserver.*",
     "method": "authkey"
   }],
+  "monitorState": [
+    {"name": "routing", "path": "routing.location.pathname"},
+    {"name": "browser", "path": "browser"},
+    {"name": "featuregridmode", "path": "featuregrid.mode"}],
   "initialState": {
     "defaultState": {
       "catalog":{
@@ -180,14 +184,6 @@
       "cfg": {
         "id": "navigationBar"
       }
-    }, {
-      "name": "Toolbar",
-      "id": "IdentifyBar",
-      "stateSelector": "identify",
-      "cfg": {
-        "id": "identifyBar"
-      },
-      "isDefault": false
     }, "ZoomAll",
     {
       "name": "MapLoading",
@@ -196,8 +192,22 @@
           "alwaysVisible": true
         }
       }
+    }, {
+        "name": "FullScreen",
+        "override": {
+            "Toolbar": {
+                "alwaysVisible": false
+            }
+        }
     }, "Login",
-    "OmniBar", "BurgerMenu", "Expander"
+    "OmniBar", "BurgerMenu", "Expander",
+    {
+      "name": "Cookie",
+      "cfg": {
+        "externalCookieUrl" : "",
+        "declineUrl" : "http://www.google.com"
+      }
+    }
   ],
   "desktop": [
     {
@@ -277,7 +287,23 @@
         "name": "TOC",
         "cfg": {
           "activateQueryTool": true,
-          "activateAddLayerButton": true
+          "activateAddLayerButton": true,
+          "cfg": {
+              "activateQueryTool": true,
+              "activateAddLayerButton": true,
+              "spatialOperations": [
+                  {"id": "INTERSECTS", "name": "queryform.spatialfilter.operations.intersects"},
+                  {"id": "BBOX", "name": "queryform.spatialfilter.operations.bbox"},
+                  {"id": "CONTAINS", "name": "queryform.spatialfilter.operations.contains"},
+                  {"id": "WITHIN", "name": "queryform.spatialfilter.operations.within"}
+              ],
+              "spatialMethodOptions": [
+                  {"id": "Viewport", "name": "queryform.spatialfilter.methods.viewport"},
+                  {"id": "BBOX", "name": "queryform.spatialfilter.methods.box"},
+                  {"id": "Circle", "name": "queryform.spatialfilter.methods.circle"},
+                  {"id": "Polygon", "name": "queryform.spatialfilter.methods.poly"}
+              ]
+          }
         }
     }, {
         "name": "BackgroundSelector",
@@ -376,14 +402,6 @@
       "cfg": {
         "id": "navigationBar"
       }
-    }, {
-      "name": "Toolbar",
-      "id": "IdentifyBar",
-      "stateSelector": "identify",
-      "cfg": {
-        "id": "identifyBar"
-      },
-      "isDefault": false
     }, "ScaleBox", "ZoomAll",
     {
       "name": "MapLoading",
@@ -423,7 +441,14 @@
         }
       }
     },
-    "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "Notifications"
+    "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "FullScreen", "Notifications",
+    {
+      "name": "Cookie",
+      "cfg": {
+        "externalCookieUrl" : "",
+        "declineUrl" : "http://www.google.com"
+        }
+    }
   ],
     "embedded": [
       {
@@ -578,14 +603,6 @@
         "cfg": {
           "id": "navigationBar"
         }
-      }, {
-        "name": "Toolbar",
-        "id": "IdentifyBar",
-        "stateSelector": "identify",
-        "cfg": {
-          "id": "identifyBar"
-        },
-        "isDefault": false
       },
       {
         "name": "MapLoading",
@@ -594,8 +611,22 @@
             "alwaysVisible": true
           }
         }
-      },
-      "OmniBar", "BurgerMenu"
+      }, "Cookie",
+      "OmniBar", {
+          "name": "ZoomAll",
+          "override": {
+              "Toolbar": {
+                  "alwaysVisible": true
+              }
+          }
+      }, {
+          "name": "GoFull",
+          "override": {
+              "Toolbar": {
+                  "alwaysVisible": true
+              }
+          }
+      }
     ],
     "common": [{
       "name": "OmniBar",
@@ -616,8 +647,14 @@
              }
            }
          }
+    }, "Notifications", "ScrollTop"],
+    "maps": ["Header", "MapSearch", "HomeDescription", "CreateNewMap", "Maps", "Footer", {
+      "name": "Cookie",
+      "cfg": {
+        "externalCookieUrl" : "",
+        "declineUrl" : "http://www.google.com"
+      }
     }],
-    "maps": ["Header", "MapSearch", "HomeDescription", "CreateNewMap", "Maps", "Footer"],
     "manager": ["Header", "Redirect", "Manager", "Home", "UserManager", "GroupManager", "Footer"]
   }
 }
