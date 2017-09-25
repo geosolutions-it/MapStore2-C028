@@ -47,7 +47,7 @@ module.exports = {
         SharePlugin: require('../MapStore2/web/client/plugins/Share'),
         SavePlugin: require('../MapStore2/web/client/plugins/Save'),
         SaveAsPlugin: require('../MapStore2/web/client/plugins/SaveAs'),
-        CreateNewMapPlugin: require('../MapStore2/web/client/plugins/CreateNewMap'),
+        CreateNewMapPlugin: require('./plugins/CreateNewMap'),
         QueryPanelPlugin: require('../MapStore2/web/client/plugins/QueryPanel'),
         NotificationsPlugin: require('../MapStore2/web/client/plugins/Notifications'),
         AutoMapUpdatePlugin: require('./plugins/AutoMapUpdate'),
