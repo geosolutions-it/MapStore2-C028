@@ -8,7 +8,7 @@
 	"translationsPath": ["./MapStore2/web/client/translations", "./translations"],
   "mapquestApiKey": "__API_KEY_MAPQUEST__",
   "initialMapFilter": "",
-  "ignoreMobileCss" : true,
+  "ignoreMobileCss" : false,
   "useAuthenticationRules": true,
   "authenticationRules": [
     {
@@ -18,6 +18,40 @@
     "urlPattern": "\\/geoserver.*",
     "method": "authkey"
   }],
+  "monitorState": [
+    {"name": "routing", "path": "routing.location.pathname"},
+    {"name": "browser", "path": "browser"},
+    {"name": "featuregridmode", "path": "featuregrid.mode"}],
+  "initialState": {
+    "defaultState": {
+      "catalog":{
+        "default": {
+          "newService": {
+              "url": "",
+              "type": "wms",
+              "title": "",
+              "isNew": true,
+              "autoload": false
+          },
+          "selectedService": "WMS",
+          "services": {
+            "WMS": {
+              "url": "http://geoserv02:8080/geoserver/wms",
+              "type": "wms",
+              "title": "WMS",
+              "autoload": false
+            }
+          }
+        },
+        "newService": {
+            "title": "",
+            "type": "wms",
+            "url": "",
+            "autoload": false
+        }
+      }
+    }
+  },
   "plugins": {
     "mobile": [
       {
@@ -61,7 +95,13 @@
           "alwaysVisible": true
         }
       }
-    }, "Home", "TOC", {
+    }, "Home", {
+      "name": "TOC",
+      "cfg": {
+        "activateMapTitle": false,
+        "activateSortLayer": false
+      }
+    }, {
       "name": "BackgroundSelector",
       "cfg": {
         "thumbs":{
@@ -70,6 +110,7 @@
             "Cartografia:ortofoto2014": "assets/img/bolzano-2014.png"
           }
         },
+        "bottom": 25,
         "dimensions": {
           "side": 65,
           "sidePreview": 65,
@@ -83,12 +124,6 @@
       "name": "Settings",
       "cfg": {
         "wrap": true
-      }
-    },
-    {
-      "name": "MousePosition",
-      "cfg": {
-        "id": "mapstore-mouseposition-mobile"
       }
     },
     {
@@ -149,14 +184,6 @@
       "cfg": {
         "id": "navigationBar"
       }
-    }, {
-      "name": "Toolbar",
-      "id": "IdentifyBar",
-      "stateSelector": "identify",
-      "cfg": {
-        "id": "identifyBar"
-      },
-      "isDefault": false
     }, "ZoomAll",
     {
       "name": "MapLoading",
@@ -166,7 +193,14 @@
         }
       }
     }, "Login",
-    "OmniBar", "BurgerMenu", "Expander"
+    "OmniBar", "BurgerMenu", "Expander",
+    {
+      "name": "Cookie",
+      "cfg": {
+        "externalCookieUrl" : "",
+        "declineUrl" : "http://www.google.com"
+      }
+    }
   ],
   "desktop": [
     {
@@ -178,22 +212,43 @@
               "metric": true
             }
           }
+        },
+        "mapOptions": {
+          "openlayers": {
+            "attribution": {
+              "container": "#mapstore-map-footer-container"
+            }
+          },
+          "leaflet": {
+            "attribution": {
+              "container": "#mapstore-map-footer-container"
+            }
+          }
+        },
+        "toolsOptions": {
+          "scalebar": {
+            "container" : "#mapstore-map-footer-container"
+          }
         }
       }
-    }, {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
+    }, "MapFooter", {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
     {
-       "name": "Identify",
-       "showIn": ["IdentifyBar", "Settings"],
-       "cfg": {
-         "viewerOptions": {
-             "container": "{context.ReactSwipe}",
-             "header": "{context.SwipeHeader}",
-             "collapsible": false,
-             "headerOptions": {
-                "useButtons": true
-             }
+        "name": "Identify",
+        "cfg": {
+            "viewerOptions": {
+                "container": "{context.ReactSwipe}",
+                "header": "{context.SwipeHeader}",
+                "headerOptions": {
+                    "useButtons": true
+                }
+            }
+        },
+        "override": {
+          "Toolbar": {
+            "position": 11,
+            "alwaysVisible": true
+          }
         }
-       }
     },
     {
         "name": "Locate",
@@ -202,10 +257,46 @@
             "alwaysVisible": true
           }
         }
-    }, "Home", "FeatureGrid", {
+    }, "Home", "FeatureEditor", "WFSDownload",
+    {
+      "name": "QueryPanel",
+      "cfg": {
+          "activateQueryTool": true,
+          "spatialOperations": [
+              {"id": "INTERSECTS", "name": "queryform.spatialfilter.operations.intersects"},
+              {"id": "BBOX", "name": "queryform.spatialfilter.operations.bbox"},
+              {"id": "CONTAINS", "name": "queryform.spatialfilter.operations.contains"},
+              {"id": "WITHIN", "name": "queryform.spatialfilter.operations.within"}
+          ],
+          "spatialMethodOptions": [
+              {"id": "Viewport", "name": "queryform.spatialfilter.methods.viewport"},
+              {"id": "BBOX", "name": "queryform.spatialfilter.methods.box"},
+              {"id": "Circle", "name": "queryform.spatialfilter.methods.circle"},
+              {"id": "Polygon", "name": "queryform.spatialfilter.methods.poly"}
+          ]
+      }
+
+    }, {
         "name": "TOC",
         "cfg": {
-          "activateQueryTool": true
+          "activateQueryTool": true,
+          "activateAddLayerButton": true,
+          "cfg": {
+              "activateQueryTool": true,
+              "activateAddLayerButton": true,
+              "spatialOperations": [
+                  {"id": "INTERSECTS", "name": "queryform.spatialfilter.operations.intersects"},
+                  {"id": "BBOX", "name": "queryform.spatialfilter.operations.bbox"},
+                  {"id": "CONTAINS", "name": "queryform.spatialfilter.operations.contains"},
+                  {"id": "WITHIN", "name": "queryform.spatialfilter.operations.within"}
+              ],
+              "spatialMethodOptions": [
+                  {"id": "Viewport", "name": "queryform.spatialfilter.methods.viewport"},
+                  {"id": "BBOX", "name": "queryform.spatialfilter.methods.box"},
+                  {"id": "Circle", "name": "queryform.spatialfilter.methods.circle"},
+                  {"id": "Polygon", "name": "queryform.spatialfilter.methods.poly"}
+              ]
+          }
         }
     }, {
         "name": "BackgroundSelector",
@@ -235,12 +326,18 @@
     }, {
         "name": "MetadataExplorer",
         "cfg": {
-          "wrap": true,
-          "initialCatalogURL": {
-            "wms": "http://geoserv02:8080/geoserver/wms"
-          }
+          "wrap": true
         }
-    }, "MousePosition", {
+    }, {
+      "name": "MousePosition",
+      "cfg": {
+        "editCRS": true,
+        "showLabels": true,
+        "showToggle": true,
+        "filterAllowedCRS": ["EPSG:4326", "EPSG:3857"],
+        "additionalCRS": {}
+      }
+    }, {
         "name": "Search",
         "cfg": {
           "searchOptions": {"services": [
@@ -298,14 +395,6 @@
       "cfg": {
         "id": "navigationBar"
       }
-    }, {
-      "name": "Toolbar",
-      "id": "IdentifyBar",
-      "stateSelector": "identify",
-      "cfg": {
-        "id": "identifyBar"
-      },
-      "isDefault": false
     }, "ScaleBox", "ZoomAll",
     {
       "name": "MapLoading",
@@ -331,7 +420,28 @@
         }
       }
     },
-    "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo"
+    {
+      "name": "AutoMapUpdate",
+      "cfg": {
+        "options": {
+          "bbox": true,
+          "title": true,
+          "dimensions": true,
+          "search": true,
+          "style": true,
+          "availableStyles": true,
+          "groups": true
+        }
+      }
+    },
+    "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "Notifications",
+    {
+      "name": "Cookie",
+      "cfg": {
+        "externalCookieUrl" : "",
+        "declineUrl" : "http://www.google.com"
+        }
+    }
   ],
     "embedded": [
       {
@@ -344,9 +454,26 @@
                 "metric": true
               }
             }
+          },
+          "mapOptions": {
+            "openlayers": {
+              "attribution": {
+                "container": "#mapstore-map-footer-container"
+              }
+            },
+            "leaflet": {
+              "attribution": {
+                "container": "#mapstore-map-footer-container"
+              }
+            }
+          },
+          "toolsOptions": {
+            "scalebar": {
+              "container" : "#mapstore-map-footer-container"
+            }
           }
         }
-      }, {
+      }, "MapFooter", {
         "name": "DrawerMenu",
         "hide": "{!(request.query && request.query.forceDrawer)}"
         },
@@ -379,7 +506,14 @@
               "alwaysVisible": true
             }
           }
-      }, "TOC",
+      }, {
+          "name": "TOC",
+          "cfg": {
+            "activateMapTitle": false,
+            "activateRemoveLayer": false,
+            "activateSettingsTool": false
+          }
+      },
       {
           "name": "BackgroundSelector",
           "cfg": {
@@ -403,12 +537,6 @@
           "cfg": {
             "wrap": true
           }
-      },
-      {
-         "name": "MousePosition",
-         "cfg": {
-           "id": "mapstore-mouseposition-mobile"
-         }
       },
       {
           "name": "Search",
@@ -468,14 +596,6 @@
         "cfg": {
           "id": "navigationBar"
         }
-      }, {
-        "name": "Toolbar",
-        "id": "IdentifyBar",
-        "stateSelector": "identify",
-        "cfg": {
-          "id": "identifyBar"
-        },
-        "isDefault": false
       },
       {
         "name": "MapLoading",
@@ -484,8 +604,22 @@
             "alwaysVisible": true
           }
         }
-      },
-      "OmniBar", "BurgerMenu"
+      }, "Cookie",
+      "OmniBar", {
+          "name": "ZoomAll",
+          "override": {
+              "Toolbar": {
+                  "alwaysVisible": true
+              }
+          }
+      }, {
+          "name": "GoFull",
+          "override": {
+              "Toolbar": {
+                  "alwaysVisible": true
+              }
+          }
+      }
     ],
     "common": [{
       "name": "OmniBar",
@@ -506,8 +640,14 @@
              }
            }
          }
+    }, "Notifications", "ScrollTop"],
+    "maps": ["Header", "MapSearch", "HomeDescription", "CreateNewMap", "Maps", "Footer", {
+      "name": "Cookie",
+      "cfg": {
+        "externalCookieUrl" : "",
+        "declineUrl" : "http://www.google.com"
+      }
     }],
-    "maps": ["Header", "MapSearch", "HomeDescription", "CreateNewMap", "Maps", "Footer"],
     "manager": ["Header", "Redirect", "Manager", "Home", "UserManager", "GroupManager", "Footer"]
   }
 }
