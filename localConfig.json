@@ -16,6 +16,7 @@
       "method": "basic"
     }, {
     "urlPattern": "\\/geoserver.*",
+    "authkeyParamName": "ms2-authkey",
     "method": "authkey"
   }],
   "monitorState": [
