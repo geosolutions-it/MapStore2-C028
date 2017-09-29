@@ -34,12 +34,12 @@
               "isNew": true,
               "autoload": false
           },
-          "selectedService": "WMS",
+          "selectedService": "Comune di Bolzano GeoServer Test",
           "services": {
-            "WMS": {
+            "Comune di Bolzano GeoServer Test": {
               "url": "http://geoserv02:8080/geoserver/wms",
               "type": "wms",
-              "title": "WMS",
+              "title": "Comune di Bolzano GeoServer Test",
               "autoload": false
             }
           }
