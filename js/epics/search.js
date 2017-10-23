@@ -62,9 +62,76 @@ const registerSearchServiceEpic = action$ => action$.ofType(LOCAL_CONFIG_LOADED)
             return [];
         });
     };
+    const createEntry = (desc, tipo) => (matched) => ({
+        type: "Feature",
+        resultCssStyle: {
+            backgroundColor: "#d3d3d3",
+            borderColor: "grey"
+        },
+        properties: {
+            tipo: tipo,
+            descTipo: desc,
+            title: matched.name,
+            description: desc,
+            code: matched.code
+        }
+    });
+    const bzComuniCatastali = (searchText, {comuni = [
+        { name: "Bolzano / Bozen", code: 613},
+        { name: "Dodiciville / Zwölfmalgreien", code: 652},
+        { name: "Gries / Gries", code: 669 }
+    ]} = {}) => {
+        const types = [
+            ["Particella Fondiaria / Grundparzelle", " partfond"],
+            ["Particella Edificabile / Bauparzelle", "partedif"]
+        ];
+        const entries = comuni.map(createEntry(...types[0]))
+        .concat(
+            comuni.map(createEntry(...types[1]))
+        );
+        const results = entries.filter( ({properties={}}) =>
+            properties.title.toLowerCase().indexOf(searchText.toLowerCase()) >= 0
+            || properties.descTipo.toLowerCase().indexOf(searchText.toLowerCase()) >= 0
+        );
+        return new Promise((resolve) => {
+            resolve(results);
+        });
+    };
 
+    const bzParticella = (searchText, {protocol, host, pathname, item} = {}) => {
+        let params = {
+            query: searchText,
+            tipo: item.properties.tipo,
+            comcat: item.properties.code
+        };
+        let url = urlUtil.format({
+            protocol,
+            host,
+            pathname,
+            query: params
+        });
+        return axios.post(url).then( (res) => {
+            if (res && res.data && res.data.success) {
+                return res.data.particelle.map((nestedItem) => {
+                    return {
+                        "type": "Feature",
+                        "properties": {
+                            "tipo": "particella",
+                            "comcat": item.properties.code,
+                            "tipopart": item.properties.tipo,
+                            "codice": nestedItem.codice,
+                            "descTipo": item.properties.descTipo
+                        }
+                    };
+                });
+            }
+            return [];
+        });
+    };
     API.Utils.setService("bzVie", bzVie);
     API.Utils.setService("bzCivico", bzCivico);
+    API.Utils.setService("bzComuniCatastali", bzComuniCatastali);
+    API.Utils.setService("bzParticella", bzParticella);
     return Rx.Observable.empty();
 });
 

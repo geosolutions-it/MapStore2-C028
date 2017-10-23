@@ -1,14 +1,14 @@
 {
   "proxyUrl": {
     "url": "/mapstore2/proxy/?url=",
-    "useCORS": []
+    "useCORS": ["http://nominatim.openstreetmap.org"]
   },
   "geoStoreUrl": "rest/geostore/",
   "printUrl": "http://geoserv02:8080/geoserver/pdf/info.json",
 	"translationsPath": ["./MapStore2/web/client/translations", "./translations"],
   "mapquestApiKey": "__API_KEY_MAPQUEST__",
   "initialMapFilter": "",
-  "ignoreMobileCss" : true,
+  "ignoreMobileCss" : false,
   "useAuthenticationRules": true,
   "authenticationRules": [
     {
@@ -16,8 +16,49 @@
       "method": "basic"
     }, {
     "urlPattern": "\\/geoserver.*",
+    "authkeyParamName": "ms2-authkey",
     "method": "authkey"
   }],
+  "monitorState": [
+    {"name": "routing", "path": "routing.location.pathname"},
+    {"name": "browser", "path": "browser"},
+    {"name": "featuregridmode", "path": "featuregrid.mode"}],
+  "projectionDefs": [{
+    "code": "EPSG:25832",
+    "def": "+proj=utm +zone=32 +ellps=GRS80 +units=m +no_defs",
+    "extent": [265948.8191, 6421521.2254, 677786.3629, 7288831.7014],
+    "worldExtent": [5.0500, 57.9000, 12.0000, 65.6700]
+  }],
+  "initialState": {
+    "defaultState": {
+      "catalog":{
+        "default": {
+          "newService": {
+              "url": "",
+              "type": "wms",
+              "title": "",
+              "isNew": true,
+              "autoload": false
+          },
+          "selectedService": "Comune di Bolzano Test GeoServer",
+          "services": {
+            "Comune di Bolzano Test GeoServer": {
+              "url": "http://geoserv02:8080/geoserver/wms",
+              "type": "wms",
+              "title": "Comune di Bolzano Test GeoServer",
+              "autoload": false
+            }
+          }
+        },
+        "newService": {
+            "title": "",
+            "type": "wms",
+            "url": "",
+            "autoload": false
+        }
+      }
+    }
+  },
   "plugins": {
     "mobile": [
       {
@@ -61,7 +102,13 @@
           "alwaysVisible": true
         }
       }
-    }, "Home", "TOC", {
+    }, "Home", {
+      "name": "TOC",
+      "cfg": {
+        "activateMapTitle": false,
+        "activateSortLayer": false
+      }
+    }, {
       "name": "BackgroundSelector",
       "cfg": {
         "thumbs":{
@@ -70,6 +117,7 @@
             "Cartografia:ortofoto2014": "assets/img/bolzano-2014.png"
           }
         },
+        "bottom": 25,
         "dimensions": {
           "side": 65,
           "sidePreview": 65,
@@ -83,12 +131,6 @@
       "name": "Settings",
       "cfg": {
         "wrap": true
-      }
-    },
-    {
-      "name": "MousePosition",
-      "cfg": {
-        "id": "mapstore-mouseposition-mobile"
       }
     },
     {
@@ -149,14 +191,6 @@
       "cfg": {
         "id": "navigationBar"
       }
-    }, {
-      "name": "Toolbar",
-      "id": "IdentifyBar",
-      "stateSelector": "identify",
-      "cfg": {
-        "id": "identifyBar"
-      },
-      "isDefault": false
     }, "ZoomAll",
     {
       "name": "MapLoading",
@@ -166,7 +200,14 @@
         }
       }
     }, "Login",
-    "OmniBar", "BurgerMenu", "Expander"
+    "OmniBar", "BurgerMenu", "Expander",
+    {
+      "name": "Cookie",
+      "cfg": {
+        "externalCookieUrl" : "",
+        "declineUrl" : "http://www.google.com"
+      }
+    }
   ],
   "desktop": [
     {
@@ -178,22 +219,43 @@
               "metric": true
             }
           }
+        },
+        "mapOptions": {
+          "openlayers": {
+            "attribution": {
+              "container": "#mapstore-map-footer-container"
+            }
+          },
+          "leaflet": {
+            "attribution": {
+              "container": "#mapstore-map-footer-container"
+            }
+          }
+        },
+        "toolsOptions": {
+          "scalebar": {
+            "container" : "#mapstore-map-footer-container"
+          }
         }
       }
-    }, {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
+    }, "MapFooter", {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
     {
-       "name": "Identify",
-       "showIn": ["IdentifyBar", "Settings"],
-       "cfg": {
-         "viewerOptions": {
-             "container": "{context.ReactSwipe}",
-             "header": "{context.SwipeHeader}",
-             "collapsible": false,
-             "headerOptions": {
-                "useButtons": true
-             }
+        "name": "Identify",
+        "cfg": {
+            "viewerOptions": {
+                "container": "{context.ReactSwipe}",
+                "header": "{context.SwipeHeader}",
+                "headerOptions": {
+                    "useButtons": true
+                }
+            }
+        },
+        "override": {
+          "Toolbar": {
+            "position": 11,
+            "alwaysVisible": true
+          }
         }
-       }
     },
     {
         "name": "Locate",
@@ -202,10 +264,57 @@
             "alwaysVisible": true
           }
         }
-    }, "Home", "FeatureGrid", {
+    }, 
+    "Home", "FeatureEditor", 
+    {
+	"name": "WFSDownload",
+	"cfg": {
+  		"formats": [
+          		{"name": "csv", "label": "csv"},
+          		{"name": "shape-zip", "label": "shape-zip"},
+          		{"name": "dxf-zip", "label": "dxf-zip"}
+  		]
+	}
+    },
+    {
+      "name": "QueryPanel",
+      "cfg": {
+          "activateQueryTool": true,
+          "spatialOperations": [
+              {"id": "INTERSECTS", "name": "queryform.spatialfilter.operations.intersects"},
+              {"id": "BBOX", "name": "queryform.spatialfilter.operations.bbox"},
+              {"id": "CONTAINS", "name": "queryform.spatialfilter.operations.contains"},
+              {"id": "WITHIN", "name": "queryform.spatialfilter.operations.within"}
+          ],
+          "spatialMethodOptions": [
+              {"id": "Viewport", "name": "queryform.spatialfilter.methods.viewport"},
+              {"id": "BBOX", "name": "queryform.spatialfilter.methods.box"},
+              {"id": "Circle", "name": "queryform.spatialfilter.methods.circle"},
+              {"id": "Polygon", "name": "queryform.spatialfilter.methods.poly"}
+          ]
+      }
+
+    }, {
         "name": "TOC",
         "cfg": {
-          "activateQueryTool": true
+          "activateQueryTool": true,
+          "activateAddLayerButton": true,
+          "cfg": {
+              "activateQueryTool": true,
+              "activateAddLayerButton": true,
+              "spatialOperations": [
+                  {"id": "INTERSECTS", "name": "queryform.spatialfilter.operations.intersects"},
+                  {"id": "BBOX", "name": "queryform.spatialfilter.operations.bbox"},
+                  {"id": "CONTAINS", "name": "queryform.spatialfilter.operations.contains"},
+                  {"id": "WITHIN", "name": "queryform.spatialfilter.operations.within"}
+              ],
+              "spatialMethodOptions": [
+                  {"id": "Viewport", "name": "queryform.spatialfilter.methods.viewport"},
+                  {"id": "BBOX", "name": "queryform.spatialfilter.methods.box"},
+                  {"id": "Circle", "name": "queryform.spatialfilter.methods.circle"},
+                  {"id": "Polygon", "name": "queryform.spatialfilter.methods.poly"}
+              ]
+          }
         }
     }, {
         "name": "BackgroundSelector",
@@ -235,15 +344,60 @@
     }, {
         "name": "MetadataExplorer",
         "cfg": {
-          "wrap": true,
-          "initialCatalogURL": {
-            "wms": "http://geoserv02:8080/geoserver/wms"
-          }
+          "wrap": true
         }
-    }, "MousePosition", {
+    }, {
+      "name": "MousePosition",
+      "cfg": {
+        "editCRS": true,
+        "showLabels": true,
+        "showToggle": true,
+        "filterAllowedCRS": ["EPSG:4326", "EPSG:3857", "EPSG:25832"],
+        "additionalCRS": {
+        	"EPSG:25832": {
+                	"label": "EPSG:25832"
+                }
+        }
+      }
+    }, {
         "name": "Search",
         "cfg": {
-          "searchOptions": {"services": [
+          "searchOptions": {"services": [{
+              "priority": 2,
+              "type": "bzComuniCatastali",
+              "displayName": "${properties.title}",
+              "subTitle": "${properties.description}",
+              "geomService" : {
+                "type": "wfs",
+                "options": {
+                  "url": "http://sit.comune.bolzano.it/geoserver/wfs",
+                  "typeName": "Ambiente:comuni_catast",
+                  "srsName": "EPSG:4326",
+                  "staticFilter": "CCAT_CODIC = ${properties.code}"
+                }
+              },
+              "nestedPlaceholderMsgId": "search.partNestedPlaceholder",
+              "then" : [{
+                  "type": "bzParticella",
+                  "displayName": "${properties.codice}",
+                  "searchTextTemplate": "${properties.codice}",
+                  "subTitle": "${properties.descTipo}",
+                  "geomService" : {
+                    "type": "wfs",
+                    "options": {
+                      "url": "http://sit.comune.bolzano.it/geoserver/wfs",
+                      "typeName": "Cartografia:particelle",
+                      "srsName": "EPSG:4326",
+                      "staticFilter": "NUM = '${properties.codice}' AND COM = ${properties.comcat}"
+                    }
+                  },
+                  "options": {
+                    "protocol": "http",
+                    "host": "sit.comune.bolzano.it",
+                    "pathname": "/GeoInfo/ParticelleServlet"
+                  }
+                }]
+            },
              {
               "type": "bzVie",
               "displayName": "${properties.desc}",
@@ -298,14 +452,6 @@
       "cfg": {
         "id": "navigationBar"
       }
-    }, {
-      "name": "Toolbar",
-      "id": "IdentifyBar",
-      "stateSelector": "identify",
-      "cfg": {
-        "id": "identifyBar"
-      },
-      "isDefault": false
     }, "ScaleBox", "ZoomAll",
     {
       "name": "MapLoading",
@@ -331,7 +477,28 @@
         }
       }
     },
-    "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo"
+    {
+      "name": "AutoMapUpdate",
+      "cfg": {
+        "options": {
+          "bbox": true,
+          "title": true,
+          "dimensions": true,
+          "search": true,
+          "style": true,
+          "availableStyles": true,
+          "groups": true
+        }
+      }
+    },
+    "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "Notifications",
+    {
+      "name": "Cookie",
+      "cfg": {
+        "externalCookieUrl" : "",
+        "declineUrl" : "http://www.google.com"
+        }
+    }
   ],
     "embedded": [
       {
@@ -344,9 +511,26 @@
                 "metric": true
               }
             }
+          },
+          "mapOptions": {
+            "openlayers": {
+              "attribution": {
+                "container": "#mapstore-map-footer-container"
+              }
+            },
+            "leaflet": {
+              "attribution": {
+                "container": "#mapstore-map-footer-container"
+              }
+            }
+          },
+          "toolsOptions": {
+            "scalebar": {
+              "container" : "#mapstore-map-footer-container"
+            }
           }
         }
-      }, {
+      }, "MapFooter", {
         "name": "DrawerMenu",
         "hide": "{!(request.query && request.query.forceDrawer)}"
         },
@@ -379,7 +563,14 @@
               "alwaysVisible": true
             }
           }
-      }, "TOC",
+      }, {
+          "name": "TOC",
+          "cfg": {
+            "activateMapTitle": false,
+            "activateRemoveLayer": false,
+            "activateSettingsTool": false
+          }
+      },
       {
           "name": "BackgroundSelector",
           "cfg": {
@@ -405,15 +596,44 @@
           }
       },
       {
-         "name": "MousePosition",
-         "cfg": {
-           "id": "mapstore-mouseposition-mobile"
-         }
-      },
-      {
           "name": "Search",
           "cfg": {
-            "searchOptions": {"services": [
+            "searchOptions": {"services": [{
+              "priority": 2,
+              "type": "bzComuniCatastali",
+              "displayName": "${properties.title}",
+              "subTitle": "${properties.description}",
+              "geomService" : {
+                "type": "wfs",
+                "options": {
+                  "url": "http://sit.comune.bolzano.it/geoserver/wfs",
+                  "typeName": "Ambiente:comuni_catast",
+                  "srsName": "EPSG:4326",
+                  "staticFilter": "CCAT_CODIC = ${properties.code}"
+                }
+              },
+              "nestedPlaceholderMsgId": "search.partNestedPlaceholder",
+              "then" : [{
+                  "type": "bzParticella",
+                  "displayName": "${properties.codice}",
+                  "searchTextTemplate": "${properties.codice}",
+                  "subTitle": "${properties.descTipo}",
+                  "geomService" : {
+                    "type": "wfs",
+                    "options": {
+                      "url": "http://sit.comune.bolzano.it/geoserver/wfs",
+                      "typeName": "Cartografia:particelle",
+                      "srsName": "EPSG:4326",
+                      "staticFilter": "NUM = '${properties.codice}' AND COM = ${properties.comcat}"
+                    }
+                  },
+                  "options": {
+                    "protocol": "http",
+                    "host": "sit.comune.bolzano.it",
+                    "pathname": "/GeoInfo/ParticelleServlet"
+                  }
+                }]
+            },
                {
                 "type": "bzVie",
                 "displayName": "${properties.desc}",
@@ -468,14 +688,6 @@
         "cfg": {
           "id": "navigationBar"
         }
-      }, {
-        "name": "Toolbar",
-        "id": "IdentifyBar",
-        "stateSelector": "identify",
-        "cfg": {
-          "id": "identifyBar"
-        },
-        "isDefault": false
       },
       {
         "name": "MapLoading",
@@ -484,8 +696,22 @@
             "alwaysVisible": true
           }
         }
-      },
-      "OmniBar", "BurgerMenu"
+      }, "Cookie",
+      "OmniBar", {
+          "name": "ZoomAll",
+          "override": {
+              "Toolbar": {
+                  "alwaysVisible": true
+              }
+          }
+      }, {
+          "name": "GoFull",
+          "override": {
+              "Toolbar": {
+                  "alwaysVisible": true
+              }
+          }
+      }
     ],
     "common": [{
       "name": "OmniBar",
@@ -506,8 +732,14 @@
              }
            }
          }
+    }, "Notifications", "ScrollTop"],
+    "maps": ["Header", "MapSearch", "HomeDescription", "CreateNewMap", "Maps", "Footer", {
+      "name": "Cookie",
+      "cfg": {
+        "externalCookieUrl" : "",
+        "declineUrl" : "http://www.google.com"
+      }
     }],
-    "maps": ["Header", "MapSearch", "HomeDescription", "CreateNewMap", "Maps", "Footer"],
     "manager": ["Header", "Redirect", "Manager", "Home", "UserManager", "GroupManager", "Footer"]
   }
 }

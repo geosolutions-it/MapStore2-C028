@@ -13,6 +13,7 @@
             "loadingerror": "Diese Ebene wurde nicht korrekt geladen"
         },
         "search":{
+            "partNestedPlaceholder": "Parzelle einfügen...",
             "nestedPlaceholder": "Bitte, legen Sie auf Bürgernummer"
         },
         "queryform": {
