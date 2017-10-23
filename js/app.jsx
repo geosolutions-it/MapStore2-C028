@@ -11,6 +11,8 @@ const ReactDOM = require('react-dom');
 const {connect} = require('react-redux');
 const LocaleUtils = require('../MapStore2/web/client/utils/LocaleUtils');
 const {registerSearchServiceEpic} = require('./epics/search');
+const {registerCustomLayersUtilsEpic} = require('./epics/layers');
+const {addLayersStyleLocalization} = require('./epics/locale');
 
 const startApp = () => {
     const ConfigUtils = require('../MapStore2/web/client/utils/ConfigUtils');
@@ -38,7 +40,7 @@ const startApp = () => {
     const appStore = require('../MapStore2/web/client/stores/StandardStore').bind(null, initialState, {
         maps: require('../MapStore2/web/client/reducers/maps'),
         security: require('../MapStore2/web/client/reducers/security')
-    }, {registerSearchServiceEpic});
+    }, {registerSearchServiceEpic, registerCustomLayersUtilsEpic, addLayersStyleLocalization});
 
     const initialActions = [
         () => loadMaps(ConfigUtils.getDefaults().geoStoreUrl, ConfigUtils.getDefaults().initialMapFilter || "*")

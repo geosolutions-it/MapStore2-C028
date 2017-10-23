@@ -7,5 +7,9 @@ npm-debug.log
 coverage/
 web/.classpath
 web/.project
+web/.settings
 backend/.classpath
 backend/.project
+backend/.settings
+js/libs/Cesium/
+web/src/main/webapp/WEB-INF/classes/geostore-spring-security.xml

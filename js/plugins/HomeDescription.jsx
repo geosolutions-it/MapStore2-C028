@@ -6,15 +6,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 const React = require('react');
+const PropTypes = require('prop-types');
 const HTML = require('../../MapStore2/web/client/components/I18N/HTML');
 
 require('./homedescription/homedescription.css');
 
-const HomeDescription = React.createClass({
-    propTypes: {
-        style: React.PropTypes.object,
-        className: React.PropTypes.object
-    },
+class HomeDescription extends React.Component {
+
+    static propTypes = {
+        style: PropTypes.object,
+        className: PropTypes.object
+    };
+
     render() {
         return (
             <div style={this.props.style} className="mapstore-home-description">
@@ -22,7 +25,7 @@ const HomeDescription = React.createClass({
             </div>
         );
     }
-});
+}
 
 module.exports = {
     HomeDescriptionPlugin: HomeDescription

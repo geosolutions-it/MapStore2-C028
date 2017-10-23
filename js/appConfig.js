@@ -50,9 +50,6 @@ module.exports = {
                  drawer: {
                      enabled: false,
                      menu: "1"
-                 },
-                 saveAs: {
-                     allowedRoles: ["ADMIN"]
                  }
              },
              "maps": {
