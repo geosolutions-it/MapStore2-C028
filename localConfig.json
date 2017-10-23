@@ -31,6 +31,7 @@
   }],
   "initialState": {
     "defaultState": {
+      "mapInfo": {"infoFormat": "text/html"},
       "catalog":{
         "default": {
           "newService": {
