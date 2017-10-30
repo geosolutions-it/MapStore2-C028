@@ -35,6 +35,11 @@ const ProjectUtils = {
         }, {'default': titles[0]});
     },
     getLocalizedStyle: (style, availableStyles, currentLocale) => {
+        /*
+        HOW IT WORKS:
+        - if it exists a localized style among the supported locales, it uses that localized style
+        - if it not exists a localized style, it uses the style from the layer conf.
+        */
         const locales = LocaleUtils.getSupportedLocales();
         const firstAvailableStyle = availableStyles && availableStyles.length > 0 ? availableStyles[0].name || availableStyles[0].Name : style;
         const currentStyle = style ? style : firstAvailableStyle;
