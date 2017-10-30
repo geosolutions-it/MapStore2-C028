@@ -77,7 +77,7 @@ const updateMapEpic = (action$, store) =>
                         // set style by language
                         const availableStyles = isArray(caps.Style) ? caps.Style : [];
                         const currentLocale = head(currentLocaleSelector(store.getState()).split('-'));
-                        const style = ProjectUtils.getLocalizedStyle(layer.style, availableStyles, currentLocale || 'en');
+                        const style = ProjectUtils.getLocalizedStyle(layer.style, availableStyles, currentLocale || 'it');
 
                         return Rx.Observable.of(assign({layer: layer.id, title: ProjectUtils.getKeywordsTranslations(caps), style, availableStyles, bbox: Api.getBBox(caps, true), dimensions: Api.getDimensions(caps)}, (describe && !describe.error) ? {search: describe} : {}));
                     })
