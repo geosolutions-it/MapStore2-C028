@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "vie": [
+    {"codice": "6060", "descrizione": "PONTE ROMA", "idVia": ""},
+    {"codice": "6090", "descrizione": "VIA ROMA", "idVia": ""},
+    {"codice": "3250", "descrizione": "VIA ROMANO GUARDINI", "idVia": ""}
+  ],
+  "totalCount": 3
+}

@@ -16,18 +16,22 @@ const {head} = require('lodash');
 const axios = require('axios');
 const urlUtil = require('url');
 
+const getActualLang = (state, lang) => head(currentLocaleSelector(state).split('-')) || lang || "en";
+const getBzVieUrl = ({state, searchText, protocol, host, pathname, lang}) => {
+    let actualLang = getActualLang(state, lang);
+    let params = assign({}, {query: searchText, lang: actualLang});
+    return urlUtil.format({
+        protocol,
+        host,
+        pathname,
+        query: params
+    });
+};
 const registerSearchServiceEpic = (action$, store) => action$.ofType(LOCAL_CONFIG_LOADED).switchMap(() => {
     // registering the custom Services
 
     const bzVie = (searchText, {protocol, host, pathname, lang}) => {
-        let actualLang = head(currentLocaleSelector(store.getState()).split('-')) || lang;
-        let params = assign({}, {query: searchText, lang: actualLang});
-        let url = urlUtil.format({
-            protocol,
-            host,
-            pathname,
-            query: params
-        });
+        const url = getBzVieUrl({searchText, protocol, host, pathname, lang, state: store.getState()});
         return axios.post(url).then( (res) => {
             if (res && res.data && res.data.success) {
                 return res.data.vie.map((item) => {
@@ -141,5 +145,7 @@ const registerSearchServiceEpic = (action$, store) => action$.ofType(LOCAL_CONFI
 
 
 module.exports = {
-    registerSearchServiceEpic
+    registerSearchServiceEpic,
+    getActualLang,
+    getBzVieUrl
 };
