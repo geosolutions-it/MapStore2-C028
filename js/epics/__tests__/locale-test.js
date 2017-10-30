@@ -31,53 +31,6 @@ const layers = {
         loading: true
       },
       {
-        group: 'background',
-        source: 'google',
-        name: 'HYBRID',
-        title: 'Google HYBRID',
-        type: 'google',
-        visibility: false,
-        singleTile: false,
-        dimensions: [],
-        id: 'HYBRID__1'
-      },
-      {
-        group: 'background',
-        source: 'mapquest',
-        name: 'osm',
-        title: 'MapQuest OSM',
-        type: 'mapquest',
-        visibility: false,
-        singleTile: false,
-        dimensions: [],
-        apiKey: '__API_KEY_MAPQUEST__',
-        id: 'osm__2'
-      },
-      {
-        group: 'background',
-        source: 'nasagibs',
-        name: 'Night2012',
-        provider: 'NASAGIBS.ViirsEarthAtNight2012',
-        title: 'NASAGIBS Night 2012',
-        type: 'tileprovider',
-        visibility: false,
-        singleTile: false,
-        dimensions: [],
-        id: 'Night2012__3'
-      },
-      {
-        group: 'background',
-        source: 'OpenTopoMap',
-        name: 'OpenTopoMap',
-        provider: 'OpenTopoMap',
-        title: 'OpenTopoMap',
-        type: 'tileprovider',
-        visibility: false,
-        singleTile: false,
-        dimensions: [],
-        id: 'OpenTopoMap__4'
-      },
-      {
         search: {
           url: 'http://sit.comune.bolzano.it/geoserver/wfs?',
           type: 'wfs'
@@ -136,55 +89,8 @@ const layers = {
               }
             ]
           }
-        ],
-        title: {
-          'default': 'quartieri',
-          'it-IT': 'Quartieri',
-          'de-DE': 'Stadtviertel'
-        },
-        type: 'wms',
-        url: 'http://sit.comune.bolzano.it/geoserver/wms',
-        bbox: {
-          crs: 'EPSG:4326',
-          bounds: {
-            minx: '11.274139788331421',
-            miny: '46.44238098464227',
-            maxx: '11.434390795696103',
-            maxy: '46.53194067237907'
-          }
-        },
-        visibility: true,
-        singleTile: false,
-        allowedSRS: {
-          'EPSG:2398': true,
-          'EPSG:2399': true,
-          'EPSG:25832': true,
-          'EPSG:25833': true,
-          'EPSG:31468': true,
-          'EPSG:31469': true,
-          'EPSG:3785': true,
-          'EPSG:4326': true,
-          'EPSG:900913': true,
-          'CRS:84': true
-        },
-        dimensions: [],
-        params: {},
-        id: 'Ambiente:quartieri__5',
-        loading: false,
-        loadingError: false
-      }
-    ],
-    groups: [
-      {
-        id: 'Default',
-        title: 'Default',
-        name: 'Default',
-        nodes: [
-          'Ambiente:quartieri__5'
-        ],
-        expanded: true
-      }
-    ]
+        ]
+    }]
 };
 
 describe('search Epics', () => {
