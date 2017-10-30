@@ -16,7 +16,7 @@ const {head} = require('lodash');
 const axios = require('axios');
 const urlUtil = require('url');
 
-const getActualLang = (state, lang) => head(currentLocaleSelector(state).split('-')) || lang || "en";
+const getActualLang = (state, lang) => head(currentLocaleSelector(state).split('-')) || lang || "it";
 const getBzVieUrl = ({state, searchText, protocol, host, pathname, lang}) => {
     let actualLang = getActualLang(state, lang);
     let params = assign({}, {query: searchText, lang: actualLang});
