@@ -1,7 +1,7 @@
 {
   "proxyUrl": {
     "url": "/mapstore2/proxy/?url=",
-    "useCORS": []
+    "useCORS": ["http://nominatim.openstreetmap.org"]
   },
   "geoStoreUrl": "rest/geostore/",
   "printUrl": "http://geoserv02:8080/geoserver/pdf/info.json",
@@ -31,6 +31,7 @@
   }],
   "initialState": {
     "defaultState": {
+      "mapInfo": {"infoFormat": "text/html"},
       "catalog":{
         "default": {
           "newService": {
@@ -370,7 +371,7 @@
               "geomService" : {
                 "type": "wfs",
                 "options": {
-                  "url": "/geoserver/wfs",
+                  "url": "http://sit.comune.bolzano.it/geoserver/wfs",
                   "typeName": "Ambiente:comuni_catast",
                   "srsName": "EPSG:4326",
                   "staticFilter": "CCAT_CODIC = ${properties.code}"
@@ -385,7 +386,7 @@
                   "geomService" : {
                     "type": "wfs",
                     "options": {
-                      "url": "/geoserver/wfs",
+                      "url": "http://sit.comune.bolzano.it/geoserver/wfs",
                       "typeName": "Cartografia:particelle",
                       "srsName": "EPSG:4326",
                       "staticFilter": "NUM = '${properties.codice}' AND COM = ${properties.comcat}"
@@ -606,7 +607,7 @@
               "geomService" : {
                 "type": "wfs",
                 "options": {
-                  "url": "/geoserver/wfs",
+                  "url": "http://sit.comune.bolzano.it/geoserver/wfs",
                   "typeName": "Ambiente:comuni_catast",
                   "srsName": "EPSG:4326",
                   "staticFilter": "CCAT_CODIC = ${properties.code}"
@@ -621,7 +622,7 @@
                   "geomService" : {
                     "type": "wfs",
                     "options": {
-                      "url": "/geoserver/wfs",
+                      "url": "http://sit.comune.bolzano.it/geoserver/wfs",
                       "typeName": "Cartografia:particelle",
                       "srsName": "EPSG:4326",
                       "staticFilter": "NUM = '${properties.codice}' AND COM = ${properties.comcat}"
