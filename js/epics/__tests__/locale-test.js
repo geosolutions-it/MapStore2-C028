@@ -11,10 +11,11 @@ const { createEpicMiddleware, combineEpics } = require('redux-observable');
 const { CHANGE_LOCALE } = require('../../../MapStore2/web/client/actions/locale');
 const { configureMap } = require('../../../MapStore2/web/client/actions/config');
 const { UPDATE_NODE } = require('../../../MapStore2/web/client/actions/layers');
-const { addLayersStyleLocalization } = require('../locale');
+const { addLayersStyleLocalization, checkEmptyAvailableStyles } = require('../locale');
 const rootEpic = combineEpics(addLayersStyleLocalization);
 const epicMiddleware = createEpicMiddleware(rootEpic);
 const mockStore = configureMockStore([epicMiddleware]);
+const {testEpic} = require('../../../MapStore2/web/client/epics/__tests__/epicTestUtils');
 
 const layers = {
     flat: [
@@ -139,5 +140,22 @@ describe('search Epics', () => {
             expect(actions[1].type).toBe(UPDATE_NODE);
             done();
         }
+    });
+    it('checkEmptyAvailableStyles', (done) => {
+        const conf = {};
+        const mapId = 12;
+        testEpic(checkEmptyAvailableStyles, 1, configureMap(conf, mapId), actions => {
+            expect(actions.length).toBe(1);
+            actions.map((action) => {
+                switch (action.type) {
+                    case UPDATE_NODE:
+                        expect(action.options.availableStyles).toBe(null);
+                        break;
+                    default:
+                        expect(false).toBe(true);
+                }
+            });
+            done();
+        }, {layers: { flat: [{availableStyles: []}, {}, {availableStyles: [{name: "style"}]}] }});
     });
 });

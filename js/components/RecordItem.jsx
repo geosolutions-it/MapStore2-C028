@@ -219,7 +219,7 @@ class RecordItem extends React.Component {
         } else {
 
             const currentLocale = this.props.currentLocale ? head(this.props.currentLocale.split('-')) : null;
-            const availableStyles = this.props.record.capabilities && isArray(this.props.record.capabilities.Style) ? this.props.record.capabilities.Style : [];
+            const availableStyles = this.props.record.capabilities && isArray(this.props.record.capabilities.Style) ? ProjectUtils.formatAvailableStyles(this.props.record.capabilities.Style) : null;
             const style = ProjectUtils.getLocalizedStyle('', availableStyles, currentLocale || 'en');
 
             this.props.onLayerAdd({

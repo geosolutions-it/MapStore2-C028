@@ -75,7 +75,7 @@ const updateMapEpic = (action$, store) =>
                         }
 
                         // set style by language
-                        const availableStyles = isArray(caps.Style) ? caps.Style : [];
+                        const availableStyles = isArray(caps.Style) ? ProjectUtils.formatAvailableStyles(caps.Style) : [];
                         const currentLocale = head(currentLocaleSelector(store.getState()).split('-'));
                         const style = ProjectUtils.getLocalizedStyle(layer.style, availableStyles, currentLocale || 'it');
 

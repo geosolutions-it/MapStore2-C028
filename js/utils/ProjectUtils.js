@@ -10,6 +10,11 @@ const assign = require('object-assign');
 const {isString, isEmpty, isArray, head} = require('lodash');
 const LocaleUtils = require('../../MapStore2/web/client/utils/LocaleUtils');
 
+const replaceKeys = {
+    Name: 'name',
+    Title: 'title'
+};
+
 const ProjectUtils = {
     getKeywordsTranslations: (capabilities) => {
         const locales = LocaleUtils.getSupportedLocales();
@@ -56,6 +61,23 @@ const ProjectUtils = {
             return localizedStyle ? localizedStyle : currentStyle;
         }
         return style;
+    },
+    formatAvailableStyles: availableStyles => {
+        if (!availableStyles) {
+            return null;
+        }
+        if (isArray(availableStyles) && availableStyles.length === 0) {
+            return null;
+        }
+        return head(availableStyles.filter(style => head(Object.keys(style).filter(key => key === 'name')))) ?
+            availableStyles :
+            availableStyles.map(style => {
+                return Object.keys(style).reduce((a, key) =>
+                    assign({}, a,
+                        Object.keys(replaceKeys).reduce((o, value) => value === key && assign({}, o, {[replaceKeys[value]]: style[key]}) || assign({}, o), {})
+                    )
+                    , {});
+            });
     }
 };
 
