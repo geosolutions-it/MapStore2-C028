@@ -11,7 +11,9 @@ const { createEpicMiddleware, combineEpics } = require('redux-observable');
 const { CHANGE_LOCALE } = require('../../../MapStore2/web/client/actions/locale');
 const { configureMap } = require('../../../MapStore2/web/client/actions/config');
 const { UPDATE_NODE } = require('../../../MapStore2/web/client/actions/layers');
-const { addLayersStyleLocalization, checkEmptyAvailableStyles } = require('../locale');
+const { SET_CONTROL_PROPERTY } = require('../../../MapStore2/web/client/actions/controls');
+
+const { addLayersStyleLocalization, checkEmptyAvailableStyles, closePrintOnChangeLocale } = require('../locale');
 const rootEpic = combineEpics(addLayersStyleLocalization);
 const epicMiddleware = createEpicMiddleware(rootEpic);
 const mockStore = configureMockStore([epicMiddleware]);
@@ -157,5 +159,23 @@ describe('search Epics', () => {
             });
             done();
         }, {layers: { flat: [{availableStyles: []}, {}, {availableStyles: [{name: "style"}]}] }});
+    });
+
+    it('closePrintOnChangeLocale', (done) => {
+        testEpic(closePrintOnChangeLocale, 1, {type: CHANGE_LOCALE}, actions => {
+            expect(actions.length).toBe(1);
+            actions.map((action) => {
+                switch (action.type) {
+                    case SET_CONTROL_PROPERTY:
+                        expect(action.control).toBe('print');
+                        expect(action.property).toBe('enabled');
+                        expect(action.value).toBe(false);
+                        break;
+                    default:
+                        expect(false).toBe(true);
+                }
+            });
+            done();
+        }, {});
     });
 });

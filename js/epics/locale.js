@@ -12,6 +12,7 @@ const {layersSelector} = require('../../MapStore2/web/client/selectors/layers');
 const {updateNode} = require('../../MapStore2/web/client/actions/layers');
 const ProjectUtils = require('../utils/ProjectUtils');
 const {currentLocaleSelector} = require('../../MapStore2/web/client/selectors/locale');
+const {setControlProperty} = require('../../MapStore2/web/client/actions/controls');
 const {head} = require('lodash');
 
 const addLayersStyleLocalization = (action$, store) =>
@@ -44,7 +45,14 @@ const checkEmptyAvailableStyles = (action$, store) =>
             : Rx.Observable.empty();
         });
 
+const closePrintOnChangeLocale = action$ =>
+    action$.ofType(CHANGE_LOCALE)
+        .switchMap(() => {
+            return Rx.Observable.of(setControlProperty('print', 'enabled', false));
+        });
+
 module.exports = {
     addLayersStyleLocalization,
-    checkEmptyAvailableStyles
+    checkEmptyAvailableStyles,
+    closePrintOnChangeLocale
 };
