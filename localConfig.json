@@ -68,9 +68,7 @@
           "tools": ["locate"],
           "toolsOptions": {
             "measurement": {
-              "leaflet": {
-                "metric": true
-              }
+              "metric": true
             }
           }
         }
@@ -214,13 +212,6 @@
     {
       "name": "Map",
       "cfg": {
-        "toolsOptions": {
-          "measurement": {
-            "leaflet": {
-              "metric": true
-            }
-          }
-        },
         "mapOptions": {
           "openlayers": {
             "attribution": {
@@ -236,6 +227,9 @@
         "toolsOptions": {
           "scalebar": {
             "container" : "#mapstore-map-footer-container"
+          },
+          "measurement": {
+            "metric" : true
           }
         }
       }
@@ -265,8 +259,8 @@
             "alwaysVisible": true
           }
         }
-    }, 
-    "Home", "FeatureEditor", 
+    },
+    "Home", "FeatureEditor",
     {
 	"name": "WFSDownload",
 	"cfg": {
@@ -528,6 +522,9 @@
           "toolsOptions": {
             "scalebar": {
               "container" : "#mapstore-map-footer-container"
+            },
+            "measurement": {
+              "metric" : true
             }
           }
         }
