@@ -11,4 +11,10 @@ export VERSION="SNAPSHOT-$GITREV"
 npm install
 npm run compile
 npm run lint
-mvn clean install -Dmapstore2.version=$VERSION
+
+if [ $# -eq 0 ]
+  then
+    mvn clean install -Dmapstore2.version=$VERSION
+  else
+    mvn clean install -Dmapstore2.version=$1
+fi
