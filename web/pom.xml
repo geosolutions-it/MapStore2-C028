@@ -120,6 +120,49 @@
                     </resources>
                 </configuration>
             </execution>
+            <execution>
+                <id>version</id>
+                <phase>process-classes</phase>
+                <goals>
+                    <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                    <outputDirectory>${basedir}/target/mapstore2</outputDirectory>
+                    <encoding>UTF-8</encoding>
+                    <resources>
+                        <resource>
+                            <directory>${basedir}/..</directory>
+                             <filtering>true</filtering>
+                            <includes>
+                                <include>version.txt</include>
+                            </includes>
+                        </resource>
+                    </resources>
+                </configuration>
+            </execution>
+                <execution>
+                    <id>only index.html</id>
+                    <phase>process-classes</phase>
+                    <goals>
+                        <goal>copy-resources</goal>
+                    </goals>
+                    <configuration>
+                        <outputDirectory>${basedir}/target/mapstore2</outputDirectory>
+                        <encoding>UTF-8</encoding>
+                        <resources>
+                            <resource>
+                                <directory>${basedir}/../dist</directory>
+                                <includes>
+                                    <include>index.html</include>
+                                </includes>
+                                <excludes>
+                                    <exclude>MapStore2/*</exclude>
+                                    <exclude>MapStore2/**/*</exclude>
+                                </excludes>
+                            </resource>
+                        </resources>
+                    </configuration>
+                </execution>
                 <execution>
                     <id>html, configuration files and images</id>
                     <phase>process-classes</phase>

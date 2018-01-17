@@ -56,6 +56,7 @@ module.exports = {
         MetadataExplorerPlugin: require('./plugins/MetadataExplorer'),
         FeatureEditorPlugin: require('../MapStore2/web/client/plugins/FeatureEditor'),
         WFSDownloadPlugin: require('../MapStore2/web/client/plugins/WFSDownload'),
+        VersionPlugin: require('../MapStore2/web/client/plugins/Version'),
         MapFooterPlugin: require('./plugins/MapFooter'),
         CookiePlugin: require('../MapStore2/web/client/plugins/Cookie'),
         ScrollTopPlugin: require('../MapStore2/web/client/plugins/ScrollTop'),

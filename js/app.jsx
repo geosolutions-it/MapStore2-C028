@@ -18,6 +18,7 @@ const startApp = () => {
     const ConfigUtils = require('../MapStore2/web/client/utils/ConfigUtils');
 
     const {loadMaps} = require('../MapStore2/web/client/actions/maps');
+    const {loadVersion} = require('../MapStore2/web/client/actions/version');
 
     const StandardApp = require('../MapStore2/web/client/components/app/StandardApp');
 
@@ -34,7 +35,8 @@ const startApp = () => {
     });
     const StandardRouter = connect((state) => ({
         locale: state.locale || {},
-        pages
+        pages,
+        version: state.version && state.version.current
     }))(require('../MapStore2/web/client/components/app/StandardRouter'));
 
     const appStore = require('../MapStore2/web/client/stores/StandardStore').bind(null, initialState, {
@@ -43,6 +45,7 @@ const startApp = () => {
     }, {registerSearchServiceEpic, registerCustomLayersUtilsEpic, addLayersStyleLocalization, checkEmptyAvailableStyles, closePrintOnChangeLocale});
 
     const initialActions = [
+        loadVersion,
         () => loadMaps(ConfigUtils.getDefaults().geoStoreUrl, ConfigUtils.getDefaults().initialMapFilter || "*")
     ];
 
