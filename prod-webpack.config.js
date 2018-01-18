@@ -45,6 +45,13 @@ webpackConfig.plugins = [
         chunks: ['MapStore2-C028'],
         inject: true,
         hash: true
+    }),
+    new HtmlWebpackPlugin({
+        template: 'embeddedTemplate.html',
+        chunks: ['embedded'],
+        inject: true,
+        hash: true,
+        filename: 'embedded.html'
     })
 ];
 webpackConfig.devtool = undefined;
