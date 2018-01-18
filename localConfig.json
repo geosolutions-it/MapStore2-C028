@@ -239,7 +239,7 @@
           }
         }
       }
-    }, "MapFooter", {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
+    }, "Tutorial", "MapFooter", {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
     {
         "name": "Identify",
         "cfg": {

@@ -60,6 +60,7 @@ module.exports = {
         MapFooterPlugin: require('./plugins/MapFooter'),
         CookiePlugin: require('../MapStore2/web/client/plugins/Cookie'),
         ScrollTopPlugin: require('../MapStore2/web/client/plugins/ScrollTop'),
+        Tutorial: require('../MapStore2/web/client/plugins/Tutorial'),
         GoFull: require('../MapStore2/web/client/plugins/GoFull')
     },
     requires: {
