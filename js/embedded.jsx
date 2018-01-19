@@ -9,7 +9,9 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const {connect} = require('react-redux');
 const LocaleUtils = require('../MapStore2/web/client/utils/LocaleUtils');
-
+const {registerSearchServiceEpic} = require('./epics/search');
+const {registerCustomLayersUtilsEpic} = require('./epics/layers');
+const {addLayersStyleLocalization, checkEmptyAvailableStyles} = require('./epics/locale');
 const startApp = () => {
     const StandardApp = require('../MapStore2/web/client/components/app/StandardApp');
     const {loadVersion} = require('../MapStore2/web/client/actions/version');
@@ -24,7 +26,7 @@ const startApp = () => {
     const appStore = require('../MapStore2/web/client/stores/StandardStore').bind(null, initialState, {
         mode: (state = 'embedded') => state,
         version: require('../MapStore2/web/client/reducers/version')
-    }, {});
+    }, {registerSearchServiceEpic, registerCustomLayersUtilsEpic, addLayersStyleLocalization, checkEmptyAvailableStyles});
 
     const appConfig = {
         storeOpts,
