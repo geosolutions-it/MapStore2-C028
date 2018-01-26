@@ -19,18 +19,18 @@
     <!-- ================================================================ -->
     <!-- MapStore2 modules -->
     <!-- ================================================================ -->
-    <dependency>
+    <!--dependency>
         <groupId>it.geosolutions.MapStore2-C028</groupId>
         <artifactId>MapStore2-C028-backend</artifactId>
         <version>${project.version}</version>
-    </dependency>
+    </dependency-->
     <!-- ================================================================ -->
     <!-- GeoStore modules -->
     <!-- ================================================================ -->
     <dependency>
       <groupId>it.geosolutions.geostore</groupId>
       <artifactId>geostore-webapp</artifactId>
-      <version>1.4-SNAPSHOT</version>
+      <version>1.4.2-SNAPSHOT</version>
       <type>war</type>
       <scope>runtime</scope>
     </dependency>
@@ -100,6 +100,92 @@
             <artifactId>maven-resources-plugin</artifactId>
             <version>2.6</version>
             <executions>
+            <execution>
+                <id>LDAP configuration</id>
+                <phase>process-sources</phase>
+                <goals>
+                    <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                    <outputDirectory>${basedir}/src/main/webapp/WEB-INF/classes</outputDirectory>
+                    <encoding>UTF-8</encoding>
+                    <filters>
+                      <filter>${basedir}/ldap.properties</filter>
+                    </filters>
+                    <resources>
+                        <resource>
+                            <directory>${basedir}/src/main/resources-filtered/WEB-INF/classes</directory>
+                            <filtering>true</filtering>
+                        </resource>
+                    </resources>
+                </configuration>
+            </execution>
+            <execution>
+                <id>version</id>
+                <phase>process-classes</phase>
+                <goals>
+                    <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                    <outputDirectory>${basedir}/target/mapstore2</outputDirectory>
+                    <encoding>UTF-8</encoding>
+                    <resources>
+                        <resource>
+                            <directory>${basedir}/..</directory>
+                             <filtering>true</filtering>
+                            <includes>
+                                <include>version.txt</include>
+                            </includes>
+                        </resource>
+                    </resources>
+                </configuration>
+            </execution>
+                <execution>
+                    <id>only index.html</id>
+                    <phase>process-classes</phase>
+                    <goals>
+                        <goal>copy-resources</goal>
+                    </goals>
+                    <configuration>
+                        <outputDirectory>${basedir}/target/mapstore2</outputDirectory>
+                        <encoding>UTF-8</encoding>
+                        <resources>
+                            <resource>
+                                <directory>${basedir}/../dist</directory>
+                                <includes>
+                                    <include>index.html</include>
+                                </includes>
+                                <excludes>
+                                    <exclude>MapStore2/*</exclude>
+                                    <exclude>MapStore2/**/*</exclude>
+                                </excludes>
+                            </resource>
+                        </resources>
+                    </configuration>
+                </execution>
+                <execution>
+                    <id>only embedded.html</id>
+                    <phase>process-classes</phase>
+                    <goals>
+                        <goal>copy-resources</goal>
+                    </goals>
+                    <configuration>
+                        <outputDirectory>${basedir}/target/mapstore2</outputDirectory>
+                        <encoding>UTF-8</encoding>
+                        <resources>
+                            <resource>
+                                <directory>${basedir}}/../dist</directory>
+                                <includes>
+                                    <include>embedded.html</include>
+                                </includes>
+                                <excludes>
+                                    <exclude>MapStore2/*</exclude>
+                                    <exclude>MapStore2/**/*</exclude>
+                                </excludes>
+                            </resource>
+                        </resources>
+                    </configuration>
+                </execution>
                 <execution>
                     <id>html, configuration files and images</id>
                     <phase>process-classes</phase>

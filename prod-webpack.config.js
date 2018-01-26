@@ -5,8 +5,8 @@ var ParallelUglifyPlugin = require("webpack-parallel-uglify-plugin");
 var DefinePlugin = require("webpack/lib/DefinePlugin");
 var NormalModuleReplacementPlugin = require("webpack/lib/NormalModuleReplacementPlugin");
 var NoEmitOnErrorsPlugin = require("webpack/lib/NoEmitOnErrorsPlugin");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 const extractThemesPlugin = require('./MapStore2/themes.js').extractThemesPlugin;
-
 webpackConfig.plugins = [
     new LoaderOptionsPlugin({
         debug: false,
@@ -39,12 +39,31 @@ webpackConfig.plugins = [
         }
     }),
     new NoEmitOnErrorsPlugin(),
-    extractThemesPlugin
+    extractThemesPlugin,
+    new HtmlWebpackPlugin({
+        template: 'indexTemplate.html',
+        chunks: ['MapStore2-C028'],
+        inject: true,
+        hash: true
+    }),
+    new HtmlWebpackPlugin({
+        template: 'embeddedTemplate.html',
+        chunks: ['embedded'],
+        inject: true,
+        hash: true,
+        filename: 'embedded.html'
+    })
 ];
 webpackConfig.devtool = undefined;
 
 // this is a workaround for this issue https://github.com/webpack/file-loader/issues/3
 // use `__webpack_public_path__` in the index.html when fixed
 webpackConfig.output.publicPath = "/mapstore2/dist/";
+webpackConfig.output.chunkFilename = "[name].[hash].chunk.js";
+webpackConfig.module.rules.push(
+{
+    test: /\.html$/,
+    loader: 'html-loader'
+});
 
 module.exports = webpackConfig;

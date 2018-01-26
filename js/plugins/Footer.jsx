@@ -6,15 +6,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 const React = require('react');
+const PropTypes = require('prop-types');
 const src = require("../../assets/img/logo.jpg");
 require('./footer/footer.css');
 const HTML = require('../../MapStore2/web/client/components/I18N/HTML');
 const LocaleUtils = require('../../MapStore2/web/client/utils/LocaleUtils');
 
-const Footer = React.createClass({
-    contextTypes: {
-        messages: React.PropTypes.object
-    },
+class Footer extends React.Component {
+
+    static contextTypes = {
+       messages: PropTypes.object
+    };
+
     render() {
         return (
             <div className="ms-footer col-md-12">
@@ -25,7 +28,7 @@ const Footer = React.createClass({
             </div>
         );
     }
-});
+}
 
 module.exports = {
     FooterPlugin: Footer

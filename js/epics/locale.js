@@ -1,0 +1,58 @@
+/*
+ * Copyright 2017, GeoSolutions Sas.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree.
+*/
+const Rx = require('rxjs');
+const {CHANGE_LOCALE} = require('../../MapStore2/web/client/actions/locale');
+const {MAP_CONFIG_LOADED} = require('../../MapStore2/web/client/actions/config');
+const {layersSelector} = require('../../MapStore2/web/client/selectors/layers');
+const {updateNode} = require('../../MapStore2/web/client/actions/layers');
+const ProjectUtils = require('../utils/ProjectUtils');
+const {currentLocaleSelector} = require('../../MapStore2/web/client/selectors/locale');
+const {setControlProperty} = require('../../MapStore2/web/client/actions/controls');
+const {head} = require('lodash');
+
+const addLayersStyleLocalization = (action$, store) =>
+    action$.ofType(CHANGE_LOCALE, MAP_CONFIG_LOADED)
+        .switchMap(() => {
+            const layers = layersSelector(store.getState());
+            const currentLocale = head(currentLocaleSelector(store.getState()).split('-'));
+            return layers && layers.length > 0 ?
+            Rx.Observable.from(layers)
+                .filter((layer) => layer.availableStyles && layer.availableStyles.length > 0 && layer.group !== 'background')
+                .map((layer) => {
+                    const availableStyles = ProjectUtils.formatAvailableStyles(layer.availableStyles);
+                    const style = ProjectUtils.getLocalizedStyle(layer.style, availableStyles, currentLocale || 'it');
+                    return Rx.Observable.of(updateNode(layer.id, "id", {style, availableStyles}));
+                })
+                .mergeAll()
+            : Rx.Observable.empty();
+        });
+
+const checkEmptyAvailableStyles = (action$, store) =>
+    action$.ofType(MAP_CONFIG_LOADED)
+        .switchMap(() => {
+            const layers = layersSelector(store.getState());
+            return layers && layers.length > 0 ? Rx.Observable.from(layers)
+                .filter((layer) => layer.availableStyles && layer.availableStyles.length === 0)
+                .map((layer) => {
+                    return Rx.Observable.of(updateNode(layer.id, "id", {availableStyles: null}));
+                })
+                .mergeAll()
+            : Rx.Observable.empty();
+        });
+
+const closePrintOnChangeLocale = action$ =>
+    action$.ofType(CHANGE_LOCALE)
+        .switchMap(() => {
+            return Rx.Observable.of(setControlProperty('print', 'enabled', false));
+        });
+
+module.exports = {
+    addLayersStyleLocalization,
+    checkEmptyAvailableStyles,
+    closePrintOnChangeLocale
+};

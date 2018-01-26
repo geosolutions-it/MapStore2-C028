@@ -13,6 +13,7 @@
       "loadingerror": "Il livello non è stato caricato correttamente"
     },
     "search": {
+      "partNestedPlaceholder": "Inserisci codice particella...",
       "nestedPlaceholder": "Inserisci un civico"
     },
     "queryform": {

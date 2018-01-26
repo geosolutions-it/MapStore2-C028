@@ -6,44 +6,47 @@
  * LICENSE file in the root directory of this source tree.
  */
 const React = require('react');
+const PropTypes = require('prop-types');
 const {connect} = require('react-redux');
 const Page = require('../../MapStore2/web/client/containers/Page');
 const {resetControls} = require('../../MapStore2/web/client/actions/controls');
 
 require("../../assets/css/maps.css");
 
-const Home = React.createClass({
-    propTypes: {
-        name: React.PropTypes.string,
-        mode: React.PropTypes.string,
-        geoStoreUrl: React.PropTypes.string,
-        params: React.PropTypes.object,
-        loadMaps: React.PropTypes.func,
-        reset: React.PropTypes.func,
-        plugins: React.PropTypes.object,
-        pluginsConfig: React.PropTypes.object
-    },
-    contextTypes: {
-        router: React.PropTypes.object
-    },
-    getDefaultProps() {
-        return {
-            name: "maps",
-            mode: 'desktop',
-            loadMaps: () => {},
-            reset: () => {},
-            pluginsConfig: {}
-        };
-    },
+class Home extends React.Component {
+
+    static propTypes = {
+        name: PropTypes.string,
+        mode: PropTypes.string,
+        geoStoreUrl: PropTypes.string,
+        params: PropTypes.object,
+        loadMaps: PropTypes.func,
+        reset: PropTypes.func,
+        plugins: PropTypes.object,
+        pluginsConfig: PropTypes.object
+    };
+
+    static contextTypes = {
+       router: PropTypes.object
+    };
+
+    static defaultProps = {
+        name: "maps",
+        mode: 'desktop',
+        loadMaps: () => {},
+        reset: () => {},
+        pluginsConfig: {}
+    };
+
     componentDidMount() {
         this.props.reset();
         this.props.loadMaps(this.props.geoStoreUrl);
-    },
+    }
     componentWillReceiveProps(nextProps) {
         if (this.props.geoStoreUrl !== nextProps.geoStoreUrl) {
             this.props.loadMaps(nextProps.geoStoreUrl);
         }
-    },
+    }
     render() {
         let plugins = this.props.pluginsConfig;
         let pagePlugins = {
@@ -63,7 +66,7 @@ const Home = React.createClass({
             params={this.props.params}
             />);
     }
-});
+}
 
 module.exports = connect((state) => {
     return {
