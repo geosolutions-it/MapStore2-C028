@@ -20,7 +20,12 @@ const {addService, deleteService, textSearch, changeCatalogFormat, changeCatalog
     addLayer, addLayerError, resetCatalog, focusServicesList} = require("../../MapStore2/web/client/actions/catalog");
 const {zoomToExtent} = require("../../MapStore2/web/client/actions/map");
 const {currentLocaleSelector} = require("../../MapStore2/web/client/selectors/locale");
-const {newCatalogServiceAdded, deleteCatalogServiceEpic, closeFeatureGridEpic} = require("../../MapStore2/web/client/epics/catalog");
+const API = {
+    csw: require('../../MapStore2/web/client/api/CSW'),
+    wms: require('../../MapStore2/web/client/api/WMS'),
+    wmts: require('../../MapStore2/web/client/api/WMTS')
+};
+const {newCatalogServiceAdded, deleteCatalogServiceEpic, closeFeatureGridEpic} = require("../../MapStore2/web/client/epics/catalog")(API);
 const {setControlProperty, toggleControl} = require("../../MapStore2/web/client/actions/controls");
 const {resultSelector, serviceListOpenSelector, newServiceSelector,
     newServiceTypeSelector, selectedServiceTypeSelector, searchOptionsSelector,
