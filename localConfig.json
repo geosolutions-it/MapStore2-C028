@@ -31,6 +31,18 @@
   }],
   "initialState": {
     "defaultState": {
+       "locales": {
+          "supportedLocales": {
+              "it": {
+                  "code": "it-IT",
+                  "description": "Italiano"
+              },
+              "de": {
+                  "code": "de-DE",
+                  "description": "Deutsch"
+              }
+          }
+      },
 	  "maptype": {
           "mapType": "openlayers"
 	  },
