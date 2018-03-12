@@ -10,6 +10,7 @@
   "initialMapFilter": "",
   "ignoreMobileCss" : false,
   "useAuthenticationRules": true,
+  "loadAfterTheme": true,
   "authenticationRules": [
     {
       "urlPattern": ".*geostore.*",
