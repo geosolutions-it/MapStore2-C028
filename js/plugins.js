@@ -18,7 +18,7 @@ module.exports = {
         ToolbarPlugin: require('../MapStore2/web/client/plugins/Toolbar'),
         DrawerMenuPlugin: require('../MapStore2/web/client/plugins/DrawerMenu'),
         ShapeFilePlugin: require('../MapStore2/web/client/plugins/ShapeFile'),
-        //SnapshotPlugin: require('../plugins/Snapshot'),
+        // SnapshotPlugin: require('../plugins/Snapshot'),
         SettingsPlugin: require('../MapStore2/web/client/plugins/Settings'),
         ExpanderPlugin: require('../MapStore2/web/client/plugins/Expander'),
         SearchPlugin: require('../MapStore2/web/client/plugins/Search'),
@@ -75,7 +75,7 @@ module.exports = {
         NotificationsPlugin: require('../MapStore2/web/client/plugins/Notifications'),
         FeatureEditorPlugin: require('../MapStore2/web/client/plugins/FeatureEditor'),
         AutoMapUpdatePlugin: require('./plugins/AutoMapUpdate'),
-        MapFooterPlugin: require('./plugins/MapFooter'),
+        MapFooterPlugin: require('./plugins/MapFooter')
         // AnnotationsPlugin: require('../plugins/Annotations'),
         // WidgetsPlugin: require('../plugins/Widgets'),
         // WidgetsBuilderPlugin: require('../plugins/WidgetsBuilder')
