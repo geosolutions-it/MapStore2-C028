@@ -505,7 +505,7 @@
         }
       }
     },
-    "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "Notifications",
+    "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "Notifications","WidgetsBuilder", "Widgets",
     {
       "name": "Cookie",
       "cfg": {
