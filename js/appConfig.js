@@ -5,7 +5,9 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
+const {registerSearchServiceEpic} = require('./epics/search');
+const {registerCustomLayersUtilsEpic} = require('./epics/layers');
+const {addLayersStyleLocalization, checkEmptyAvailableStyles, closePrintOnChangeLocale} = require('./epics/locale');
 module.exports = {
     printingEnabled: true,
     pages: [{
@@ -30,6 +32,7 @@ module.exports = {
          component: require('./pages/Manager')
      }],
     pluginsDef: require('./plugins.js'),
+    appEpics: {registerSearchServiceEpic, registerCustomLayersUtilsEpic, addLayersStyleLocalization, checkEmptyAvailableStyles, closePrintOnChangeLocale},
     initialState: {
          defaultState: {
              mousePosition: {enabled: false, "crs": "EPSG:4326"},

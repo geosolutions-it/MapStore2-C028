@@ -10,6 +10,7 @@
   "initialMapFilter": "",
   "ignoreMobileCss" : false,
   "useAuthenticationRules": true,
+  "loadAfterTheme": true,
   "authenticationRules": [
     {
       "urlPattern": ".*geostore.*",
@@ -31,6 +32,18 @@
   }],
   "initialState": {
     "defaultState": {
+       "locales": {
+          "supportedLocales": {
+              "it": {
+                  "code": "it-IT",
+                  "description": "Italiano"
+              },
+              "de": {
+                  "code": "de-DE",
+                  "description": "Deutsch"
+              }
+          }
+      },
 	  "maptype": {
           "mapType": "openlayers"
 	  },
@@ -83,19 +96,14 @@
         "name": "Identify",
         "showIn": ["Settings"],
         "cfg": {
-          "style": {
-            "position": "absolute",
-            "width": "100%",
-            "bottom": "0px",
-            "zIndex": 1023,
-            "maxHeight": "70%",
-            "marginBottom": 0
-          },
+          "panelClassName": "mapstore-mobile-identify",
+          "fullscreen": true,
           "draggable": false,
           "collapsible": true,
           "viewerOptions": {
             "container": "{context.ReactSwipe}",
-            "header": "{context.SwipeHeader}"
+            "header": "{context.SwipeHeader}",
+            "collapsible": false
           },
           "bodyClass": "mobile-feature-info"
         }
@@ -243,9 +251,14 @@
     {
         "name": "Identify",
         "cfg": {
+          "panelClassName": "mapstore-right-panel modal-content",
+          "draggable": false,
+          "collapsible": true,
             "viewerOptions": {
                 "container": "{context.ReactSwipe}",
                 "header": "{context.SwipeHeader}",
+                "draggable": false,
+                "collapsible": false,
                 "headerOptions": {
                     "useButtons": true
                 }
@@ -371,7 +384,7 @@
               "geomService" : {
                 "type": "wfs",
                 "options": {
-                  "url": "http://sit.comune.bolzano.it/geoserver/wfs",
+                  "url": "http://geoserv02:8080/geoserver/wfs",
                   "typeName": "Ambiente:comuni_catast",
                   "srsName": "EPSG:4326",
                   "staticFilter": "CCAT_CODIC = ${properties.code}"
@@ -386,7 +399,7 @@
                   "geomService" : {
                     "type": "wfs",
                     "options": {
-                      "url": "http://sit.comune.bolzano.it/geoserver/wfs",
+                      "url": "http://geoserv02:8080/geoserver/wfs",
                       "typeName": "Cartografia:particelle",
                       "srsName": "EPSG:4326",
                       "staticFilter": "NUM = '${properties.codice}' AND COM = ${properties.comcat}"
@@ -722,21 +735,7 @@
       "cfg": {
         "className": "navbar shadow navbar-home"
       }
-    }, "ManagerMenu", "Login", {
-      "name": "Language",
-      "cfg": {
-        "locales": {
-             "it": {
-                 "code": "it-IT",
-                 "description": "Italiano"
-             },
-             "de": {
-               "code": "de-DE",
-               "description": "Deutsch"
-             }
-           }
-         }
-    }, "Notifications", "ScrollTop"],
+    }, "ManagerMenu", "Login", "Language", "Notifications", "ScrollTop"],
     "maps": ["Header", "MapSearch", "HomeDescription", "CreateNewMap", "Maps", "Footer", {
       "name": "Cookie",
       "cfg": {
