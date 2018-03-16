@@ -129,9 +129,9 @@ module.exports = {
                 target: "http://sit.comune.bolzano.it",
                 pathRewrite: {'^/rest/geostore': '/geostore/rest'}
             },
-            '/MapStore2/proxy': {
+            '/mapstore2/proxy': {
                 target: "http://dev.mapstore2.geo-solutions.it",
-                pathRewrite: {'^/MapStore2/proxy': '/mapstore/proxy'}
+                pathRewrite: {'^/mapstore2/proxy': '/mapstore/proxy'}
             },
             '/geoserver': {
                 target: "http://sit.comune.bolzano.it"
