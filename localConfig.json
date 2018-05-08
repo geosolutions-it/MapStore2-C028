@@ -45,12 +45,12 @@
           }
       },
 	  "maptype": {
-          "mapType": "openlayers"
+          "mapType": "{context.mode === 'desktop' ? 'openlayers' : 'leaflet'}"
 	  },
 	  "maps": {
 		  "mapType": "openlayers"
 	  },
-      "mapInfo": {"infoFormat": "text/html"},
+      "mapInfo": {"enabled": true, "infoFormat": "text/html"},
       "catalog":{
         "default": {
           "newService": {
@@ -80,10 +80,17 @@
     }
   },
   "plugins": {
-    "mobile": [
-      {
+    "mobile": [{
         "name": "Map",
         "cfg": {
+          "mapOptions": {
+            "openlayers": {
+              "interactions": {
+                "pinchRotate": false,
+                "altShiftDragRotate": false
+              }
+            }
+          },
           "tools": ["locate"],
           "toolsOptions": {
             "measurement": {
@@ -96,19 +103,15 @@
         "name": "Identify",
         "showIn": ["Settings"],
         "cfg": {
-          "panelClassName": "mapstore-mobile-identify",
-          "fullscreen": true,
-          "draggable": false,
-          "collapsible": true,
-          "viewerOptions": {
-            "container": "{context.ReactSwipe}",
-            "header": "{context.SwipeHeader}",
-            "collapsible": false
-          },
-          "bodyClass": "mobile-feature-info"
+            "showFullscreen": true,
+            "position": "bottom",
+            "size": 0.5,
+            "fluid": true,
+            "viewerOptions": {
+                "container": "{context.ReactSwipe}"
+            }
         }
-      },
-    {
+    }, {
       "name": "Locate",
       "override": {
         "Toolbar": {
@@ -122,6 +125,11 @@
         "activateSortLayer": false
       }
     }, {
+      "name": "TOCItemsSettings",
+      "cfg": {
+          "width": 300
+      }
+  }, {
       "name": "BackgroundSelector",
       "cfg": {
         "thumbs":{
@@ -204,8 +212,7 @@
       "cfg": {
         "id": "navigationBar"
       }
-    }, "ZoomAll",
-    {
+    }, "ZoomAll", {
       "name": "MapLoading",
       "override": {
         "Toolbar": {
@@ -222,12 +229,16 @@
       }
     }
   ],
-  "desktop": [
+  "desktop": [ "Details",
     {
       "name": "Map",
       "cfg": {
         "mapOptions": {
           "openlayers": {
+            "interactions": {
+              "pinchRotate": false,
+              "altShiftDragRotate": false
+            },
             "attribution": {
               "container": "#mapstore-map-footer-container"
             }
@@ -249,27 +260,17 @@
       }
     }, "Tutorial", "MapFooter", {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
     {
-        "name": "Identify",
-        "cfg": {
-          "panelClassName": "mapstore-right-panel modal-content",
-          "draggable": false,
-          "collapsible": true,
-            "viewerOptions": {
-                "container": "{context.ReactSwipe}",
-                "header": "{context.SwipeHeader}",
-                "draggable": false,
-                "collapsible": false,
-                "headerOptions": {
-                    "useButtons": true
-                }
-            }
-        },
-        "override": {
-          "Toolbar": {
-            "position": 11,
-            "alwaysVisible": true
+      "name": "Identify",
+      "cfg": {
+          "viewerOptions": {
+              "container": "{context.ReactSwipe}"
           }
+      },
+      "override": {
+        "Toolbar": {
+          "position": 11
         }
+      }
     },
     {
         "name": "Locate",
@@ -330,7 +331,7 @@
               ]
           }
         }
-    }, {
+    }, "TOCItemsSettings", "MapFooter", {
         "name": "BackgroundSelector",
         "cfg":{
           "thumbs":{
@@ -504,30 +505,26 @@
           "groups": true
         }
       }
-    },
-    "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "Notifications",
-    {
+    }, {
       "name": "Cookie",
       "cfg": {
         "externalCookieUrl" : "",
         "declineUrl" : "http://www.google.com"
         }
-    }
+    },
+    "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "Notifications", "WidgetsBuilder", "Widgets"
   ],
     "embedded": [
       {
         "name": "Map",
         "cfg": {
           "tools": ["locate"],
-          "toolsOptions": {
-            "measurement": {
-              "leaflet": {
-                "metric": true
-              }
-            }
-          },
           "mapOptions": {
             "openlayers": {
+              "interactions": {
+                "pinchRotate": false,
+                "altShiftDragRotate": false
+              },
               "attribution": {
                 "container": "#mapstore-map-footer-container"
               }
@@ -551,27 +548,17 @@
         "name": "DrawerMenu",
         "hide": "{!(request.query && request.query.forceDrawer)}"
         },
-      {
-         "name": "Identify",
-         "showIn": ["Settings"],
-         "cfg": {
-           "style": {
-               "position": "absolute",
-               "width": "100%",
-               "bottom": "0px",
-               "zIndex": 1010,
-               "maxHeight": "70%",
-               "marginBottom": 0
-           },
-           "draggable": false,
-           "collapsible": true,
-           "viewerOptions": {
-             "container": "{context.ReactSwipe}",
-             "header": "{context.SwipeHeader}",
-             "collapsible": false
-           },
-           "bodyClass": "mobile-feature-info"
-        }
+        {
+          "name": "Identify",
+          "cfg": {
+              "showFullscreen": true,
+              "position": "bottom",
+              "size": 0.5,
+              "fluid": true,
+              "viewerOptions": {
+                  "container": "{context.ReactSwipe}"
+              }
+          }
       },
       {
           "name": "Locate",
@@ -705,8 +692,7 @@
         "cfg": {
           "id": "navigationBar"
         }
-      },
-      {
+      }, {
         "name": "MapLoading",
         "override": {
           "Toolbar": {

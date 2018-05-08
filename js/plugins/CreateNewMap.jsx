@@ -41,7 +41,7 @@ class CreateNewMap extends React.Component {
     };
     render() {
         const display = this.isAllowed() ? null : "none";
-        return (<Grid fluid style={{marginBottom: "30px", padding: 0, display}}>
+        return (<Grid style={{marginBottom: "30px", padding: 0, display}}>
         <Col {...this.props.colProps} >
             <Button bsStyle="primary" onClick={() => { this.context.router.history.push("/viewer/" + this.props.mapType + "/new"); }}>
             <Message msgId="newMap" />
