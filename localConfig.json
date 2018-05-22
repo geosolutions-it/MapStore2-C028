@@ -242,7 +242,7 @@
       }
     }
   ],
-  "desktop": [ "Details",
+  "desktop": [
     {
       "name": "Map",
       "cfg": {
@@ -271,7 +271,7 @@
           }
         }
       }
-    }, "Tutorial", "MapFooter", {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
+    }, "Tutorial", {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
     {
       "name": "Identify",
       "cfg": {
@@ -293,7 +293,12 @@
           }
         }
     },
-    "Home", "FeatureEditor",
+    "Home", {
+      "name": "FeatureEditor",
+      "cfg": {
+        "showFilteredObject": true
+      }
+    },
     {
 	"name": "WFSDownload",
 	"cfg": {
@@ -317,7 +322,7 @@
           "spatialMethodOptions": [
               {"id": "Viewport", "name": "queryform.spatialfilter.methods.viewport"},
               {"id": "BBOX", "name": "queryform.spatialfilter.methods.box"},
-              {"id": "Circle", "name": "queryform.spatialfilter.methods.circle"},
+              {"id": "Circle", "name": "queryform.spatialfilter.methods.circle", "geodesic": true},
               {"id": "Polygon", "name": "queryform.spatialfilter.methods.poly"}
           ]
       }
@@ -748,6 +753,9 @@
           }
       }, {
           "name": "GoFull",
+          "cfg": {
+            "urlReplaceString": "$1#/viewer/openlayers/$2"
+          },
           "override": {
               "Toolbar": {
                   "alwaysVisible": true
@@ -761,7 +769,18 @@
         "className": "navbar shadow navbar-home"
       }
     }, "ManagerMenu", "Login", "Language", "Notifications", "ScrollTop"],
-    "maps": ["Header", "MapSearch", "HomeDescription", "CreateNewMap", "Maps", "Footer", {
+    "maps": ["Header", "MapSearch", "HomeDescription", {
+        "name": "CreateNewMap",
+        "cfg": {
+          "showNewDashboard": false
+        }
+      },
+      {
+        "name": "Maps",
+        "cfg": {
+          "showMapDetails": false
+        }
+      }, "Footer", {
       "name": "Cookie",
       "cfg": {
         "externalCookieUrl" : "",

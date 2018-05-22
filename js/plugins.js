@@ -60,7 +60,7 @@ module.exports = {
         SharePlugin: require('../MapStore2/web/client/plugins/Share'),
         SavePlugin: require('../MapStore2/web/client/plugins/Save'),
         SaveAsPlugin: require('../MapStore2/web/client/plugins/SaveAs'),
-        CreateNewMapPlugin: require('./plugins/CreateNewMap'),
+        CreateNewMapPlugin: require('../MapStore2/web/client/plugins/CreateNewMap'),
         QueryPanelPlugin: require('../MapStore2/web/client/plugins/QueryPanel'),
         WFSDownloadPlugin: require('../MapStore2/web/client/plugins/WFSDownload'),
         Tutorial: require('../MapStore2/web/client/plugins/Tutorial'),
@@ -75,12 +75,12 @@ module.exports = {
         NotificationsPlugin: require('../MapStore2/web/client/plugins/Notifications'),
         FeatureEditorPlugin: require('../MapStore2/web/client/plugins/FeatureEditor'),
         AutoMapUpdatePlugin: require('./plugins/AutoMapUpdate'),
-        MapFooterPlugin: require('./plugins/MapFooter'),
+        MapFooterPlugin: require('../MapStore2/web/client/plugins/MapFooter'),
         // AnnotationsPlugin: require('../plugins/Annotations'),
         WidgetsPlugin: require('../MapStore2/web/client/plugins/Widgets'),
         WidgetsBuilderPlugin: require('../MapStore2/web/client/plugins/WidgetsBuilder'),
-        TOCItemsSettingsPlugin: require('../MapStore2/web/client/plugins/TOCItemsSettings'),
-        DetailsPlugin: require('../MapStore2/web/client/plugins/Details')
+        // DetailsPlugin: require('../MapStore2/web/client/plugins/Details'),
+        TOCItemsSettingsPlugin: require('../MapStore2/web/client/plugins/TOCItemsSettings')
         },
     requires: {
         ReactSwipe: require('react-swipeable-views').default,
