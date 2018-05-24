@@ -20,18 +20,14 @@
     width: 80%
 }
 
-#mapstore-navbar #mapstore-langselector {
-    float: right;
-    margin-top: 8px;
-    margin-right: 10px;
-    width: auto;
-}
-
-
 div#mapstore-maptype {
     width: 300px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
     margin-top: -35px;
+}
+
+#mapstore-navbar-container {
+    z-index: 10;
 }
