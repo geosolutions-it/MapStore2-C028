@@ -1,7 +1,7 @@
 {
   "proxyUrl": {
     "url": "/mapstore2/proxy/?url=",
-    "useCORS": ["http://nominatim.openstreetmap.org"]
+    "useCORS": ["http://nominatim.openstreetmap.org", "https://nominatim.openstreetmap.org"]
   },
   "geoStoreUrl": "rest/geostore/",
   "printUrl": "http://geoserv02:8080/geoserver/pdf/info.json",
@@ -121,6 +121,7 @@
     }, "Home", {
       "name": "TOC",
       "cfg": {
+        "activateMetedataTool": false,
         "activateMapTitle": false,
         "activateSortLayer": false
       }
@@ -332,22 +333,19 @@
         "cfg": {
           "activateQueryTool": true,
           "activateAddLayerButton": true,
-          "cfg": {
-              "activateQueryTool": true,
-              "activateAddLayerButton": true,
-              "spatialOperations": [
-                  {"id": "INTERSECTS", "name": "queryform.spatialfilter.operations.intersects"},
-                  {"id": "BBOX", "name": "queryform.spatialfilter.operations.bbox"},
-                  {"id": "CONTAINS", "name": "queryform.spatialfilter.operations.contains"},
-                  {"id": "WITHIN", "name": "queryform.spatialfilter.operations.within"}
-              ],
-              "spatialMethodOptions": [
-                  {"id": "Viewport", "name": "queryform.spatialfilter.methods.viewport"},
-                  {"id": "BBOX", "name": "queryform.spatialfilter.methods.box"},
-                  {"id": "Circle", "name": "queryform.spatialfilter.methods.circle"},
-                  {"id": "Polygon", "name": "queryform.spatialfilter.methods.poly"}
-              ]
-          }
+          "activateMetedataTool": false,
+          "spatialOperations": [
+              {"id": "INTERSECTS", "name": "queryform.spatialfilter.operations.intersects"},
+              {"id": "BBOX", "name": "queryform.spatialfilter.operations.bbox"},
+              {"id": "CONTAINS", "name": "queryform.spatialfilter.operations.contains"},
+              {"id": "WITHIN", "name": "queryform.spatialfilter.operations.within"}
+          ],
+          "spatialMethodOptions": [
+              {"id": "Viewport", "name": "queryform.spatialfilter.methods.viewport"},
+              {"id": "BBOX", "name": "queryform.spatialfilter.methods.box"},
+              {"id": "Circle", "name": "queryform.spatialfilter.methods.circle"},
+              {"id": "Polygon", "name": "queryform.spatialfilter.methods.poly"}
+          ]
         }
     }, "TOCItemsSettings", "MapFooter", {
         "name": "BackgroundSelector",
@@ -602,8 +600,9 @@
           "name": "TOC",
           "cfg": {
             "activateMapTitle": false,
-            "activateRemoveLayer": false,
-            "activateSettingsTool": false
+            "activateSettingsTool": false,
+            "activateMetedataTool": false,
+            "activateRemoveLayer": false
           }
       },
       {
