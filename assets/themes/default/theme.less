@@ -14,3 +14,29 @@
         border-color:  @ms2-color-primary;
     }
 }
+
+.ms-parcel-search {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    top: 0;
+    left: 0;
+    z-index: 5000;
+
+    > div {
+        margin: auto;
+        h4 {
+            color: @ms2-color-text-primary;
+        }
+
+        .ms-parcel-loader {
+            > div {
+                border-color: fade(@ms2-color-text-primary, 20%);
+                border-left-color: @ms2-color-text-primary;
+            }
+            
+        }
+    }
+}

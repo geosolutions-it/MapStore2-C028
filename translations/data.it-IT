@@ -23,6 +23,13 @@
       "spatialfilter": {
         "selection_method": "Metodo di selezione"
       }
+    },
+    "searchparcel": {
+      "warningTitle": "Particella mancante",
+      "warningMessage": "Non è stato possibile trovare la particella richiesta",
+      "loading": "Caricamento Particella",
+      "errorTitle": "Servizio non disponibile",
+      "errorMessage": "Il servizio di ricerca non è raggiungibile"
     }
   }
 }

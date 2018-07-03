@@ -23,6 +23,13 @@
             "spatialfilter": {
                 "selection_method": "Auswahl Methode"
             }
+        },
+        "searchparcel": {
+            "warningTitle": "Fehlendes Grundparzelle",
+            "warningMessage": "Das angeforderte Grundparzelle konnte nicht gefunden werden",
+            "loading": "Grundparzelle wird geladen",
+            "errorTitle": "Servizio nicht verfügbar",
+            "errorMessage": "Der Suchdienst ist nicht erreichbar"
         }
     }
 }
