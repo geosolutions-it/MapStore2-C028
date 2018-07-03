@@ -23,6 +23,29 @@
       "spatialfilter": {
         "selection_method": "Metodo di selezione"
       }
+    },
+    "accidents": {
+        "period": {
+            "title": "Periodo",
+            "from": "Da",
+            "to": "A"
+        },
+        "dow": {
+            "title": "Giorno della settimana",
+            "1": "Lunedì",
+            "2": "Martedì",
+            "3": "Mercoledì",
+            "4": "Giovedì",
+            "5": "Venerdì",
+            "6": "Sabato",
+            "7": "Domenica"
+        },
+    "type": {
+            "title": "Tipo di Infortunio",
+            "withInjured": "Con Feriti",
+            "withoutInjured": "Senza Feriti",
+            "mortal": "Mortale"
+        }
     }
   }
 }

@@ -8,8 +8,8 @@ const Message = require('../../../MapStore2/web/client/components/I18N/Message')
 
 
 module.exports = defaultProps({
-    items: range(1, 7).map(i => ({
-    name: `dow_p[${i}]`,
-        title: <Message msgId={`infortuni.dow.${i}`} />
+    items: range(1, 8).map(i => ({
+    name: `${i}`,
+        title: <Message msgId={`accidents.dow.${i}`} />
     }))
 })(CheckList);

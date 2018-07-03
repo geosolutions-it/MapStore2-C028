@@ -12,9 +12,9 @@ const BorderLayout = require('../../MapStore2/web/client/components/layout/Borde
 
 const {compose} = require('recompose');
 const {connect} = require('react-redux');
-const Toolbar = require('./infortuni/Toolbar');
-const Filters = require('./infortuni/Filters');
-const InfortuniStradaliPlugin = compose(
+const Toolbar = require('./accidents/Toolbar');
+const Filters = require('./accidents/Filters');
+const RoadAccidentsPlugin = compose(
     connect(() => ({}))
 )(() => <BorderLayout
     className="ms-infortuni-stradali-container"
@@ -32,7 +32,7 @@ const InfortuniStradaliPlugin = compose(
     </Grid>
 </BorderLayout>);
 module.exports = {
-    TOCPlugin: assign(InfortuniStradaliPlugin, {
+    TOCPlugin: assign(RoadAccidentsPlugin, {
 
         /*
          * This allows the plugin to be rendered in the left menu.
@@ -47,5 +47,9 @@ module.exports = {
             },
             priority: 2
         }
-    })
+    }),
+    reducers: {
+        accidents: require('../reducers/accidents')
+    },
+    epics: require('../epics/accidents')
 };

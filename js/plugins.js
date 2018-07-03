@@ -44,7 +44,7 @@ module.exports = {
         MapsPlugin: require('../MapStore2/web/client/plugins/Maps'),
         MapSearchPlugin: require('../MapStore2/web/client/plugins/MapSearch'),
         HomeDescriptionPlugin: require('./plugins/HomeDescription'),
-        InfortuniStradaliPlugin: require('./plugins/InfortuniStradali'),
+        RoadAccidentsPlugin: require('./plugins/RoadAccidents'),
         // ExamplesPlugin: require('./plugins/Examples'),
         // MapTypePlugin: require('./plugins/MapType'),
         LanguagePlugin: require('../MapStore2/web/client/plugins/Language'),

@@ -125,7 +125,7 @@
         "activateMapTitle": false,
         "activateSortLayer": false
       }
-    }, "InfortuniStradali", {
+    }, "RoadAccidents", {
       "name": "TOCItemsSettings",
       "cfg": {
           "width": 300
