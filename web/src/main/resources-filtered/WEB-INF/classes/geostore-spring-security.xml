@@ -111,8 +111,8 @@
 				<constructor-arg value="ou=ComuneDiBolzano" />
 				<!-- roleSearchBase -->
 				<constructor-arg value="ou=ComuneDiBolzano" />
-				<property name="groupSearchFilter" value="(memberOf={0})" />
-				<property name="roleSearchFilter" value="(memberOf={0})" />
+				<property name="groupSearchFilter" value="(member={0})" />
+				<property name="roleSearchFilter" value="(member={0})" />
 				<!-- the GeoStore convention is:
 				  * Groups starting with 'ROLE_' will be threated as Auth Roles
 				  * Groups starting withOUT 'ROLE_' will be threated as Groups

@@ -205,6 +205,8 @@
                                     <include>**/*.less</include>
                                 </includes>
                                 <excludes>
+                                    <exclude>node_modules/*</exclude>
+                                    <exclude>node_modules/**/*</exclude>
                                     <exclude>MapStore2/*</exclude>
                                     <exclude>MapStore2/**/*</exclude>
                                 </excludes>
@@ -316,6 +318,25 @@
                     </configuration>
                 </execution>
                 -->
+                <execution>
+                    <id>config files</id>
+                    <phase>process-classes</phase>
+                    <goals>
+                        <goal>copy-resources</goal>
+                    </goals>
+                    <configuration>
+                        <outputDirectory>${basedir}/target/mapstore2/MapStore2/web/client</outputDirectory>
+                        <encoding>UTF-8</encoding>
+                        <resources>
+                            <resource>
+                                <directory>${basedir}/../MapStore2/web/client</directory>
+                                <includes>
+                                    <include>localConfig.json</include>
+                                </includes>
+                            </resource>
+                        </resources>
+                    </configuration>
+                </execution>
                 <execution>
                     <id>proxy properties files</id>
                     <phase>process-classes</phase>
