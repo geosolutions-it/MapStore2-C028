@@ -12,7 +12,7 @@ const DEFAULT_STATE = {
     }],
     viewParamsLayers: [{
         predicate: {
-            name: "Cartografia:view_incidenti_prod"
+            name: "Cartografia:view_str_inc"
         }
     }]
 };

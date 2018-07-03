@@ -63,6 +63,46 @@
             "visibility": false
           }
         ]
+      }, {
+        "type": "wms",
+        "url": "/geoserver/wms",
+        "visibility": true,
+        "dimensions": [],
+        "name": "Cartografia:view_str_inc",
+        "style": "strade_inf",
+        "title": {
+          "default": "view_incidenti_prod",
+          "it-IT": "Dettaglio Incidenti"
+        },
+        "description": "view_incidenti_prod",
+        "bbox": {
+          "crs": "EPSG:4326",
+          "bounds": {
+            "minx": "11.287820270326776",
+            "miny": "46.461161126375195",
+            "maxx": "11.396305964316936",
+            "maxy": "46.52615800769941"
+          }
+        },
+        "links": [],
+        "params": {},
+        "allowedSRS": {
+          "EPSG:25832": true,
+          "EPSG:3785": true,
+          "EPSG:3857": true,
+          "EPSG:4326": true,
+          "EPSG:900913": true
+        },
+        "catalogURL": null,
+        "style": "",
+        "availableStyles": null,
+        "id": "Cartografia:strade_inf",
+        "loading": false,
+        "search": {
+          "url": "/geoserver/wfs",
+          "type": "wfs"
+        },
+        "loadingError": false
       },
       {
         "type": "wms",
@@ -70,6 +110,7 @@
         "visibility": true,
         "dimensions": [],
         "name": "Cartografia:view_incidenti",
+        "singleTile": true,
         "title": {
           "default": "view_incidenti",
           "it-IT": "Nuvola Incidenti"
@@ -109,83 +150,6 @@
         "loading": false,
         "search": {
           "url": "http://sit.comune.bolzano.it/geoserver/wfs",
-          "type": "wfs"
-        },
-        "loadingError": false
-      },
-      {
-        "type": "wms",
-        "url": "/geoserver/wms",
-        "visibility": true,
-        "dimensions": [],
-        "name": "Cartografia:view_incidenti_prod",
-        "title": {
-          "default": "view_incidenti_prod",
-          "it-IT": "Dettaglio Incidenti"
-        },
-        "description": "view_incidenti_prod",
-        "bbox": {
-          "crs": "EPSG:4326",
-          "bounds": {
-            "minx": "11.287820270326776",
-            "miny": "46.461161126375195",
-            "maxx": "11.396305964316936",
-            "maxy": "46.52615800769941"
-          }
-        },
-        "links": [],
-        "params": {},
-        "allowedSRS": {
-          "EPSG:25832": true,
-          "EPSG:3785": true,
-          "EPSG:3857": true,
-          "EPSG:4326": true,
-          "EPSG:900913": true
-        },
-        "catalogURL": null,
-        "style": "",
-        "availableStyles": null,
-        "id": "Cartografia:view_incidenti_prod__7",
-        "loading": false,
-        "search": {
-          "url": "/geoserver/wfs",
-          "type": "wfs"
-        },
-        "loadingError": false
-      },
-      {
-        "type": "wms",
-        "url": "/geoserver/wms",
-        "visibility": true,
-        "dimensions": [],
-        "name": "Cartografia:view_incidenti_pedone",
-        "title": "view_incidenti_pedone",
-        "description": "view_incidenti_pedone",
-        "bbox": {
-          "crs": "EPSG:4326",
-          "bounds": {
-            "minx": "11.30524280514226",
-            "miny": "46.46322034724085",
-            "maxx": "11.382381109581598",
-            "maxy": "46.510193914136266"
-          }
-        },
-        "links": [],
-        "params": {},
-        "allowedSRS": {
-          "EPSG:25832": true,
-          "EPSG:3785": true,
-          "EPSG:3857": true,
-          "EPSG:4326": true,
-          "EPSG:900913": true
-        },
-        "catalogURL": null,
-        "style": "",
-        "availableStyles": null,
-        "id": "Cartografia:view_incidenti_pedone__8",
-        "loading": false,
-        "search": {
-          "url": "/geoserver/wfs",
           "type": "wfs"
         },
         "loadingError": false
