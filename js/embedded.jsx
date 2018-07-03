@@ -16,19 +16,23 @@ const startApp = () => {
     const StandardApp = require('../MapStore2/web/client/components/app/StandardApp');
     const {loadVersion} = require('../MapStore2/web/client/actions/version');
     const {pages, pluginsDef, initialState, storeOpts} = require('../MapStore2/web/client/product/appConfigEmbedded');
-
+    const {loadAfterThemeSelector} = require('../MapStore2/web/client/selectors/config');
     const StandardRouter = connect((state) => ({
         locale: state.locale || {},
         pages,
-        version: state.version && state.version.current
+        version: state.version && state.version.current,
+        loadAfterTheme: loadAfterThemeSelector(state)
     }))(require('../MapStore2/web/client/components/app/StandardRouter'));
+    const {updateMapLayoutEpic} = require('../MapStore2/web/client/epics/maplayout');
 
     const appStore = require('../MapStore2/web/client/stores/StandardStore').bind(null, initialState, {
         mode: (state = 'embedded') => state,
-        version: require('../MapStore2/web/client/reducers/version')
-    }, {registerSearchServiceEpic, registerCustomLayersUtilsEpic, addLayersStyleLocalization, checkEmptyAvailableStyles});
+        version: require('../MapStore2/web/client/reducers/version'),
+        maplayout: require('../MapStore2/web/client/reducers/maplayout')
+    }, {updateMapLayoutEpic, registerSearchServiceEpic, registerCustomLayersUtilsEpic, addLayersStyleLocalization, checkEmptyAvailableStyles});
 
     const appConfig = {
+        mode: 'embedded',
         storeOpts,
         appStore,
         pluginsDef,
