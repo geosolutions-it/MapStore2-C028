@@ -1,8 +1,12 @@
 const Rx = require('rxjs');
-const { APPLY_CHANGES } = require('../actions/accidents');
+const { APPLY_CHANGES, reset } = require('../actions/accidents');
+const {MAP_CONFIG_LOADED} = require('../../MapStore2/web/client/actions/config');
+
 const { valuesSelector, getViewParamsLayers, getCqlLayers } = require('../selectors/accidents');
 const { changeLayerParams } = require('../../MapStore2/web/client/actions/layers');
 
+
+const getDate = d => d && d.toISOString && d.toISOString().split("T")[0];
 /**
  * normalize form values to make easier to create the filter
  * @return an object composed by the array of selected `days`, `types`, `fromDate` and `toDate`
@@ -10,8 +14,8 @@ const { changeLayerParams } = require('../../MapStore2/web/client/actions/layers
 const getParams = ({dow = {}, type = {}, period = {}}) => {
     const days = Object.keys(dow).filter(d => dow[d]);
     const types = Object.keys(type).filter(t => type[t]);
-    const fromDate = period.from || "2018-01-01";
-    const toDate = period.to || "2018-12-31";
+    const fromDate = getDate(period.fromdate);
+    const toDate = getDate(period.todate);
     return {
         days,
         types,
@@ -28,7 +32,7 @@ const toViewParams = (values) => {
     const daysParam = days.length > 0 ? days.join('\\,') : "0";
     const typesParam = types.length > 0 ? types.join('\\,') : "0";
     // TODO: from and todate
-    return `dow_p:${daysParam};tpinc_p:${typesParam};fromdate_p:${fromDate};todate_p:${toDate}`;
+    return `dow_p:${daysParam};tpinc_p:${typesParam};` + fromDate && toDate ? `fromdate_p:${fromDate};todate_p:${toDate}` : '';
 };
 
 /**
@@ -42,7 +46,7 @@ const toCqlFilter = (values) => {
         `( DTINCID <= '${toDate}' AND DTINCID >= '${fromDate}' )`,
         "(" + (daysParam.map(d => `DOW='${d}'`).join(" OR ")) + ")",
         "(" + (typesParam.map(d => `TPINCID='${d}'`).join(" OR ")) + ")"
-    ].join (" AND ");
+    ].join(" AND ");
 };
 module.exports = {
     updateRoadAccidentLayers: (action$, {getState = () => {}} = {}) =>
@@ -61,5 +65,6 @@ module.exports = {
                             "CQL_FILTER": toCqlFilter(valuesSelector(getState()))
                         })
                     )
-            ]))
+            ])),
+    accidentsInitialSetup: action$ => action$.ofType(MAP_CONFIG_LOADED).switchMap(() => Rx.Observable.of(reset()))
 };
