@@ -10,65 +10,50 @@ const PropTypes = require('prop-types');
 const SharingLinks = require('../../MapStore2/web/client/components/catalog/SharingLinks');
 const Message = require('../../MapStore2/web/client/components/I18N/Message');
 const {Image, Panel, Button, Glyphicon} = require('react-bootstrap');
-const {head, memoize, isObject, isArray} = require('lodash');
-const ProjectUtils = require('../utils/ProjectUtils');
-const assign = require('object-assign');
+const {head, isObject, isArray, truncate} = require('lodash');
 
 const CoordinatesUtils = require('../../MapStore2/web/client/utils/CoordinatesUtils');
+const ConfigUtils = require('../../MapStore2/web/client/utils/ConfigUtils');
+const {getRecordLinks, recordToLayer, extractOGCServicesReferences, buildSRSMap, removeParameters} = require('../../MapStore2/web/client/utils/CatalogUtils');
 
 const defaultThumb = require('../../MapStore2/web/client/components/catalog/img/default.jpg');
 
-const buildSRSMap = memoize((srs) => {
-    return srs.reduce((previous, current) => {
-        return assign(previous, {[current]: true});
-    }, {});
-});
-
-const removeParameters = (url, skip) => {
-    const urlparts = url.split('?');
-    const params = {};
-    if (urlparts.length >= 2 && urlparts[1]) {
-        const pars = urlparts[1].split(/[&;]/g);
-        pars.forEach((par) => {
-            const param = par.split('=');
-            if (skip.indexOf(param[0].toLowerCase()) === -1) {
-                params[param[0]] = param[1];
-            }
-        });
-    }
-    return {url: urlparts[0], params};
-};
-
 require("../../MapStore2/web/client/components/catalog/RecordItem.css");
+
+const ProjectUtils = require('../utils/ProjectUtils');
 
 class RecordItem extends React.Component {
     static propTypes = {
+        addAuthentication: PropTypes.bool,
+        buttonSize: PropTypes.string,
+        crs: PropTypes.string,
+        currentLocale: PropTypes.string,
+        onCopy: PropTypes.func,
+        onError: PropTypes.func,
         onLayerAdd: PropTypes.func,
         onZoomToExtent: PropTypes.func,
-        zoomToLayer: PropTypes.bool,
         record: PropTypes.object,
-        buttonSize: PropTypes.string,
-        onCopy: PropTypes.func,
+        authkeyParamNames: PropTypes.array,
         showGetCapLinks: PropTypes.bool,
-        addAuthentication: PropTypes.bool,
-        crs: PropTypes.string,
-        onError: PropTypes.func,
-        currentLocale: PropTypes.string
+        zoomToLayer: PropTypes.bool,
+        catalogURL: PropTypes.string,
+        catalogType: PropTypes.string
     };
 
     static defaultProps = {
-        mapType: "leaflet",
+        buttonSize: "small",
+        crs: "EPSG:3857",
+        currentLocale: 'en-US',
+        onCopy: () => {},
+        onError: () => {},
         onLayerAdd: () => {},
         onZoomToExtent: () => {},
-        zoomToLayer: true,
-        onError: () => {},
         style: {},
-        buttonSize: "small",
-        onCopy: () => {},
         showGetCapLinks: false,
-        crs: "EPSG:3857",
-        currentLocale: 'en-US'
+        zoomToLayer: true
     };
+
+    state = {};
 
     componentWillMount() {
         document.addEventListener('click', this.handleClick, false);
@@ -77,38 +62,6 @@ class RecordItem extends React.Component {
     componentWillUnmount() {
         document.removeEventListener('click', this.handleClick, false);
     }
-
-    getLinks = (record) => {
-        let wmsGetCap = head(record.references.filter(reference => reference.type &&
-            reference.type.indexOf("OGC:WMS") > -1 && reference.type.indexOf("http-get-capabilities") > -1));
-        let wfsGetCap = head(record.references.filter(reference => reference.type &&
-            reference.type.indexOf("OGC:WFS") > -1 && reference.type.indexOf("http-get-capabilities") > -1));
-        let wmtsGetCap = head(record.references.filter(reference => reference.type &&
-            reference.type.indexOf("OGC:WMTS") > -1 && reference.type.indexOf("http-get-capabilities") > -1));
-        let links = [];
-        if (wmsGetCap) {
-            links.push({
-                type: "WMS_GET_CAPABILITIES",
-                url: wmsGetCap.url,
-                labelId: 'catalog.wmsGetCapLink'
-            });
-        }
-        if (wmtsGetCap) {
-            links.push({
-                type: "WMTS_GET_CAPABILITIES",
-                url: wmtsGetCap.url,
-                labelId: 'catalog.wmtsGetCapLink'
-            });
-        }
-        if (wfsGetCap) {
-            links.push({
-                type: "WFS_GET_CAPABILITIES",
-                url: wfsGetCap.url,
-                labelId: 'catalog.wfsGetCapLink'
-            });
-        }
-        return links;
-    };
 
     getTitle = (title) => {
         return isObject(title) ? title[this.props.currentLocale] || title.default : title || '';
@@ -127,10 +80,7 @@ class RecordItem extends React.Component {
             return null;
         }
         // let's extract the references we need
-        let wms = head(record.references.filter(reference => reference.type && (reference.type === "OGC:WMS"
-            || reference.type.indexOf("OGC:WMS") > -1 && reference.type.indexOf("http-get-map") > -1)));
-        let wmts = head(record.references.filter(reference => reference.type && (reference.type === "OGC:WMTS"
-            || reference.type.indexOf("OGC:WMTS") > -1 && reference.type.indexOf("http-get-map") > -1)));
+        const {wms, wmts} = extractOGCServicesReferences(record);
         // let's create the buttons
         let buttons = [];
         if (wms) {
@@ -161,7 +111,7 @@ class RecordItem extends React.Component {
         }
         // creating get capbilities links that will be used to share layers info
         if (this.props.showGetCapLinks) {
-            let links = this.getLinks(record);
+            let links = getRecordLinks(record);
             if (links.length > 0) {
                 buttons.push(<SharingLinks key="sharing-links" popoverContainer={this} links={links}
                     onCopy={this.props.onCopy} buttonSize={this.props.buttonSize} addAuthentication={this.props.addAuthentication}/>);
@@ -188,20 +138,24 @@ class RecordItem extends React.Component {
 
     render() {
         let record = this.props.record;
+        const {wms, wmts} = extractOGCServicesReferences(record);
         return (
             <Panel className="record-item" style={{padding: 0}}>
                 {this.renderThumb(record && record.thumbnail, record)}
                 <div>
                     <h4 className="truncateText">{record && this.getTitle(record.title)}</h4>
                     <h4 className="truncateText"><small>{record && record.identifier}</small></h4>
-                    <p className="truncateText record-item-description">{this.renderDescription(record)}</p>
+                    <p className="truncateText record-item-description">{this.truncateDescription(this.renderDescription(record), 70)}</p>
+                    {!wms && !wmts && <small className="text-danger"><Message msgId="catalog.missingReference"/></small>}
                 </div>
                   {this.renderButtons(record)}
             </Panel>
         );
     }
 
-    state = {};
+    truncateDescription =(description, size) => {
+        return truncate(description, {'length': size, 'separator': /,? +/});
+    }
 
     isLinkCopied = (key) => {
         return this.state[key];
@@ -212,7 +166,7 @@ class RecordItem extends React.Component {
     };
 
     addLayer = (wms) => {
-        const {url, params} = removeParameters(wms.url, ["request", "layer", "service", "version"]);
+        const {url} = removeParameters(ConfigUtils.cleanDuplicatedQuestionMarks(wms.url), ["request", "layer", "service", "version"].concat(this.props.authkeyParamNames));
         const allowedSRS = buildSRSMap(wms.SRS);
         if (wms.SRS.length > 0 && !CoordinatesUtils.isAllowedSRS(this.props.crs, allowedSRS)) {
             this.props.onError('catalog.srs_not_allowed');
@@ -223,27 +177,14 @@ class RecordItem extends React.Component {
             const style = ProjectUtils.getLocalizedStyle('', availableStyles, currentLocale || 'en');
 
             this.props.onLayerAdd({
-                type: "wms",
-                url: url,
-                visibility: true,
-                dimensions: this.props.record.dimensions || [],
-                name: wms.params && wms.params.name,
-                title: this.props.record.title || wms.params && wms.params.name,
-                bbox: {
-                    crs: this.props.record.boundingBox.crs,
-                    bounds: {
-                        minx: this.props.record.boundingBox.extent[0],
-                        miny: this.props.record.boundingBox.extent[1],
-                        maxx: this.props.record.boundingBox.extent[2],
-                        maxy: this.props.record.boundingBox.extent[3]
-                    }
-                },
-                links: this.getLinks(this.props.record),
-                params: params,
-                allowedSRS: allowedSRS,
+                ...recordToLayer(this.props.record, "wms", {
+                    url,
+                    catalogURL: this.props.catalogType === 'csw' && this.props.catalogURL ? this.props.catalogURL + "?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=" + this.props.record.identifier : null
+                }),
                 style,
                 availableStyles
             });
+
             if (this.props.record.boundingBox && this.props.zoomToLayer) {
                 let extent = this.props.record.boundingBox.extent;
                 let crs = this.props.record.boundingBox.crs;
@@ -253,32 +194,14 @@ class RecordItem extends React.Component {
     };
 
     addwmtsLayer = (wmts) => {
-        const {url, params} = removeParameters(wmts.url, ["request", "layer"]);
+        const {url} = removeParameters(ConfigUtils.cleanDuplicatedQuestionMarks(wmts.url), ["request", "layer"].concat(this.props.authkeyParamNames));
         const allowedSRS = buildSRSMap(wmts.SRS);
         if (wmts.SRS.length > 0 && !CoordinatesUtils.isAllowedSRS(this.props.crs, allowedSRS)) {
             this.props.onError('catalog.srs_not_allowed');
         } else {
-            this.props.onLayerAdd({
-                type: "wmts",
-                url: url,
-                visibility: true,
-                name: wmts.params && wmts.params.name,
-                title: this.props.record.title || wmts.params && wmts.params.name,
-                matrixIds: this.props.record.matrixIds || [],
-                tileMatrixSet: this.props.record.tileMatrixSet || [],
-                bbox: {
-                    crs: this.props.record.boundingBox.crs,
-                    bounds: {
-                        minx: this.props.record.boundingBox.extent[0],
-                        miny: this.props.record.boundingBox.extent[1],
-                        maxx: this.props.record.boundingBox.extent[2],
-                        maxy: this.props.record.boundingBox.extent[3]
-                    }
-                },
-                links: this.getLinks(this.props.record),
-                params: params,
-                allowedSRS: allowedSRS
-            });
+            this.props.onLayerAdd(recordToLayer(this.props.record, "wmts", {
+                url
+            }));
             if (this.props.record.boundingBox && this.props.zoomToLayer) {
                 let extent = this.props.record.boundingBox.extent;
                 let crs = this.props.record.boundingBox.crs;
