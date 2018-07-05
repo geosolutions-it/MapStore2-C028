@@ -20,6 +20,7 @@ const STANDARD_VALUES = {
     ]
 };
 module.exports = {
+    STANDARD_VALUES,
     APPLY_CHANGES,
     onApplyChanges: () => ({ type: APPLY_CHANGES }),
     RESET,

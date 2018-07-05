@@ -6,6 +6,7 @@ const momentLocalizer = require('react-widgets/lib/localizers/moment');
 const moment = require('moment');
 momentLocalizer(moment);
 const { DateTimePicker } = require('react-widgets');
+
 /**
  * Component that renders a single date field, with label
  */
@@ -48,6 +49,6 @@ module.exports = withProps( ({values}) => ({
  */
 )(({values = {}, onChange = () => {}, items = []}) =>
 (<div>
-    {items.map(({name, title, max, min}) => <DateField max={max} min={min} value={values[name]} name={name} title={title} onChange={onChange} />)}
+    {items.map(({name, title, max, min}) => <DateField key={name} max={max} min={min} value={values[name]} name={name} title={title} onChange={onChange} />)}
 </div>));
 

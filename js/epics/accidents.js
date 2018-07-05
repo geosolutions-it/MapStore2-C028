@@ -32,7 +32,7 @@ const toViewParams = (values) => {
     const daysParam = days.length > 0 ? days.join('\\,') : "0";
     const typesParam = types.length > 0 ? types.join('\\,') : "0";
     // TODO: from and todate
-    return `dow_p:${daysParam};tpinc_p:${typesParam};` + fromDate && toDate ? `fromdate_p:${fromDate};todate_p:${toDate}` : '';
+    return `dow_p:${daysParam};tpinc_p:${typesParam}` + (fromDate && toDate ? `;fromdate_p:${fromDate};todate_p:${toDate}` : '');
 };
 
 /**
@@ -48,6 +48,7 @@ const toCqlFilter = (values) => {
         "(" + (typesParam.map(d => `TPINCID='${d}'`).join(" OR ")) + ")"
     ].join(" AND ");
 };
+
 module.exports = {
     updateRoadAccidentLayers: (action$, {getState = () => {}} = {}) =>
         action$.ofType( APPLY_CHANGES ).switchMap( () =>
