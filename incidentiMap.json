@@ -149,7 +149,7 @@
         "id": "Cartografia:view_incidenti__6",
         "loading": false,
         "search": {
-          "url": "http://sit.comune.bolzano.it/geoserver/wfs",
+          "url": "/geoserver/wfs",
           "type": "wfs"
         },
         "loadingError": false

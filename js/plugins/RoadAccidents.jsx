@@ -32,13 +32,13 @@ const RoadAccidentsPlugin = compose(
     </Grid>
 </BorderLayout>);
 module.exports = {
-    TOCPlugin: assign(RoadAccidentsPlugin, {
+    RoadAccidentsPlugin: assign(RoadAccidentsPlugin, {
 
         /*
          * This allows the plugin to be rendered in the left menu.
          */
         DrawerMenu: {
-            name: 'toc',
+            name: 'roadAccidents',
             position: 2,
             glyph: "road",
             buttonConfig: {

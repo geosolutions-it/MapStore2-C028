@@ -125,7 +125,7 @@
         "activateMapTitle": false,
         "activateSortLayer": false
       }
-    }, "RoadAccidents", {
+    }, {
       "name": "TOCItemsSettings",
       "cfg": {
           "width": 300
@@ -347,7 +347,9 @@
               {"id": "Polygon", "name": "queryform.spatialfilter.methods.poly"}
           ]
         }
-    }, "TOCItemsSettings", "MapFooter", {
+    },
+    "RoadAccidents",
+    "TOCItemsSettings", "MapFooter", {
         "name": "BackgroundSelector",
         "cfg":{
           "thumbs":{
