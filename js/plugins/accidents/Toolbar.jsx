@@ -1,7 +1,7 @@
 const Toolbar = require('../../../MapStore2/web/client/components/misc/toolbar/Toolbar');
 const {connect} = require('react-redux');
 const {withProps, compose} = require('recompose');
-const { onApplyChanges, reset } = require('../../actions/accidents');
+const { applyChanges, reset } = require('../../actions/accidents');
 
 /**
  * Connect and configure the toolbar of the plugin.
@@ -9,7 +9,7 @@ const { onApplyChanges, reset } = require('../../actions/accidents');
 module.exports = compose(
     // connect event handlers
     connect(() => {}, {
-        onApply: onApplyChanges,
+        onApply: applyChanges,
         onReset: reset
     }),
     // configure buttons and handlers

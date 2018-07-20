@@ -2,10 +2,8 @@ const expect = require('expect');
 const { testEpic } = require('../../../MapStore2/web/client/epics/__tests__/epicTestUtils');
 
 const {MAP_CONFIG_LOADED} = require('../../../MapStore2/web/client/actions/config');
-const {RESET, onApplyChanges} = require('../../actions/accidents');
+const {RESET, applyChanges} = require('../../actions/accidents');
 const { CHANGE_LAYER_PARAMS } = require('../../../MapStore2/web/client/actions/layers');
-
-
 
 const { accidentsInitialSetup, updateRoadAccidentLayers } = require('../accidents');
 
@@ -57,7 +55,7 @@ describe('accidents epic', () => {
                 }]
             }
         };
-        testEpic(updateRoadAccidentLayers, 2, onApplyChanges(), actions => {
+        testEpic(updateRoadAccidentLayers, 2, applyChanges(), actions => {
             expect(actions.length).toBe(2);
             expect(actions[0].type).toBe(CHANGE_LAYER_PARAMS);
             expect(actions[1].type).toBe(CHANGE_LAYER_PARAMS);

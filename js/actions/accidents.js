@@ -22,7 +22,7 @@ const STANDARD_VALUES = {
 module.exports = {
     STANDARD_VALUES,
     APPLY_CHANGES,
-    onApplyChanges: () => ({ type: APPLY_CHANGES }),
+    applyChanges: () => ({ type: APPLY_CHANGES }),
     RESET,
     reset: (values = STANDARD_VALUES) => ({type: RESET, values: {
         period: {

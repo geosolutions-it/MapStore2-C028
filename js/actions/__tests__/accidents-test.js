@@ -2,7 +2,7 @@
 const expect = require('expect');
 const {
     APPLY_CHANGES,
-    onApplyChanges,
+    applyChanges,
     ON_CHANGE,
     onChange,
     RESET,
@@ -10,8 +10,8 @@ const {
 } = require('../accidents');
 
 describe('accidents actions', () => {
-    it('onApplyChanges', () => {
-        const retval = onApplyChanges();
+    it('applyChanges', () => {
+        const retval = applyChanges();
         expect(retval).toExist();
         expect(retval.type).toBe(APPLY_CHANGES);
     });

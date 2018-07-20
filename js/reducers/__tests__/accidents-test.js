@@ -1,5 +1,5 @@
 const expect = require('expect');
-const { onChange, onApplyChanges, reset } = require('../../actions/accidents');
+const { onChange, applyChanges, reset } = require('../../actions/accidents');
 
 const accidents = require('../accidents');
 describe('accidents reducer', () => {
@@ -10,8 +10,8 @@ describe('accidents reducer', () => {
         expect(state.values.dow[1]).toBe(true);
         expect(state.modified).toBe(true);
     });
-    it('onApplyChanges action reset modified flag', () => {
-        const action = onApplyChanges();
+    it('applyChanges action reset modified flag', () => {
+        const action = applyChanges();
         const state = accidents( {modified: true}, action);
         expect(state.modified).toBe(false);
     });

@@ -1,12 +1,12 @@
 const Rx = require('rxjs');
-const { APPLY_CHANGES, reset } = require('../actions/accidents');
+const { APPLY_CHANGES, reset, applyChanges } = require('../actions/accidents');
 const {MAP_CONFIG_LOADED} = require('../../MapStore2/web/client/actions/config');
 
 const { valuesSelector, getViewParamsLayers, getCqlLayers } = require('../selectors/accidents');
 const { changeLayerParams } = require('../../MapStore2/web/client/actions/layers');
+const moment = require('moment');
 
-
-const getDate = d => d && d.toISOString && d.toISOString().split("T")[0];
+const getDate = d => moment(d).format('YYYY-MM-DD');
 /**
  * normalize form values to make easier to create the filter
  * @return an object composed by the array of selected `days`, `types`, `fromDate` and `toDate`
@@ -31,7 +31,6 @@ const toViewParams = (values) => {
     const {days, types, fromDate, toDate} = getParams(values);
     const daysParam = days.length > 0 ? days.join('\\,') : "0";
     const typesParam = types.length > 0 ? types.join('\\,') : "0";
-    // TODO: from and todate
     return `dow_p:${daysParam};tpinc_p:${typesParam}` + (fromDate && toDate ? `;fromdate_p:${fromDate};todate_p:${toDate}` : '');
 };
 
@@ -67,5 +66,5 @@ module.exports = {
                         })
                     )
             ])),
-    accidentsInitialSetup: action$ => action$.ofType(MAP_CONFIG_LOADED).switchMap(() => Rx.Observable.of(reset()))
+    accidentsInitialSetup: action$ => action$.ofType(MAP_CONFIG_LOADED).switchMap(() => Rx.Observable.of(reset(), applyChanges()))
 };
