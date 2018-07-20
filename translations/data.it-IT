@@ -25,6 +25,11 @@
       }
     },
     "accidents": {
+        "title": "Filtra Infortuni",
+        "toolbar": {
+            "applyFilter": "Applica",
+            "reset": "Ripristina lo stato iniziale"
+        },
         "period": {
             "title": "Periodo",
             "from": "Da",
@@ -41,8 +46,8 @@
             "7": "Domenica"
         },
     "type": {
-            "title": "Tipo di Infortunio",
-            "withInjured": "Con Feriti",
+            "title": "Verletzungsart",
+            "withInjured": "Mit Verletzungen",
             "withoutInjured": "Senza Feriti",
             "mortal": "Mortale"
         }

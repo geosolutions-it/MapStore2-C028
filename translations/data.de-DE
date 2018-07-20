@@ -1,28 +1,56 @@
 {
-    "locale": "de-DE",
-    "messages": {
-        "layerProperties": {
-            "featureTypeError": "Layerattribute können nicht geladen werden"
+  "locale": "de-DE",
+  "messages": {
+    "layerProperties": {
+        "featureTypeError": "Layerattribute können nicht geladen werden"
+    },
+    "home":{
+        "footer": "Stadt Bozen - Gumergasse 7 - 39100 Bozen - Telefonzentrale: 0471 997111 – Steuernr./MwSt.: 00389240219 - PEC: bz@legalmail.it :: <a target=\"_blank\" href=\"http://www.gemeinde.bozen.it/context.jsp?ID_LINK=4179&area=155\">Parteienverkehr</a> - <a target=\"_blank\" href=\"http://www.gemeinde.bozen.it/context.jsp?ID_LINK=3871&area=155\">Copyright</a> - <a target=\"_blank\" href=\"http://www.gemeinde.bozen.it/context.jsp?ID_LINK=3872&area=155\">Privacy Policy</a> - <a target=\"_blank\" href=\"http://www.geo-solutions.it/\">Credits</a> - <a target=\"_blank\" href=\"http://www.gemeinde.bozen.it/context.jsp?ID_LINK=4620&area=155\">Ausführliche Information - Cookies</a>",
+        "description": "Geografische Informationsdienst der Stadt Bozen",
+        "descriptionLogo": "Stadt Bozen"
+    },
+    "toc": {
+        "loadingerror": "Diese Ebene wurde nicht korrekt geladen"
+    },
+    "search":{
+        "partNestedPlaceholder": "Parzelle einfügen...",
+        "nestedPlaceholder": "Bitte, legen Sie auf Bürgernummer"
+    },
+    "queryform": {
+        "attributefilter":{
+            "combo_placeholder": "Wähle"
         },
-        "home":{
-            "footer": "Stadt Bozen - Gumergasse 7 - 39100 Bozen - Telefonzentrale: 0471 997111 – Steuernr./MwSt.: 00389240219 - PEC: bz@legalmail.it :: <a target=\"_blank\" href=\"http://www.gemeinde.bozen.it/context.jsp?ID_LINK=4179&area=155\">Parteienverkehr</a> - <a target=\"_blank\" href=\"http://www.gemeinde.bozen.it/context.jsp?ID_LINK=3871&area=155\">Copyright</a> - <a target=\"_blank\" href=\"http://www.gemeinde.bozen.it/context.jsp?ID_LINK=3872&area=155\">Privacy Policy</a> - <a target=\"_blank\" href=\"http://www.geo-solutions.it/\">Credits</a> - <a target=\"_blank\" href=\"http://www.gemeinde.bozen.it/context.jsp?ID_LINK=4620&area=155\">Ausführliche Information - Cookies</a>",
-            "description": "Geografische Informationsdienst der Stadt Bozen",
-            "descriptionLogo": "Stadt Bozen"
+        "spatialfilter": {
+            "selection_method": "Auswahl Methode"
+        }
+    },
+    "accidents": {
+        "title": "Unfälle filtern",
+        "toolbar": {
+            "applyFilter": "Anwendung",
+            "reset": "Stellen Sie den Anfangszustand wieder her"
         },
-        "toc": {
-            "loadingerror": "Diese Ebene wurde nicht korrekt geladen"
+        "period": {
+            "title": "Zeit",
+            "from": "Vom",
+            "to": "Bis"
         },
-        "search":{
-            "partNestedPlaceholder": "Parzelle einfügen...",
-            "nestedPlaceholder": "Bitte, legen Sie auf Bürgernummer"
+        "dow": {
+            "1": "Montag",
+            "2": "Dienstag",
+            "3": "Mittwoch",
+            "4": "Donnerstag",
+            "5": "Freitag",
+            "6": "Samstag",
+            "7": "Sonntag",
+            "title": "Tag der Woche"
         },
-        "queryform": {
-            "attributefilter":{
-                "combo_placeholder": "Wähle"
-            },
-            "spatialfilter": {
-                "selection_method": "Auswahl Methode"
-            }
+        "type": {
+            "title": "  ",
+            "withInjured": "Mit Verletzungen",
+            "withoutInjured": "Ohne Verletzungen",
+            "mortal": "tödlich"
         }
     }
+  }
 }

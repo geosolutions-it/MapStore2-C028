@@ -27,11 +27,12 @@ const getCqlLayers = state => filter((layersSelector(state) || []), overSome(get
  * @param {object} state the state
  */
 const getViewParamsLayers = state => filter((layersSelector(state) || []), overSome(getViewParamsLayersPredicates(state)));
-
+const isModified = state => get(state, "accidents.modified");
 
 module.exports = {
     valueSelectorCreator,
     valuesSelector,
     getCqlLayers,
-    getViewParamsLayers
+    getViewParamsLayers,
+    isModified
 };

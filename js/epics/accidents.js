@@ -1,5 +1,8 @@
 const Rx = require('rxjs');
-const { APPLY_CHANGES, reset, applyChanges } = require('../actions/accidents');
+const url = require('url');
+const { setControlProperty } = require('../../MapStore2/web/client/actions/controls');
+
+const { APPLY_CHANGES, RESET, reset, applyChanges } = require('../actions/accidents');
 const {MAP_CONFIG_LOADED} = require('../../MapStore2/web/client/actions/config');
 
 const { valuesSelector, getViewParamsLayers, getCqlLayers } = require('../selectors/accidents');
@@ -47,7 +50,10 @@ const toCqlFilter = (values) => {
         "(" + (typesParam.map(d => `TPINCID='${d}'`).join(" OR ")) + ")"
     ].join(" AND ");
 };
-
+const init = () => {
+    const urlQuery = url.parse(window.location.href, true).query || {};
+    return urlQuery.RoadAccidents;
+};
 module.exports = {
     updateRoadAccidentLayers: (action$, {getState = () => {}} = {}) =>
         action$.ofType( APPLY_CHANGES ).switchMap( () =>
@@ -66,5 +72,13 @@ module.exports = {
                         })
                     )
             ])),
-    accidentsInitialSetup: action$ => action$.ofType(MAP_CONFIG_LOADED).switchMap(() => Rx.Observable.of(reset(), applyChanges()))
+    accidentsAutoApplyOnReset: action$ => action$.ofType(RESET).switchMap(() => Rx.Observable.of(applyChanges())),
+    accidentsInitialSetup: action$ => action$
+        .ofType(MAP_CONFIG_LOADED)
+        .filter(() => init())
+        .switchMap(() => Rx.Observable.of(
+            reset(),
+            setControlProperty("drawer", "enabled", true),
+            setControlProperty("drawer", "menu", '2')
+        ))
 };
