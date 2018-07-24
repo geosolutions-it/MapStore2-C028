@@ -53,7 +53,7 @@ module.exports = {
             glyph: "road",
             buttonConfig: {
                 buttonClassName: "square-button no-border",
-                tooltip: "toc.layers"
+                tooltip: "accidents.title"
             },
             priority: 2
         }

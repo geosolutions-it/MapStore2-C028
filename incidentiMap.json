@@ -71,8 +71,8 @@
         "name": "Cartografia:view_str_inc",
         "style": "strade_inf",
         "title": {
-          "default": "view_incidenti_prod",
-          "it-IT": "Dettaglio Incidenti"
+          "default": "Stat. Incidenti Strade",
+          "it-IT": "Stat. Incidenti Strade"
         },
         "description": "view_incidenti_prod",
         "bbox": {
@@ -109,10 +109,56 @@
         "url": "/geoserver/wms",
         "visibility": true,
         "dimensions": [],
+        "name": "Cartografia:view_incidenti_prod",
+        "singleTile": true,
+        "title": {
+          "default": "Dettaglio Incidenti",
+          "it-IT": "Dettaglio Incidenti"
+        },
+        "description": "view_incidenti_prod",
+        "bbox": {
+          "crs": "EPSG:4326",
+          "bounds": {
+            "minx": "11.287857456525213",
+            "miny": "46.46204828414888",
+            "maxx": "11.396305964316936",
+            "maxy": "46.52615800769941"
+          }
+        },
+        "links": [],
+        "params": {},
+        "allowedSRS": {
+          "EPSG:25832": true,
+          "EPSG:3785": true,
+          "EPSG:3857": true,
+          "EPSG:4326": true,
+          "EPSG:900913": true
+        },
+        "catalogURL": null,
+        "style": "tipo_infortunio",
+        "availableStyles": [
+          {
+            "name": "tipo_infortunio",
+            "title": "Infortuni"
+          }
+        ],
+        "id": "Cartografia:view_incidenti__prod_7",
+        "loading": false,
+        "search": {
+          "url": "/geoserver/wfs",
+          "type": "wfs"
+        },
+        "loadingError": false
+      },
+      {
+        "type": "wms",
+        "url": "/geoserver/wms",
+        "visibility": true,
+        "dimensions": [],
         "name": "Cartografia:view_incidenti",
         "singleTile": true,
         "title": {
-          "default": "view_incidenti",
+          "default": "Nuvola Incidenti",
           "it-IT": "Nuvola Incidenti"
         },
         "description": "view_incidenti",

@@ -46,8 +46,8 @@
             "7": "Domenica"
         },
     "type": {
-            "title": "Verletzungsart",
-            "withInjured": "Mit Verletzungen",
+            "title": "Tipo di infortunio",
+            "withInjured": "Con Feriti",
             "withoutInjured": "Senza Feriti",
             "mortal": "Mortale"
         }

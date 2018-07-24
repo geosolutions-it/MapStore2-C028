@@ -46,7 +46,7 @@
             "title": "Tag der Woche"
         },
         "type": {
-            "title": "  ",
+            "title": "Verletzungsart",
             "withInjured": "Mit Verletzungen",
             "withoutInjured": "Ohne Verletzungen",
             "mortal": "tödlich"

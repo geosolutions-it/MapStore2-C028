@@ -9,6 +9,10 @@ const DEFAULT_STATE = {
         predicate: {
             name: "Cartografia:view_incidenti"
         }
+    }, {
+        predicate: {
+            name: "Cartografia:view_incidenti_prod"
+        }
     }],
     viewParamsLayers: [{
         predicate: {

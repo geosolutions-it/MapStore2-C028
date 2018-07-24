@@ -22,8 +22,14 @@ const STANDARD_VALUES = {
 module.exports = {
     STANDARD_VALUES,
     APPLY_CHANGES,
+    /**
+     * Apply the changes to the map
+     */
     applyChanges: () => ({ type: APPLY_CHANGES }),
     RESET,
+    /**
+     * Reset to initial state
+     */
     reset: (values = STANDARD_VALUES) => ({type: RESET, values: {
         period: {
             fromdate: new Date(new Date().getFullYear(), 0, 1),
@@ -32,6 +38,9 @@ module.exports = {
         ...values
     }}),
     ON_CHANGE,
+    /**
+     * Apply one change to the form values
+     */
     onChange: (name, value) => ({
         type: ON_CHANGE,
         name,
