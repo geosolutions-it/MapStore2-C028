@@ -75,7 +75,7 @@ module.exports = {
     accidentsAutoApplyOnReset: action$ => action$.ofType(RESET).switchMap(() => Rx.Observable.of(applyChanges())),
     accidentsInitialSetup: action$ => action$
         .ofType(MAP_CONFIG_LOADED)
-        .filter(() => init())
+        .filter(({ forceInitAccidents = false } = {}) => init() || forceInitAccidents)
         .switchMap(() => Rx.Observable.of(
             reset(),
             setControlProperty("drawer", "enabled", true),

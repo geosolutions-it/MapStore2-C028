@@ -2,24 +2,21 @@ const expect = require('expect');
 const { testEpic } = require('../../../MapStore2/web/client/epics/__tests__/epicTestUtils');
 
 const {MAP_CONFIG_LOADED} = require('../../../MapStore2/web/client/actions/config');
+const { SET_CONTROL_PROPERTY } = require('../../../MapStore2/web/client/actions/controls');
+
 const {RESET, applyChanges} = require('../../actions/accidents');
 const { CHANGE_LAYER_PARAMS } = require('../../../MapStore2/web/client/actions/layers');
 
 const { accidentsInitialSetup, updateRoadAccidentLayers } = require('../accidents');
 
 describe('accidents epic', () => {
-    it('closePrintOnChangeLocale', (done) => {
-        testEpic(accidentsInitialSetup, 1, { type: MAP_CONFIG_LOADED }, actions => {
-            expect(actions.length).toBe(1);
-            actions.map((action) => {
-                switch (action.type) {
-                    case RESET:
-                        done();
-                        break;
-                    default:
-                        break;
-                }
-            });
+    it('accidentsInitialSetup', (done) => {
+        testEpic(accidentsInitialSetup, 3, { type: MAP_CONFIG_LOADED, forceInitAccidents: true }, actions => {
+            expect(actions.length).toBe(3);
+            expect(actions[0].type).toBe(RESET);
+            expect(actions[1].type).toBe(SET_CONTROL_PROPERTY);
+            expect(actions[2].type).toBe(SET_CONTROL_PROPERTY);
+            done();
 
         }, {});
     });
