@@ -11,14 +11,18 @@ const { accidentsInitialSetup, updateRoadAccidentLayers } = require('../accident
 
 describe('accidents epic', () => {
     it('accidentsInitialSetup', (done) => {
-        testEpic(accidentsInitialSetup, 3, { type: MAP_CONFIG_LOADED, forceInitAccidents: true }, actions => {
+        testEpic(accidentsInitialSetup, 3, { type: MAP_CONFIG_LOADED }, actions => {
             expect(actions.length).toBe(3);
             expect(actions[0].type).toBe(RESET);
             expect(actions[1].type).toBe(SET_CONTROL_PROPERTY);
             expect(actions[2].type).toBe(SET_CONTROL_PROPERTY);
             done();
 
-        }, {});
+        }, {
+            routing: { location: {
+                pathname: "/roadAccidents/openlayers/testMap"
+            }}
+        });
     });
     it('updateRoadAccidentLayers', (done) => {
         const STATE = {

@@ -348,7 +348,6 @@
           ]
         }
     },
-    "RoadAccidents",
     "TOCItemsSettings", "MapFooter", {
         "name": "BackgroundSelector",
         "cfg":{
