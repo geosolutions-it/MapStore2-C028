@@ -9,16 +9,11 @@ const React = require('react');
 const assign = require('object-assign');
 const { Grid, Row, Col} = require('react-bootstrap');
 const BorderLayout = require('../../MapStore2/web/client/components/layout/BorderLayout');
-const url = require('url');
 const {compose} = require('recompose');
 const {connect} = require('react-redux');
 const Toolbar = require('./accidents/Toolbar');
 const Filters = require('./accidents/Filters');
 
-const show = () => {
-    const urlQuery = url.parse(window.location.href, true).query || {};
-    return urlQuery.RoadAccidents;
-};
 
 const RoadAccidentsPlugin = compose(
     connect(() => ({}))
@@ -42,13 +37,11 @@ const RoadAccidentsPlugin = compose(
 module.exports = {
     RoadAccidentsPlugin: assign(RoadAccidentsPlugin, {
         hide: true,
-        disablePluginIf: show() ? false : true,
         /*
          * This allows the plugin to be rendered in the left menu.
          */
         DrawerMenu: {
             name: 'roadAccidents',
-
             position: 2,
             glyph: "road",
             buttonConfig: {

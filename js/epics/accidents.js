@@ -1,5 +1,6 @@
 const Rx = require('rxjs');
-const url = require('url');
+const { pathnameSelector } = require('../../MapStore2/web/client/selectors/routing');
+
 const { setControlProperty } = require('../../MapStore2/web/client/actions/controls');
 
 const { APPLY_CHANGES, RESET, reset, applyChanges } = require('../actions/accidents');
@@ -50,9 +51,10 @@ const toCqlFilter = (values) => {
         "(" + (typesParam.map(d => `TPINCID='${d}'`).join(" OR ")) + ")"
     ].join(" AND ");
 };
-const init = () => {
-    const urlQuery = url.parse(window.location.href, true).query || {};
-    return urlQuery.RoadAccidents;
+
+const shouldInit = ({getState = () => {}} = {}) => {
+    const pathName = pathnameSelector(getState()) || "";
+    return pathName.indexOf("roadAccidents") >= 0;
 };
 module.exports = {
     updateRoadAccidentLayers: (action$, {getState = () => {}} = {}) =>
@@ -73,9 +75,9 @@ module.exports = {
                     )
             ])),
     accidentsAutoApplyOnReset: action$ => action$.ofType(RESET).switchMap(() => Rx.Observable.of(applyChanges())),
-    accidentsInitialSetup: action$ => action$
+    accidentsInitialSetup: (action$, store) => action$
         .ofType(MAP_CONFIG_LOADED)
-        .filter(({ forceInitAccidents = false } = {}) => init() || forceInitAccidents)
+        .filter(({ forceInitAccidents = false } = {}) => shouldInit(store) || forceInitAccidents)
         .switchMap(() => Rx.Observable.of(
             reset(),
             setControlProperty("drawer", "enabled", true),

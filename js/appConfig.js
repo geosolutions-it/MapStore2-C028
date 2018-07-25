@@ -23,59 +23,63 @@ module.exports = {
         path: "/viewer/:mapType/:mapId",
         component: require('./pages/MapViewer')
     }, {
-         name: "manager",
-         path: "/manager",
-         component: require('./pages/Manager')
-     }, {
-         name: "manager",
-         path: "/manager/:tool",
-         component: require('./pages/Manager')
-     }],
+        name: "roadAccidents",
+            path: "/roadAccidents/:mapType/:mapId",
+        component: require('./pages/RoadAccidents')
+    }, {
+        name: "manager",
+        path: "/manager",
+        component: require('./pages/Manager')
+    }, {
+        name: "manager",
+        path: "/manager/:tool",
+        component: require('./pages/Manager')
+    }],
     pluginsDef: require('./plugins.js'),
     appEpics: {registerSearchServiceEpic, registerCustomLayersUtilsEpic, addLayersStyleLocalization, checkEmptyAvailableStyles, closePrintOnChangeLocale},
     initialState: {
-         defaultState: {
-             mousePosition: {enabled: false, "crs": "EPSG:4326"},
-             controls: {
-                 styler: {
-                     enabled: true
-                 },
-                 help: {
-                     enabled: false
-                 },
-                 print: {
-                     enabled: true
-                 },
-                 toolbar: {
-                     active: null,
-                     expanded: false
-                 },
-                 drawer: {
-                     enabled: false,
-                     menu: "1"
-                 }
-             },
-             "maps": {
-                     "mapType": "leaflet"
-             },
-             catalog: {
-                 format: "wms",
-                 "supportedFormats": [{"name": "wms", "label": "WMS"}]
-             }
-         },
-         mobile: {
-             mapInfo: {enabled: true, infoFormat: 'text/html' },
-             mousePosition: {enabled: true, crs: "EPSG:4326", showCenter: true},
-             "maps": {
-                     "mapType": "leaflet"
-             },
-             "home": {
-                     "mapType": "leaflet"
-             },
-             catalog: {
-                 format: "wms",
-                 "supportedFormats": [{"name": "wms", "label": "WMS"}, {"name": "csw", "label": "CSW"}]
-             }
+        defaultState: {
+            mousePosition: {enabled: false, "crs": "EPSG:4326"},
+            controls: {
+                styler: {
+                    enabled: true
+                },
+                help: {
+                    enabled: false
+                },
+                print: {
+                    enabled: true
+                },
+                toolbar: {
+                    active: null,
+                    expanded: false
+                },
+                drawer: {
+                    enabled: false,
+                    menu: "1"
+                }
+            },
+            "maps": {
+                    "mapType": "leaflet"
+            },
+            catalog: {
+                format: "wms",
+                "supportedFormats": [{"name": "wms", "label": "WMS"}]
+            }
+        },
+        mobile: {
+            mapInfo: {enabled: true, infoFormat: 'text/html' },
+            mousePosition: {enabled: true, crs: "EPSG:4326", showCenter: true},
+            "maps": {
+                    "mapType": "leaflet"
+            },
+            "home": {
+                    "mapType": "leaflet"
+            },
+            catalog: {
+                format: "wms",
+                "supportedFormats": [{"name": "wms", "label": "WMS"}, {"name": "csw", "label": "CSW"}]
+            }
         }
     },
     storeOpts: {
