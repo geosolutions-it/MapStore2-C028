@@ -347,7 +347,8 @@
               {"id": "Polygon", "name": "queryform.spatialfilter.methods.poly"}
           ]
         }
-    }, "TOCItemsSettings", "MapFooter", {
+    },
+    "TOCItemsSettings", "MapFooter", {
         "name": "BackgroundSelector",
         "cfg":{
           "thumbs":{

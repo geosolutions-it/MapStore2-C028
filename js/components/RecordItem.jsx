@@ -18,7 +18,7 @@ const {getRecordLinks, recordToLayer, extractOGCServicesReferences, buildSRSMap,
 
 const defaultThumb = require('../../MapStore2/web/client/components/catalog/img/default.jpg');
 
-require("../../MapStore2/web/client/components/catalog/RecordItem.css");
+// TODO: check changes require("../../MapStore2/web/client/components/catalog/RecordItem.css");
 
 const ProjectUtils = require('../utils/ProjectUtils');
 
