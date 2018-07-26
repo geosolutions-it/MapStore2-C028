@@ -45,7 +45,7 @@ module.exports = {
         extractThemesPlugin
     ],
     resolve: {
-      extensions: [".js", ".jsx"]
+        extensions: [".js", ".jsx"]
     },
     module: {
         noParse: [/html2canvas/],
@@ -126,12 +126,10 @@ module.exports = {
     devServer: {
         proxy: {
             '/rest/geostore': {
-                target: "http://sit.comune.bolzano.it",
-                pathRewrite: {'^/rest/geostore': '/geostore/rest'}
+                target: "http://sit.comune.bolzano.it"
             },
             '/mapstore2/proxy': {
-                target: "http://dev.mapstore2.geo-solutions.it",
-                pathRewrite: {'^/mapstore2/proxy': '/mapstore/proxy'}
+                target: "http://sit.comune.bolzano.it"
             },
             '/geoserver': {
                 target: "http://sit.comune.bolzano.it"

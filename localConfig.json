@@ -4,7 +4,7 @@
     "useCORS": ["http://nominatim.openstreetmap.org", "https://nominatim.openstreetmap.org"]
   },
   "geoStoreUrl": "rest/geostore/",
-  "printUrl": "http://geoserv02:8080/geoserver/pdf/info.json",
+  "printUrl": "pdf/info.json",
 	"translationsPath": ["./MapStore2/web/client/translations", "./translations"],
   "mapquestApiKey": "__API_KEY_MAPQUEST__",
   "initialMapFilter": "",
@@ -347,7 +347,8 @@
               {"id": "Polygon", "name": "queryform.spatialfilter.methods.poly"}
           ]
         }
-    }, "TOCItemsSettings", "MapFooter", {
+    },
+    "TOCItemsSettings", "MapFooter", {
         "name": "BackgroundSelector",
         "cfg":{
           "thumbs":{
