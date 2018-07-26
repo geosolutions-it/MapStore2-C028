@@ -54,67 +54,77 @@ const loadedParcelResults = (state, {results, codice, nestedService, comcatObj, 
         );
 };
 
+const searchParcel = (action$, store, locale, map) => {
+    const state = store.getState();
+    const {service, style, searchKeys} = optionsSelector(state);
+
+    return service && service.type ? Rx.Observable.fromPromise(API.Utils.getService(service.type)(''))
+        .switchMap(comuniCatastali => {
+            const mapConfig = map || mapSelector(state);
+
+            const search = locale && locale.payload && locale.payload.search || '';
+            const query = url.parse(search, true).query;
+
+            const comcat = searchKeys && searchKeys.comcat && query[searchKeys.comcat] || query && query.comcat;
+            const codice = searchKeys && searchKeys.codice && query[searchKeys.codice] || query && query.codice;
+            const type = searchKeys && searchKeys.type && query[searchKeys.type] || query && query.type;
+            const comcatObj = head(comuniCatastali.filter(comune => comune && comune.properties && comune.properties.code
+                && trim(comune.properties.code + '') === trim(comcat + '') && trim(comune.properties.tipo + '') === trim(type + '')));
+
+            const nestedService = head((service && service.then || []).map((nestedServ) => ({
+                ...nestedServ,
+                options: {
+                    item: comcatObj,
+                    ...nestedServ.options
+                }
+            })));
+
+            return !comcatObj || !codice || !type || !nestedService || !mapConfig ?
+                Rx.Observable.of(resultsPurge(), resetSearch(), loadingParcel(false), completeSearch())
+                : Rx.Observable.concat(
+                    Rx.Observable.of(
+                        loadingParcel(true),
+                        searchTextChanged(' ')
+                    ),
+                    Rx.Observable.fromPromise(API.Utils.getService(nestedService.type)(codice, {...nestedService.options}))
+                        .switchMap((results) => loadedParcelResults(state, {results, codice, nestedService, comcatObj, style, mapConfig}))
+                        .catch(() => {
+                            return Rx.Observable.of(
+                                loadingParcel(false),
+                                resultsPurge(),
+                                resetSearch(),
+                                error({
+                                    title: 'searchparcel.errorTitle',
+                                    message: 'searchparcel.errorMessage',
+                                    autoDismiss: 6,
+                                    position: 'tc'
+                                }),
+                                completeSearch()
+                            );
+                        })
+            );
+        })
+        .startWith(loadingParcel(false))
+        .takeUntil(action$.ofType(COMPLETE_SEARCH))
+        :
+        Rx.Observable.of(completeSearch());
+};
 
 const searchParcelEpic = (action$, store) =>
     action$.ofType(LOCATION_CHANGE)
-        .switchMap((locale) =>
-            action$.ofType(MAP_CONFIG_LOADED)
-                .switchMap(() => {
-                    const state = store.getState();
-                    const {service, style, searchKeys} = optionsSelector(store.getState());
-                    return service && service.type ? Rx.Observable.fromPromise(API.Utils.getService(service.type)(''))
-                        .switchMap(comuniCatastali => {
-                            const mapConfig = mapSelector(state);
-
-                            const search = locale && locale.payload && locale.payload.search || '';
-                            const query = url.parse(search, true).query;
-
-                            const comcat = searchKeys && searchKeys.comcat && query[searchKeys.comcat] || query && query.comcat;
-                            const codice = searchKeys && searchKeys.codice && query[searchKeys.codice] || query && query.codice;
-                            const type = searchKeys && searchKeys.type && query[searchKeys.type] || query && query.type;
-                            const comcatObj = head(comuniCatastali.filter(comune => comune && comune.properties && comune.properties.code
-                                && trim(comune.properties.code + '') === trim(comcat + '') && trim(comune.properties.tipo + '') === trim(type + '')));
-
-                            const nestedService = head((service && service.then || []).map((nestedServ) => ({
-                                ...nestedServ,
-                                options: {
-                                    item: comcatObj,
-                                    ...nestedServ.options
-                                }
-                            })));
-
-                            return !comcatObj || !codice || !type || !nestedService || !mapConfig ?
-                                Rx.Observable.of(resultsPurge(), resetSearch(), loadingParcel(false), completeSearch())
-                                : Rx.Observable.concat(
-                                    Rx.Observable.of(
-                                        loadingParcel(true),
-                                        searchTextChanged(' ')
-                                    ),
-                                    Rx.Observable.fromPromise(API.Utils.getService(nestedService.type)(codice, {...nestedService.options}))
-                                        .switchMap((results) => loadedParcelResults(state, {results, codice, nestedService, comcatObj, style, mapConfig}))
-                                        .catch(() => {
-                                            return Rx.Observable.of(
-                                                loadingParcel(false),
-                                                resultsPurge(),
-                                                resetSearch(),
-                                                error({
-                                                    title: 'searchparcel.errorTitle',
-                                                    message: 'searchparcel.errorMessage',
-                                                    autoDismiss: 6,
-                                                    position: 'tc'
-                                                }),
-                                                completeSearch()
-                                            );
-                                        })
-                            );
-                        })
-                        .startWith(loadingParcel(false))
-                        .takeUntil(action$.ofType(COMPLETE_SEARCH))
-                        :
-                        Rx.Observable.of(completeSearch());
-                })
-                .takeUntil(action$.ofType(COMPLETE_SEARCH))
-        );
+        .switchMap((locale) => {
+            const map = mapSelector(store.getState());
+            return map && Rx.Observable.concat(
+                    Rx.Observable.of(
+                        resultsPurge(),
+                        resetSearch()
+                    ),
+                    searchParcel(action$, store, locale, map)
+                ) ||
+                action$.ofType(MAP_CONFIG_LOADED)
+                    .switchMap(() => searchParcel(action$, store, locale))
+                    .takeUntil(action$.ofType(COMPLETE_SEARCH));
+        });
 
 module.exports = {
     searchParcelEpic

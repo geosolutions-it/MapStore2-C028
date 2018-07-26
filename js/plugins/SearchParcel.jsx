@@ -30,6 +30,41 @@ const Message = require('../../MapStore2/web/client/components/I18N/Message');
  *  &comCat=669
  *  &tipoPart=partfond
  *
+ * results style can be configurated as follow:
+ *
+ * {
+ *  "name": "SearchParcel",
+ *  "cfg": {
+ *      "resultStyle": {
+ *          "iconUrl": "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
+ *          "shadowUrl": "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+ *          "iconSize": [25, 41],
+ *          "iconAnchor": [12, 41],
+ *          "popupAnchor": [1, -34],
+ *          "shadowSize": [41, 41],
+ *          "color": "#3388ff",
+ *          "weight": 4,
+ *          "dashArray": "",
+ *          "fillColor": "#3388ff",
+ *          "fillOpacity": 0.2
+ *      }
+ *  }
+ * }
+ * params can be mapped to new vaules with searchKeys configuration object as follow:
+ *
+ * {
+ *  "name": "SearchParcel",
+ *  "cfg": {
+ *      "searchKeys": {
+ *          "comcat": "myComcatKey",
+ *          "codice": "myParticellaKey",
+ *          "type": "myTipoPartKey"
+ *      }
+ *  }
+ * }
+ *
+ * now the query in url is `?myParticellaKey=442&myComcatKey=669&myTipoPartKey=partfond`
+ *
  * @memberof plugins.SearchParcel
  * @name SearchParcel
  * @class

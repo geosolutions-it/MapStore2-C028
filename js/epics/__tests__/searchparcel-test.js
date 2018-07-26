@@ -120,21 +120,23 @@ describe('searchparcel epics', () => {
         testEpic(searchParcelEpic, 5, [{type: '@@router/LOCATION_CHANGE'}, configureMap()], epicResult, state);
     });
 
-    it('tests searchParcelEpic with service and query with error', (done) => {
+    it('tests searchParcelEpic with service and query with error and map in state', (done) => {
         const epicResult = actions => {
             try {
-                expect(actions.length).toBe(8);
-                expect(actions[0].type).toBe(LOADING_PARCEL);
-                expect(actions[0].loading).toBe(false);
-                expect(actions[1].type).toBe(LOADING_PARCEL);
-                expect(actions[1].loading).toBe(true);
-                expect(actions[2].type).toBe(TEXT_SEARCH_TEXT_CHANGE);
+                expect(actions.length).toBe(10);
+                expect(actions[0].type).toBe(TEXT_SEARCH_RESULTS_PURGE);
+                expect(actions[1].type).toBe(TEXT_SEARCH_RESET);
+                expect(actions[2].type).toBe(LOADING_PARCEL);
+                expect(actions[2].loading).toBe(false);
                 expect(actions[3].type).toBe(LOADING_PARCEL);
-                expect(actions[3].loading).toBe(false);
-                expect(actions[4].type).toBe(TEXT_SEARCH_RESULTS_PURGE);
-                expect(actions[5].type).toBe(TEXT_SEARCH_RESET);
-                expect(actions[6].type).toBe(SHOW_NOTIFICATION);
-                expect(actions[7].type).toBe(COMPLETE_SEARCH);
+                expect(actions[3].loading).toBe(true);
+                expect(actions[4].type).toBe(TEXT_SEARCH_TEXT_CHANGE);
+                expect(actions[5].type).toBe(LOADING_PARCEL);
+                expect(actions[5].loading).toBe(false);
+                expect(actions[6].type).toBe(TEXT_SEARCH_RESULTS_PURGE);
+                expect(actions[7].type).toBe(TEXT_SEARCH_RESET);
+                expect(actions[8].type).toBe(SHOW_NOTIFICATION);
+                expect(actions[9].type).toBe(COMPLETE_SEARCH);
             } catch(e) {
                 done(e);
             }
@@ -144,7 +146,7 @@ describe('searchparcel epics', () => {
             searchparcel,
             map
         };
-        testEpic(searchParcelEpic, 8, [{type: '@@router/LOCATION_CHANGE', payload: {search: '?particella=.442&comCat=669&tipoPart=partedif'}}, configureMap()], epicResult, state);
+        testEpic(searchParcelEpic, 10, [{type: '@@router/LOCATION_CHANGE', payload: {search: '?particella=.442&comCat=669&tipoPart=partedif'}}, configureMap()], epicResult, state);
     });
 
 });
