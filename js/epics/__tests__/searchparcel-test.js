@@ -18,7 +18,17 @@ const {SHOW_NOTIFICATION} = require('../../../MapStore2/web/client/actions/notif
 const map = {
     present: {
         size: {width: 1387, height: 946},
-        projection: "EPSG:900913"
+        projection: "EPSG:900913",
+        bbox: {
+            bounds: {
+                maxx: 180,
+                maxy: 90,
+                minx: -180,
+                miny: -90
+            },
+            crs: 'EPSG:3857',
+            rotation: 0
+        }
     }
 };
 
