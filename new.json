@@ -2,12 +2,18 @@
 	"map": {
 		"projection": "EPSG:900913",
 		"units": "m",
-		"center": {"x": 1250000.000000, "y": 5370000.000000, "crs": "EPSG:900913"},
-    "zoom":5,
-		"maxExtent": [
-			-20037508.34, -20037508.34,
-			20037508.34, 20037508.34
-		],
+		"center": {
+            		"x": 11.344547561048595,
+		        "y": 46.4894399418517,
+		        "crs": "EPSG:4326"
+        	},
+	        "maxExtent": [
+        	    1259091.229051,
+	            5855016.830973,
+	            1268808.28627,
+	            5863434.458712
+	        ],
+        	"zoom": 13,
 		"layers": [
 			{
 				"type": "osm",
@@ -15,7 +21,7 @@
 				"name": "mapnik",
         "source": "osm",
 				"group": "background",
-        "visibility": true
+        "visibility": false
 			},
       {
         "type": "google",
@@ -52,6 +58,22 @@
         "visibility": false
       },
       {
+        "format": "image/jpeg",
+         "group": "background",
+         "source": "bolzano",
+        "name": "Cartografia:mosaico_2016",
+        "opacity": 1,
+        "styles": "raster",
+        "title": "Mosaico Bolzano/Bozen 2016",
+        "transparent": false,
+        "tiled": true,
+        "type": "wms",
+        "url": "http://sit.comune.bolzano.it/geoserver/ows",
+        "visibility": true,
+        "singleTile": false,
+        "dimensions": []
+     },
+     {
         "source": "ol",
         "group": "background",
         "title": "None",
