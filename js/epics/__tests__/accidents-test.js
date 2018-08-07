@@ -2,7 +2,7 @@ const expect = require('expect');
 const { testEpic } = require('../../../MapStore2/web/client/epics/__tests__/epicTestUtils');
 
 const {MAP_CONFIG_LOADED} = require('../../../MapStore2/web/client/actions/config');
-const { SET_CONTROL_PROPERTY } = require('../../../MapStore2/web/client/actions/controls');
+const { SET_CONTROL_PROPERTY, RESET_CONTROLS } = require('../../../MapStore2/web/client/actions/controls');
 
 const {RESET, applyChanges} = require('../../actions/accidents');
 const { CHANGE_LAYER_PARAMS } = require('../../../MapStore2/web/client/actions/layers');
@@ -15,7 +15,37 @@ describe('accidents epic', () => {
             expect(actions.length).toBe(3);
             expect(actions[0].type).toBe(RESET);
             expect(actions[1].type).toBe(SET_CONTROL_PROPERTY);
+            expect(actions[1]. control).toBe("drawer");
+            expect(actions[1]. property).toBe("enabled");
+            expect(actions[1]. value).toBe(true);
             expect(actions[2].type).toBe(SET_CONTROL_PROPERTY);
+            expect(actions[2]. control).toBe("drawer");
+            expect(actions[2]. property).toBe("menu");
+            expect(actions[2]. value).toBe('2');
+            done();
+
+        }, {
+            routing: { location: {
+                pathname: "/roadAccidents/openlayers/testMap"
+            }}
+        });
+    });
+    it('accidentsInitialSetup resets TOC Tab', (done) => {
+        testEpic(accidentsInitialSetup, 4, [{ type: MAP_CONFIG_LOADED }, {type: RESET_CONTROLS}], actions => {
+            expect(actions.length).toBe(4);
+            expect(actions[0].type).toBe(RESET);
+            expect(actions[1].type).toBe(SET_CONTROL_PROPERTY);
+            expect(actions[1]. control).toBe("drawer");
+            expect(actions[1]. property).toBe("enabled");
+            expect(actions[1]. value).toBe(true);
+            expect(actions[2].type).toBe(SET_CONTROL_PROPERTY);
+            expect(actions[2]. control).toBe("drawer");
+            expect(actions[2]. property).toBe("menu");
+            expect(actions[2]. value).toBe('2');
+            expect(actions[3].type).toBe(SET_CONTROL_PROPERTY);
+            expect(actions[3].control).toBe("drawer");
+            expect(actions[3].property).toBe("menu");
+            expect(actions[3].value).toBe('1');
             done();
 
         }, {
