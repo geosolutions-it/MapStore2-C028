@@ -110,7 +110,7 @@ class SearchParcel extends React.Component {
                             url: "http://sit.comune.bolzano.it/geoserver/wfs",
                             typeName: "Cartografia:particelle",
                             srsName: "EPSG:4326",
-                            staticFilter: "NUM = '${properties.codice}' AND COM = ${properties.comcat}"
+                            staticFilter: "(NUM = '${properties.codice}' OR DSUP_SOTTO = '${properties.codice}') AND COM = ${properties.comcat}"
                         }
                     },
                     options: {

@@ -82,7 +82,7 @@ module.exports = {
         WidgetsBuilderPlugin: require('../MapStore2/web/client/plugins/WidgetsBuilder'),
         // DetailsPlugin: require('../MapStore2/web/client/plugins/Details'),
         TOCItemsSettingsPlugin: require('../MapStore2/web/client/plugins/TOCItemsSettings'),
-        SearchParcel: require('./plugins/SearchParcel')
+        SearchParcelPlugin: require('./plugins/SearchParcel')
         },
     requires: {
         ReactSwipe: require('react-swipeable-views').default,
