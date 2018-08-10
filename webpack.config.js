@@ -9,9 +9,9 @@ module.exports = {
     entry: {
         'webpack-dev-server': 'webpack-dev-server/client?http://0.0.0.0:8081', // WebpackDevServer host and port
         'webpack': 'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
-        'MapStore2-C028': path.join(__dirname, "js", "app"),
+        'MapStore2-C028': ['element-closest', path.join(__dirname, "js", "app")],
         "themes/default": path.join(__dirname, "assets", "themes", "default", "theme.less"),
-        "embedded": path.join(__dirname, "js", "embedded")
+        "embedded": ['element-closest', path.join(__dirname, "js", "embedded")]
     },
     output: {
         path: path.join(__dirname, "dist"),
@@ -126,10 +126,13 @@ module.exports = {
     devServer: {
         proxy: {
             '/rest/geostore': {
-                target: "http://sit.comune.bolzano.it"
+                target: "http://sit.comune.bolzano.it/mapstore2"
             },
             '/mapstore2/proxy': {
                 target: "http://sit.comune.bolzano.it"
+            },
+            '/pdf': {
+                target: "http://sit.comune.bolzano.it/mapstore2"
             },
             '/geoserver': {
                 target: "http://sit.comune.bolzano.it"
