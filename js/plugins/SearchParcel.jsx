@@ -107,7 +107,7 @@ class SearchParcel extends React.Component {
                     geomService: {
                         type: "wfs",
                         options: {
-                            url: "http://sit.comune.bolzano.it/geoserver/wfs",
+                            url: "http://geoserv02:8080/geoserver/wfs",
                             typeName: "Cartografia:particelle",
                             srsName: "EPSG:4326",
                             staticFilter: "(NUM = '${properties.codice}' OR DSUP_SOTTO = '${properties.codice}') AND COM = ${properties.comcat}"
