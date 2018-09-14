@@ -66,6 +66,27 @@
             "withoutInjured": "Ohne Verletzungen",
             "mortal": "tödlich"
         }
+    }, "services": {
+        "title": "Filtra Servizi",
+        "toolbar": {
+            "applyFilter": "Applica",
+            "reset": "Ripristina lo stato iniziale"
+        },                
+        "serviceRoottype": {
+            "title": "Tipo di servizio",
+            "instruction": "Istruzione",
+            "sanity": "Sanità",
+            "religion": "Isituzioni religiose",
+            "financial": "Servizi finanziari",
+            "amministration": "Servizi amministrativi",
+            "sport": "Sport",
+            "social": "Servizi sociali",
+            "justice": "Giustizia",
+            "culture": "Cultura",
+            "info": "Servizi informazione",
+            "security": "Sicurezza e protezione civile",
+            "commerce": "Commercio e mercati"
+        }
     }
   }
 }
