@@ -1,0 +1,110 @@
+{
+  "version": 2,
+  "map": {
+    "projection": "EPSG:900913",
+    "units": "m",
+    "center": {
+      "x": 11.347846984863281,
+      "y": 46.49969208433233,
+      "crs": "EPSG:4326"
+    },
+    "zoom": 13,
+    "maxExtent": [
+      -20037508.34,
+      -20037508.34,
+      20037508.34,
+      20037508.34
+    ],
+    "layers": [
+      {
+        "type": "osm",
+        "title": "Open Street Map",
+        "name": "mapnik",
+        "source": "osm",
+        "group": "background",
+        "visibility": true
+      },
+      {
+        "type": "google",
+        "title": "Google HYBRID",
+        "name": "HYBRID",
+        "source": "google",
+        "group": "background",
+        "visibility": false
+      },
+      {
+        "type": "tileprovider",
+        "title": "NASAGIBS Night 2012",
+        "provider": "NASAGIBS.ViirsEarthAtNight2012",
+        "name": "Night2012",
+        "source": "nasagibs",
+        "group": "background",
+        "visibility": false
+      },
+      {
+        "type": "tileprovider",
+        "title": "OpenTopoMap",
+        "provider": "OpenTopoMap",
+        "name": "OpenTopoMap",
+        "source": "OpenTopoMap",
+        "group": "background",
+        "visibility": false
+      },
+      {
+        "source": "ol",
+        "group": "background",
+        "title": "None",
+        "fixed": true,
+        "type": "ol",
+        "visibility": false,
+        "args": [
+          "None",
+          {
+            "visibility": false
+          }
+        ]
+      }, 
+      {
+        "type": "wms",
+        "url": "http://localhost:8089/geoserver/wms",
+        "visibility": true,
+        "dimensions": [],
+        "name": "Cartografia:servizi_testa",
+        "style": "servizi_test",
+        "title": {
+          "default": "Servizi",
+          "it-IT": "Servizi"
+        },
+        "description": "servizi_testa",
+        "bbox": {
+          "crs": "EPSG:4326",
+          "bounds": {
+            "minx": "11.287820270326776",
+            "miny": "46.461161126375195",
+            "maxx": "11.396305964316936",
+            "maxy": "46.52615800769941"
+          }
+        },
+        "links": [],
+        "params": {},
+        "allowedSRS": {
+          "EPSG:25832": true,
+          "EPSG:3785": true,
+          "EPSG:3857": true,
+          "EPSG:4326": true,
+          "EPSG:900913": true
+        },
+        "catalogURL": null,
+        "style": "",
+        "availableStyles": null,
+        "id": "Cartografia:servizi_test",
+        "loading": false,
+        "search": {
+          "url": "http://localhost:8089/geoserver/wfs",
+          "type": "wfs"
+        },
+        "loadingError": false
+      }
+    ]
+  }
+}

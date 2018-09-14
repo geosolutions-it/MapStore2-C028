@@ -26,13 +26,7 @@ module.exports = {
         name: "roadAccidents",
             path: "/roadAccidents/:mapType/:mapId",
         component: require('./pages/RoadAccidents')
-    }
-    , {
-        name: "serviceFilters", //TEST
-        path: "/serviceFilters/:mapType/:mapId",
-        component: require('./pages/ServiceFilters')
-    }
-    , {
+    }, {
         name: "manager",
         path: "/manager",
         component: require('./pages/Manager')
