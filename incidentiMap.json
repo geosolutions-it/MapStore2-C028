@@ -65,7 +65,7 @@
         ]
       }, {
         "type": "wms",
-        "url": "http://geoserv02:8080/geoserver/wms",
+        "url": "http://sit.comune.bolzano.it/geoserver/wms",
         "visibility": true,
         "dimensions": [],
         "name": "Cartografia:view_str_inc",
@@ -99,14 +99,14 @@
         "id": "Cartografia:strade_inf",
         "loading": false,
         "search": {
-          "url": "http://geoserv02:8080/geoserver/wfs",
+          "url": "http://sit.comune.bolzano.it/geoserver/wfs",
           "type": "wfs"
         },
         "loadingError": false
       },
       {
         "type": "wms",
-        "url": "http://geoserv02:8080/geoserver/wms",
+        "url": "http://sit.comune.bolzano.it/geoserver/wms",
         "visibility": true,
         "dimensions": [],
         "name": "Cartografia:view_incidenti_prod",
@@ -145,14 +145,14 @@
         "id": "Cartografia:view_incidenti__prod_7",
         "loading": false,
         "search": {
-          "url": "http://geoserv02:8080/geoserver/wfs",
+          "url": "http://sit.comune.bolzano.it/geoserver/wfs",
           "type": "wfs"
         },
         "loadingError": false
       },
       {
         "type": "wms",
-        "url": "http://geoserv02:8080/geoserver/wms",
+        "url": "http://sit.comune.bolzano.it/geoserver/wms",
         "visibility": true,
         "dimensions": [],
         "name": "Cartografia:view_incidenti",
@@ -195,7 +195,7 @@
         "id": "Cartografia:view_incidenti__6",
         "loading": false,
         "search": {
-          "url": "http://geoserv02:8080/geoserver/wfs",
+          "url": "http://sit.comune.bolzano.it/geoserver/wfs",
           "type": "wfs"
         },
         "loadingError": false
