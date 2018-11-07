@@ -23,6 +23,42 @@
       "spatialfilter": {
         "selection_method": "Metodo di selezione"
       }
+    },
+    "searchparcel": {
+      "warningTitle": "Particella mancante",
+      "warningMessage": "Non è stato possibile trovare la particella richiesta",
+      "loading": "Caricamento Particella",
+      "errorTitle": "Servizio non disponibile",
+      "errorMessage": "Il servizio di ricerca non è raggiungibile"
+    },
+
+    "accidents": {
+        "title": "Filtra Infortuni",
+        "toolbar": {
+            "applyFilter": "Applica",
+            "reset": "Ripristina lo stato iniziale"
+        },
+        "period": {
+            "title": "Periodo",
+            "from": "Da",
+            "to": "A"
+        },
+        "dow": {
+            "title": "Giorno della settimana",
+            "1": "Lunedì",
+            "2": "Martedì",
+            "3": "Mercoledì",
+            "4": "Giovedì",
+            "5": "Venerdì",
+            "6": "Sabato",
+            "7": "Domenica"
+        },
+    "type": {
+            "title": "Tipo di infortunio",
+            "withInjured": "Con Feriti",
+            "withoutInjured": "Senza Feriti",
+            "mortal": "Mortale"
+        }
     }
   }
 }

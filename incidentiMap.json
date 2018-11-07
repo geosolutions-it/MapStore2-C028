@@ -1,0 +1,205 @@
+{
+  "version": 2,
+  "map": {
+    "projection": "EPSG:900913",
+    "units": "m",
+    "center": {
+      "x": 11.347846984863281,
+      "y": 46.49969208433233,
+      "crs": "EPSG:4326"
+    },
+    "zoom": 13,
+    "maxExtent": [
+      -20037508.34,
+      -20037508.34,
+      20037508.34,
+      20037508.34
+    ],
+    "layers": [
+      {
+        "type": "osm",
+        "title": "Open Street Map",
+        "name": "mapnik",
+        "source": "osm",
+        "group": "background",
+        "visibility": true
+      },
+      {
+        "type": "google",
+        "title": "Google HYBRID",
+        "name": "HYBRID",
+        "source": "google",
+        "group": "background",
+        "visibility": false
+      },
+      {
+        "type": "tileprovider",
+        "title": "NASAGIBS Night 2012",
+        "provider": "NASAGIBS.ViirsEarthAtNight2012",
+        "name": "Night2012",
+        "source": "nasagibs",
+        "group": "background",
+        "visibility": false
+      },
+      {
+        "type": "tileprovider",
+        "title": "OpenTopoMap",
+        "provider": "OpenTopoMap",
+        "name": "OpenTopoMap",
+        "source": "OpenTopoMap",
+        "group": "background",
+        "visibility": false
+      },
+      {
+        "source": "ol",
+        "group": "background",
+        "title": "None",
+        "fixed": true,
+        "type": "ol",
+        "visibility": false,
+        "args": [
+          "None",
+          {
+            "visibility": false
+          }
+        ]
+      }, {
+        "type": "wms",
+        "url": "http://geoserv02:8080/geoserver/wms",
+        "visibility": true,
+        "dimensions": [],
+        "name": "Cartografia:view_str_inc",
+        "style": "strade_inf",
+        "title": {
+          "default": "Stat. Incidenti Strade",
+          "it-IT": "Stat. Incidenti Strade"
+        },
+        "description": "view_incidenti_prod",
+        "bbox": {
+          "crs": "EPSG:4326",
+          "bounds": {
+            "minx": "11.287820270326776",
+            "miny": "46.461161126375195",
+            "maxx": "11.396305964316936",
+            "maxy": "46.52615800769941"
+          }
+        },
+        "links": [],
+        "params": {},
+        "allowedSRS": {
+          "EPSG:25832": true,
+          "EPSG:3785": true,
+          "EPSG:3857": true,
+          "EPSG:4326": true,
+          "EPSG:900913": true
+        },
+        "catalogURL": null,
+        "style": "",
+        "availableStyles": null,
+        "id": "Cartografia:strade_inf",
+        "loading": false,
+        "search": {
+          "url": "http://geoserv02:8080/geoserver/wfs",
+          "type": "wfs"
+        },
+        "loadingError": false
+      },
+      {
+        "type": "wms",
+        "url": "http://geoserv02:8080/geoserver/wms",
+        "visibility": true,
+        "dimensions": [],
+        "name": "Cartografia:view_incidenti_prod",
+        "singleTile": true,
+        "title": {
+          "default": "Dettaglio Incidenti",
+          "it-IT": "Dettaglio Incidenti"
+        },
+        "description": "view_incidenti_prod",
+        "bbox": {
+          "crs": "EPSG:4326",
+          "bounds": {
+            "minx": "11.287857456525213",
+            "miny": "46.46204828414888",
+            "maxx": "11.396305964316936",
+            "maxy": "46.52615800769941"
+          }
+        },
+        "links": [],
+        "params": {},
+        "allowedSRS": {
+          "EPSG:25832": true,
+          "EPSG:3785": true,
+          "EPSG:3857": true,
+          "EPSG:4326": true,
+          "EPSG:900913": true
+        },
+        "catalogURL": null,
+        "style": "tipo_infortunio",
+        "availableStyles": [
+          {
+            "name": "tipo_infortunio",
+            "title": "Infortuni"
+          }
+        ],
+        "id": "Cartografia:view_incidenti__prod_7",
+        "loading": false,
+        "search": {
+          "url": "http://geoserv02:8080/geoserver/wfs",
+          "type": "wfs"
+        },
+        "loadingError": false
+      },
+      {
+        "type": "wms",
+        "url": "http://geoserv02:8080/geoserver/wms",
+        "visibility": true,
+        "dimensions": [],
+        "name": "Cartografia:view_incidenti",
+        "singleTile": true,
+        "title": {
+          "default": "Nuvola Incidenti",
+          "it-IT": "Nuvola Incidenti"
+        },
+        "description": "view_incidenti",
+        "bbox": {
+          "crs": "EPSG:4326",
+          "bounds": {
+            "minx": "11.287857456525213",
+            "miny": "46.46204828414888",
+            "maxx": "11.396305964316936",
+            "maxy": "46.52615800769941"
+          }
+        },
+        "links": [],
+        "params": {},
+        "allowedSRS": {
+          "EPSG:25832": true,
+          "EPSG:3785": true,
+          "EPSG:3857": true,
+          "EPSG:4326": true,
+          "EPSG:900913": true
+        },
+        "catalogURL": null,
+        "style": "pointstacker",
+        "availableStyles": [
+          {
+            "name": "pointstacker",
+            "title": "Infortuni"
+          },
+          {
+            "name": "point",
+            "title": "Default Point"
+          }
+        ],
+        "id": "Cartografia:view_incidenti__6",
+        "loading": false,
+        "search": {
+          "url": "http://geoserv02:8080/geoserver/wfs",
+          "type": "wfs"
+        },
+        "loadingError": false
+      }
+    ]
+  }
+}
