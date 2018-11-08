@@ -135,7 +135,7 @@
       "cfg": {
         "thumbs":{
           "bolzano":{
-            "Cartografia:mosaico_2016": "assets/img/bolzano-2016.png",
+            "Cartografia:ortofoto_2017": "assets/img/bolzano-2016.png",
             "Cartografia:ortofoto2014": "assets/img/bolzano-2014.png"
           }
         },
@@ -344,11 +344,13 @@
               {"id": "Polygon", "name": "queryform.spatialfilter.methods.poly"}
           ]
         }
-    }, "TOCItemsSettings", "MapFooter", {
+    },
+    "TOCItemsSettings", "MapFooter", {
         "name": "BackgroundSelector",
         "cfg":{
           "thumbs":{
             "bolzano":{
+              "Cartografia:ortofoto_2017": "assets/img/bolzano-2016.png",
               "Cartografia:mosaico_2016": "assets/img/bolzano-2016.png",
               "Cartografia:ortofoto2014": "assets/img/bolzano-2014.png"
             }
@@ -429,7 +431,7 @@
                       "url": "/geoserver/wfs",
                       "typeName": "Cartografia:particelle",
                       "srsName": "EPSG:4326",
-                      "staticFilter": "NUM = '${properties.codice}' AND COM = ${properties.comcat}"
+                      "staticFilter": "(NUM = '${properties.codice}' OR DSUP_SOTTO = '${properties.codice}') AND COM = ${properties.comcat}"
                     }
                   },
                   "options": {
@@ -535,7 +537,8 @@
         "declineUrl" : "http://www.google.com"
         }
     },
-    "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "Notifications", "WidgetsBuilder", "Widgets"
+    "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "Notifications", "WidgetsBuilder", "Widgets",
+    "SearchParcel"
   ],
     "embedded": [
       {
@@ -605,6 +608,7 @@
             "thumbs":{
               "bolzano":{
                 "Cartografia:mosaico_2016": "assets/img/bolzano-2016.png",
+                "Cartografia:ortofoto_2017": "assets/img/bolzano-2016.png",
                 "Cartografia:ortofoto2014": "assets/img/bolzano-2014.png"
               }
             },
@@ -665,7 +669,7 @@
                       "url": "/geoserver/wfs",
                       "typeName": "Cartografia:particelle",
                       "srsName": "EPSG:4326",
-                      "staticFilter": "NUM = '${properties.codice}' AND COM = ${properties.comcat}"
+                      "staticFilter": "(NUM = '${properties.codice}' OR DSUP_SOTTO = '${properties.codice}') AND COM = ${properties.comcat}"
                     }
                   },
                   "options": {

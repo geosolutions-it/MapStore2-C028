@@ -44,6 +44,7 @@ module.exports = {
         MapsPlugin: require('../MapStore2/web/client/plugins/Maps'),
         MapSearchPlugin: require('../MapStore2/web/client/plugins/MapSearch'),
         HomeDescriptionPlugin: require('./plugins/HomeDescription'),
+        RoadAccidentsPlugin: require('./plugins/RoadAccidents'),
         // ExamplesPlugin: require('./plugins/Examples'),
         // MapTypePlugin: require('./plugins/MapType'),
         LanguagePlugin: require('../MapStore2/web/client/plugins/Language'),
@@ -80,7 +81,8 @@ module.exports = {
         WidgetsPlugin: require('../MapStore2/web/client/plugins/Widgets'),
         WidgetsBuilderPlugin: require('../MapStore2/web/client/plugins/WidgetsBuilder'),
         // DetailsPlugin: require('../MapStore2/web/client/plugins/Details'),
-        TOCItemsSettingsPlugin: require('../MapStore2/web/client/plugins/TOCItemsSettings')
+        TOCItemsSettingsPlugin: require('../MapStore2/web/client/plugins/TOCItemsSettings'),
+        SearchParcelPlugin: require('./plugins/SearchParcel')
         },
     requires: {
         ReactSwipe: require('react-swipeable-views').default,
