@@ -1,5 +1,5 @@
 const Rx = require('rxjs');
-const { pathnameSelector } = require('../../MapStore2/web/client/selectors/routing');
+const { pathnameSelector } = require('../../MapStore2/web/client/selectors/router');
 
 const { setControlProperty, RESET_CONTROLS } = require('../../MapStore2/web/client/actions/controls');
 

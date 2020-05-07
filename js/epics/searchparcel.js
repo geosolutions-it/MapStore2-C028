@@ -7,7 +7,7 @@
 */
 const Rx = require('rxjs');
 const {MAP_CONFIG_LOADED} = require('../../MapStore2/web/client/actions/config');
-const {LOCATION_CHANGE} = require('react-router-redux');
+const {LOCATION_CHANGE} = require('connected-react-router');
 const {API} = require('../../MapStore2/web/client/api/searchText');
 const url = require('url');
 const {selectNestedService, selectSearchItem, resultsPurge, resetSearch, searchTextChanged} = require('../../MapStore2/web/client/actions/search');
