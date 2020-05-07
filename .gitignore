@@ -13,3 +13,4 @@ backend/.project
 backend/.settings
 js/libs/Cesium/
 web/src/main/webapp/WEB-INF/classes/geostore-spring-security.xml
+package-lock.json
