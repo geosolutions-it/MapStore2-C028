@@ -17,7 +17,8 @@ module.exports = {
         MapPlugin: require('../MapStore2/web/client/plugins/Map'),
         ToolbarPlugin: require('../MapStore2/web/client/plugins/Toolbar'),
         DrawerMenuPlugin: require('../MapStore2/web/client/plugins/DrawerMenu'),
-        ShapeFilePlugin: require('../MapStore2/web/client/plugins/ShapeFile'),
+        MapImportPlugin: require('../MapStore2/web/client/plugins/MapImport'),
+        MapExportPlugin: require('../MapStore2/web/client/plugins/MapExport').default,
         // SnapshotPlugin: require('../plugins/Snapshot'),
         SettingsPlugin: require('../MapStore2/web/client/plugins/Settings'),
         ExpanderPlugin: require('../MapStore2/web/client/plugins/Expander'),
@@ -34,7 +35,7 @@ module.exports = {
         // HelpLinkPlugin: require('../plugins/HelpLink'),
         HomePlugin: require('../MapStore2/web/client/plugins/Home'),
         // MadeWithLovePlugin: require('./plugins/MadeWithLove'),
-        MetadataExplorerPlugin: require('./plugins/MetadataExplorer'),
+        MetadataExplorerPlugin: require('../MapStore2/web/client/plugins/MetadataExplorer'),
         LoginPlugin: require('../MapStore2/web/client/plugins/Login'),
         OmniBarPlugin: require('../MapStore2/web/client/plugins/OmniBar'),
         // GridContainerPlugin: require('../plugins/GridContainer'),
@@ -55,7 +56,9 @@ module.exports = {
         ManagerPlugin: require('../MapStore2/web/client/plugins/manager/Manager'),
         UserManagerPlugin: require('../MapStore2/web/client/plugins/manager/UserManager'),
         GroupManagerPlugin: require('../MapStore2/web/client/plugins/manager/GroupManager'),
-        RulesManagerPlugin: require('../MapStore2/web/client/plugins/manager/RulesManager'),
+        RulesDataGridPlugin: require('../MapStore2/web/client/plugins/RulesDataGrid'),
+        RulesEditorPlugin: require('../MapStore2/web/client/plugins/RulesEditor'),
+        RulesManagerFooter: require('../MapStore2/web/client/plugins/RulesManagerFooter'),
         ManagerMenuPlugin: require('../MapStore2/web/client/plugins/manager/ManagerMenu'),
         RedirectPlugin: require('../MapStore2/web/client/plugins/Redirect'),
         SharePlugin: require('../MapStore2/web/client/plugins/Share'),
@@ -83,7 +86,7 @@ module.exports = {
         // DetailsPlugin: require('../MapStore2/web/client/plugins/Details'),
         TOCItemsSettingsPlugin: require('../MapStore2/web/client/plugins/TOCItemsSettings'),
         SearchParcelPlugin: require('./plugins/SearchParcel')
-        },
+    },
     requires: {
         ReactSwipe: require('react-swipeable-views').default,
         SwipeHeader: require('../MapStore2/web/client/components/data/identify/SwipeHeader')
