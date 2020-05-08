@@ -21,7 +21,10 @@ module.exports = require('./MapStore2/build/buildConfig')(
     "dist/",
     '.MapStore-C028',
     undefined,
-    undefined,
+    {
+        '@mapstore': path.resolve(__dirname, 'MapStore2/web/client'),
+        '@js': path.resolve(__dirname, 'js')
+    },
     {
         '/rest/geostore': {
             target: "http://sit.comune.bolzano.it/mapstore2"

@@ -15,17 +15,17 @@ describe('accidents epic', () => {
             expect(actions.length).toBe(3);
             expect(actions[0].type).toBe(RESET);
             expect(actions[1].type).toBe(SET_CONTROL_PROPERTY);
-            expect(actions[1]. control).toBe("drawer");
-            expect(actions[1]. property).toBe("enabled");
-            expect(actions[1]. value).toBe(true);
+            expect(actions[1].control).toBe("drawer");
+            expect(actions[1].property).toBe("enabled");
+            expect(actions[1].value).toBe(true);
             expect(actions[2].type).toBe(SET_CONTROL_PROPERTY);
-            expect(actions[2]. control).toBe("drawer");
-            expect(actions[2]. property).toBe("menu");
-            expect(actions[2]. value).toBe('2');
+            expect(actions[2].control).toBe("drawer");
+            expect(actions[2].property).toBe("menu");
+            expect(actions[2].value).toBe('2');
             done();
 
         }, {
-            routing: { location: {
+            router: { location: {
                 pathname: "/roadAccidents/openlayers/testMap"
             }}
         });
@@ -35,13 +35,13 @@ describe('accidents epic', () => {
             expect(actions.length).toBe(4);
             expect(actions[0].type).toBe(RESET);
             expect(actions[1].type).toBe(SET_CONTROL_PROPERTY);
-            expect(actions[1]. control).toBe("drawer");
-            expect(actions[1]. property).toBe("enabled");
-            expect(actions[1]. value).toBe(true);
+            expect(actions[1].control).toBe("drawer");
+            expect(actions[1].property).toBe("enabled");
+            expect(actions[1].value).toBe(true);
             expect(actions[2].type).toBe(SET_CONTROL_PROPERTY);
-            expect(actions[2]. control).toBe("drawer");
-            expect(actions[2]. property).toBe("menu");
-            expect(actions[2]. value).toBe('2');
+            expect(actions[2].control).toBe("drawer");
+            expect(actions[2].property).toBe("menu");
+            expect(actions[2].value).toBe('2');
             expect(actions[3].type).toBe(SET_CONTROL_PROPERTY);
             expect(actions[3].control).toBe("drawer");
             expect(actions[3].property).toBe("menu");
@@ -49,7 +49,7 @@ describe('accidents epic', () => {
             done();
 
         }, {
-            routing: { location: {
+            router: { location: {
                 pathname: "/roadAccidents/openlayers/testMap"
             }}
         });
