@@ -7,7 +7,6 @@
  */
 const {registerSearchServiceEpic} = require('./epics/search');
 const {registerCustomLayersUtilsEpic} = require('./epics/layers');
-const {addLayersStyleLocalization, checkEmptyAvailableStyles, closePrintOnChangeLocale} = require('./epics/locale');
 module.exports = {
     printingEnabled: true,
     pages: [{
@@ -36,7 +35,7 @@ module.exports = {
         component: require('./pages/Manager')
     }],
     pluginsDef: require('./plugins.js'),
-    appEpics: {registerSearchServiceEpic, registerCustomLayersUtilsEpic, addLayersStyleLocalization, checkEmptyAvailableStyles, closePrintOnChangeLocale},
+    appEpics: {registerSearchServiceEpic, registerCustomLayersUtilsEpic},
     initialState: {
         defaultState: {
             mousePosition: {enabled: false, "crs": "EPSG:4326"},
