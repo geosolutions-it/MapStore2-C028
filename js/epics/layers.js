@@ -13,7 +13,6 @@ const ProjectUtils = require('../utils/ProjectUtils');
 const LayersUtils = require('../../MapStore2/web/client/utils/LayersUtils');
 const {REFRESH_LAYERS, layersRefreshed, updateNode, layersRefreshError} = require('../../MapStore2/web/client/actions/layers');
 const {groupsSelector} = require('../../MapStore2/web/client/selectors/layers');
-const {currentLocaleSelector} = require('../../MapStore2/web/client/selectors/locale');
 
 const assign = require('object-assign');
 const {isString, isArray, head} = require('lodash');
@@ -86,9 +85,7 @@ const updateMapEpic = (action$, store) =>
                     bbox: layer.bbox,
                     search: layer.search,
                     title: layer.title,
-                    dimensions: layer.dimensions,
-                    availableStyles: layer.availableStyles,
-                    style: layer.style
+                    dimensions: layer.dimensions
                 }, action.options))]);
             })
             .mergeAll());

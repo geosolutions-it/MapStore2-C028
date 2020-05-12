@@ -7,7 +7,7 @@
  */
 
 const assign = require('object-assign');
-const {isString, isEmpty, isArray, head} = require('lodash');
+const {isString, isEmpty, isArray} = require('lodash');
 const LocaleUtils = require('../../MapStore2/web/client/utils/LocaleUtils');
 
 const ProjectUtils = {
