@@ -34,7 +34,7 @@ module.exports = {
         // HelpLinkPlugin: require('../plugins/HelpLink'),
         HomePlugin: require('../MapStore2/web/client/plugins/Home'),
         // MadeWithLovePlugin: require('./plugins/MadeWithLove'),
-        MetadataExplorerPlugin: require('./plugins/MetadataExplorer'),
+        MetadataExplorerPlugin: require('../MapStore2/web/client/plugins/MetadataExplorer'),
         LoginPlugin: require('../MapStore2/web/client/plugins/Login'),
         OmniBarPlugin: require('../MapStore2/web/client/plugins/OmniBar'),
         // GridContainerPlugin: require('../plugins/GridContainer'),
@@ -83,7 +83,7 @@ module.exports = {
         // DetailsPlugin: require('../MapStore2/web/client/plugins/Details'),
         TOCItemsSettingsPlugin: require('../MapStore2/web/client/plugins/TOCItemsSettings'),
         SearchParcelPlugin: require('./plugins/SearchParcel')
-        },
+    },
     requires: {
         ReactSwipe: require('react-swipeable-views').default,
         SwipeHeader: require('../MapStore2/web/client/components/data/identify/SwipeHeader')

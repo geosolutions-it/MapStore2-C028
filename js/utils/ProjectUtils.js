@@ -10,11 +10,6 @@ const assign = require('object-assign');
 const {isString, isEmpty, isArray, head} = require('lodash');
 const LocaleUtils = require('../../MapStore2/web/client/utils/LocaleUtils');
 
-const replaceKeys = {
-    Name: 'name',
-    Title: 'title'
-};
-
 const ProjectUtils = {
     getKeywordsTranslations: (capabilities) => {
         const locales = LocaleUtils.getSupportedLocales();
@@ -38,46 +33,6 @@ const ProjectUtils = {
                 [locales[localIndexs[idx]].code]: current
             });
         }, {'default': titles[0]});
-    },
-    getLocalizedStyle: (style, availableStyles, currentLocale) => {
-        /*
-        HOW IT WORKS:
-        - if it exists a localized style among the supported locales, it uses that localized style
-        - if it not exists a localized style, it uses the style from the layer conf.
-        */
-        const locales = LocaleUtils.getSupportedLocales();
-        const firstAvailableStyle = availableStyles && availableStyles.length > 0 ? availableStyles[0].name || availableStyles[0].Name : style;
-        const currentStyle = style ? style : firstAvailableStyle;
-
-        if (!!currentStyle) {
-            const currentSuffix = currentStyle.substring(currentStyle.length - 3, currentStyle.length);
-            const isLocale = head(Object.keys(locales).filter((loc) => {
-                return currentSuffix === '_' + loc;
-            }));
-            const styleRoot = isLocale ? currentStyle.substring(0, currentStyle.length - 3) : currentStyle;
-            const localizedStyle = head(availableStyles
-                .filter((st) => st.name === styleRoot + '_' + currentLocale || st.Name === styleRoot + '_' + currentLocale)
-                .map((st) => st.name || st.Name));
-            return localizedStyle ? localizedStyle : currentStyle;
-        }
-        return style;
-    },
-    formatAvailableStyles: availableStyles => {
-        if (!availableStyles) {
-            return null;
-        }
-        if (isArray(availableStyles) && availableStyles.length === 0) {
-            return null;
-        }
-        return head(availableStyles.filter(style => head(Object.keys(style).filter(key => key === 'name')))) ?
-            availableStyles :
-            availableStyles.map(style => {
-                return Object.keys(style).reduce((a, key) =>
-                    assign({}, a,
-                        Object.keys(replaceKeys).reduce((o, value) => value === key && assign({}, o, {[replaceKeys[value]]: style[key]}) || assign({}, o), {})
-                    )
-                    , {});
-            });
     }
 };
 

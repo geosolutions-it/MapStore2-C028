@@ -73,13 +73,7 @@ const updateMapEpic = (action$, store) =>
                         if (caps.error) {
                             return Rx.Observable.of(caps.error && caps);
                         }
-
-                        // set style by language
-                        const availableStyles = isArray(caps.Style) ? ProjectUtils.formatAvailableStyles(caps.Style) : null;
-                        const currentLocale = head(currentLocaleSelector(store.getState()).split('-'));
-                        const style = ProjectUtils.getLocalizedStyle(layer.style, availableStyles, currentLocale || 'it');
-
-                        return Rx.Observable.of(assign({layer: layer.id, title: ProjectUtils.getKeywordsTranslations(caps), style, availableStyles, bbox: Api.getBBox(caps, true), dimensions: Api.getDimensions(caps)}, (describe && !describe.error) ? {search: describe} : {}));
+                        return Rx.Observable.of(assign({layer: layer.id, title: ProjectUtils.getKeywordsTranslations(caps), bbox: Api.getBBox(caps, true), dimensions: Api.getDimensions(caps)}, (describe && !describe.error) ? {search: describe} : {}));
                     })
                 )
             )
