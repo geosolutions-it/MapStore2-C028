@@ -1,6 +1,6 @@
 {
   "proxyUrl": {
-    "url": "proxy/?url=",
+    "url": "/mapstore2/proxy/?url=",
     "useCORS": [
       "http://demo.geo-solutions.it/geoserver",
       "https://demo.geo-solutions.it:443/geoserver",
@@ -20,6 +20,9 @@
   "ignoreMobileCss" : false,
   "useAuthenticationRules": true,
   "loadAfterTheme": true,
+  "localizedLayerStyles": {
+    "name": "mapstore_language"
+  },
   "defaultMapOptions": {
     "cesium": {
         "flyTo": true,

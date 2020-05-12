@@ -16,6 +16,7 @@ const {head, trim} = require('lodash');
 const {optionsSelector} = require('../selectors/searchparcel');
 const {warning, error} = require('../../MapStore2/web/client/actions/notifications');
 const {loadingParcel, COMPLETE_SEARCH, completeSearch} = require('../actions/searchparcel');
+const {get} = require('lodash');
 
 const loadedParcelResults = (state, {results, codice, nestedService, comcatObj, style, mapConfig}) => {
     const item = results && head((results || [])
@@ -62,7 +63,7 @@ const searchParcel = (action$, store, locale, map) => {
         .switchMap(comuniCatastali => {
             const mapConfig = map || mapSelector(state);
 
-            const search = locale && locale.payload && locale.payload.search || '';
+            const search = get(locale, 'payload.location.search', '');
             const query = url.parse(search, true).query;
 
             const comcat = searchKeys && searchKeys.comcat && query[searchKeys.comcat] || query && query.comcat;
