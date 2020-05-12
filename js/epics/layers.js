@@ -13,7 +13,6 @@ const ProjectUtils = require('../utils/ProjectUtils');
 const LayersUtils = require('../../MapStore2/web/client/utils/LayersUtils');
 const {REFRESH_LAYERS, layersRefreshed, updateNode, layersRefreshError} = require('../../MapStore2/web/client/actions/layers');
 const {groupsSelector} = require('../../MapStore2/web/client/selectors/layers');
-const {currentLocaleSelector} = require('../../MapStore2/web/client/selectors/locale');
 
 const assign = require('object-assign');
 const {isString, isArray, head} = require('lodash');
@@ -73,13 +72,7 @@ const updateMapEpic = (action$, store) =>
                         if (caps.error) {
                             return Rx.Observable.of(caps.error && caps);
                         }
-
-                        // set style by language
-                        const availableStyles = isArray(caps.Style) ? ProjectUtils.formatAvailableStyles(caps.Style) : null;
-                        const currentLocale = head(currentLocaleSelector(store.getState()).split('-'));
-                        const style = ProjectUtils.getLocalizedStyle(layer.style, availableStyles, currentLocale || 'it');
-
-                        return Rx.Observable.of(assign({layer: layer.id, title: ProjectUtils.getKeywordsTranslations(caps), style, availableStyles, bbox: Api.getBBox(caps, true), dimensions: Api.getDimensions(caps)}, (describe && !describe.error) ? {search: describe} : {}));
+                        return Rx.Observable.of(assign({layer: layer.id, title: ProjectUtils.getKeywordsTranslations(caps), bbox: Api.getBBox(caps, true), dimensions: Api.getDimensions(caps)}, (describe && !describe.error) ? {search: describe} : {}));
                     })
                 )
             )
@@ -92,9 +85,7 @@ const updateMapEpic = (action$, store) =>
                     bbox: layer.bbox,
                     search: layer.search,
                     title: layer.title,
-                    dimensions: layer.dimensions,
-                    availableStyles: layer.availableStyles,
-                    style: layer.style
+                    dimensions: layer.dimensions
                 }, action.options))]);
             })
             .mergeAll());
