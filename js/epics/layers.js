@@ -45,50 +45,48 @@ const updateMapEpic = (action$, store) =>
                     })
                 : Rx.Observable.empty()
             ).concat(
-            Rx.Observable.from(
-                action.layers.map((layer) =>
-                    Rx.Observable.forkJoin(
-                        Api.getCapabilities(LayersUtils.getCapabilitiesUrl(layer), true)
-                            .then( (json) => {
-                                const root = (json.WMS_Capabilities || json.WMT_MS_Capabilities).Capability;
-                                const layersObj = Api.flatLayers(root);
-                                const layers = isArray(layersObj) ? layersObj : [layersObj];
-                                return head(layers.filter((l) => l.Name === removeWorkspace(layer.name) || l.Name === layer.name));
-                            }).catch((e) => ({layer: layer.id, fullLayer: layer, error: e})),
-                        Api.describeLayer(layer.url, layer.name)
-                            .then( (result) => {
-                                if (result && result.name === layer.name && result.owsType === 'WFS') {
-                                    return {
-                                        url: result.owsURL,
-                                        type: 'wfs'
-                                    };
-                                }
-                                return null;
-                            }).catch((e) => ({layer: layer.id, fullLayer: layer, error: e}))
-                    ).concatMap(([caps, describe]) => {
-                        if (!caps) {
-                            return Rx.Observable.of({layer: layer.id, fullLayer: layer, error: 'Missing layer'});
-                        }
-                        if (caps.error) {
-                            return Rx.Observable.of(caps.error && caps);
-                        }
-                        return Rx.Observable.of(assign({layer: layer.id, title: ProjectUtils.getKeywordsTranslations(caps), bbox: Api.getBBox(caps, true), dimensions: Api.getDimensions(caps)}, (describe && !describe.error) ? {search: describe} : {}));
-                    })
-                )
-            )
-            .mergeAll()
-            .map((layer) => {
-                if (layer.error) {
-                    return Rx.Observable.of(layersRefreshError([layer], layer.error.message));
-                }
-                return Rx.Observable.from([layersRefreshed([layer]), updateNode(layer.layer, "id", getUpdates({
-                    bbox: layer.bbox,
-                    search: layer.search,
-                    title: layer.title,
-                    dimensions: layer.dimensions
-                }, action.options))]);
-            })
-            .mergeAll());
+                Rx.Observable.from(
+                    action.layers.map((layer) =>
+                        Rx.Observable.forkJoin(
+                            Api.getCapabilities(LayersUtils.getCapabilitiesUrl(layer), true)
+                                .then( (json) => {
+                                    const root = (json.WMS_Capabilities || json.WMT_MS_Capabilities).Capability;
+                                    const layersObj = Api.flatLayers(root);
+                                    const layers = isArray(layersObj) ? layersObj : [layersObj];
+                                    return head(layers.filter((l) => l.Name === removeWorkspace(layer.name) || l.Name === layer.name));
+                                }).catch((e) => ({layer: layer.id, fullLayer: layer, error: e})),
+                            Api.describeLayer(layer.url, layer.name)
+                                .then( (result) => {
+                                    if (result && result.name === layer.name && result.owsType === 'WFS') {
+                                        return {
+                                            url: result.owsURL,
+                                            type: 'wfs'
+                                        };
+                                    }
+                                    return null;
+                                }).catch((e) => ({layer: layer.id, fullLayer: layer, error: e}))
+                        ).concatMap(([caps, describe]) => {
+                            if (!caps) {
+                                return Rx.Observable.of({layer: layer.id, fullLayer: layer, error: 'Missing layer'});
+                            }
+                            if (caps.error) {
+                                return Rx.Observable.of(caps.error && caps);
+                            }
+                            return Rx.Observable.of(assign({layer: layer.id, title: ProjectUtils.getKeywordsTranslations(caps), bbox: Api.getBBox(caps, true), dimensions: Api.getDimensions(caps)}, (describe && !describe.error) ? {search: describe} : {}));
+                        })
+                    )
+                ).mergeAll().map((layer) => {
+                    if (layer.error) {
+                        return Rx.Observable.of(layersRefreshError([layer], layer.error.message));
+                    }
+                    return Rx.Observable.from([layersRefreshed([layer]), updateNode(layer.layer, "id", getUpdates({
+                        bbox: layer.bbox,
+                        search: layer.search,
+                        title: layer.title,
+                        dimensions: layer.dimensions
+                    }, action.options))]);
+                }).mergeAll()
+            );
         });
 
 

@@ -81,11 +81,10 @@ module.exports = {
             return shouldInit(store);
         })
         .switchMap(() => Rx.Observable.of(
-                reset(),
-                setControlProperty("drawer", "enabled", true),
-                setControlProperty("drawer", "menu", '2')
-            ).merge(
-                action$.ofType(RESET_CONTROLS).take(1).map(() => setControlProperty("drawer", "menu", '1'))
-            )
-        )
+            reset(),
+            setControlProperty("drawer", "enabled", true),
+            setControlProperty("drawer", "menu", '2')
+        ).merge(
+            action$.ofType(RESET_CONTROLS).take(1).map(() => setControlProperty("drawer", "menu", '1'))
+        ))
 };

@@ -103,7 +103,7 @@ const searchParcel = (action$, store, locale, map) => {
                                 completeSearch()
                             );
                         })
-            );
+                );
         })
         .startWith(loadingParcel(false))
         .takeUntil(action$.ofType(COMPLETE_SEARCH))
@@ -116,15 +116,15 @@ const searchParcelEpic = (action$, store) =>
         .switchMap((locale) => {
             const map = mapSelector(store.getState());
             return map && map.bbox && Rx.Observable.concat(
-                    Rx.Observable.of(
-                        resultsPurge(),
-                        resetSearch()
-                    ),
-                    searchParcel(action$, store, locale, map)
-                ) ||
-                action$.ofType(MAP_CONFIG_LOADED)
-                    .switchMap(() => searchParcel(action$, store, locale))
-                    .takeUntil(action$.ofType(COMPLETE_SEARCH));
+                Rx.Observable.of(
+                    resultsPurge(),
+                    resetSearch()
+                ),
+                searchParcel(action$, store, locale, map)
+            ) ||
+            action$.ofType(MAP_CONFIG_LOADED)
+                .switchMap(() => searchParcel(action$, store, locale))
+                .takeUntil(action$.ofType(COMPLETE_SEARCH));
         });
 
 module.exports = {

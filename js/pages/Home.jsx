@@ -29,7 +29,7 @@ class Home extends React.Component {
     };
 
     static contextTypes = {
-       router: PropTypes.object
+        router: PropTypes.object
     };
 
     static defaultProps = {
@@ -52,11 +52,11 @@ class Home extends React.Component {
     render() {
         let plugins = this.props.pluginsConfig;
         let pagePlugins = {
-            "desktop": plugins.common || [],// TODO mesh page plugins with other plugins
+            "desktop": plugins.common || [], // TODO mesh page plugins with other plugins
             "mobile": plugins.common || []
         };
         let pluginsConfig = {
-            "desktop": plugins[this.props.name] || [],// TODO mesh page plugins with other plugins
+            "desktop": plugins[this.props.name] || [], // TODO mesh page plugins with other plugins
             "mobile": plugins[this.props.name] || []
         };
 

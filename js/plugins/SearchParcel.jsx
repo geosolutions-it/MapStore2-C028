@@ -152,12 +152,12 @@ class SearchParcel extends React.Component {
 
     render() {
         return this.props.loading ? (
-        <div className="ms-parcel-search">
-            <div>
-                <Loader size={176} className="ms-parcel-loader"/>
-                <h4 className="text-center"><Message msgId="searchparcel.loading" /></h4>
-            </div>
-        </div>) : null;
+            <div className="ms-parcel-search">
+                <div>
+                    <Loader size={176} className="ms-parcel-loader"/>
+                    <h4 className="text-center"><Message msgId="searchparcel.loading" /></h4>
+                </div>
+            </div>) : null;
     }
 }
 

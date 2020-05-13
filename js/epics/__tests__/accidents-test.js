@@ -72,8 +72,8 @@ describe('accidents epic', () => {
                     type: [null, true],
                     period: {
                         fromdate: new Date(1492, 9, 12),
-                        todate: new Date(1789, 6, 14
-                    )}
+                        todate: new Date(1789, 6, 14)
+                    }
                 }
             },
             layers: {

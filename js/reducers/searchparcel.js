@@ -10,14 +10,14 @@ const {SET_OPTIONS, LOADING_PARCEL} = require('../actions/searchparcel');
 
 function searchparcel(state = {}, action) {
     switch (action.type) {
-        case SET_OPTIONS: {
-            return {...state, ...action.options};
-        }
-        case LOADING_PARCEL: {
-            return {...state, loading: action.loading};
-        }
-        default:
-            return state;
+    case SET_OPTIONS: {
+        return {...state, ...action.options};
+    }
+    case LOADING_PARCEL: {
+        return {...state, loading: action.loading};
+    }
+    default:
+        return state;
     }
 }
 
