@@ -1,20 +1,10 @@
 {
   "proxyUrl": {
     "url": "/mapstore2/proxy/?url=",
-    "useCORS": [
-      "http://demo.geo-solutions.it/geoserver",
-      "https://demo.geo-solutions.it:443/geoserver",
-      "https://demo.geo-solutions.it/geoserver",
-      "https://nominatim.openstreetmap.org",
-      "http://cloudsdi.geo-solutions.it",
-      "https://gs-stable.geo-solutions.it/geoserver",
-      "https://gs-stable.geo-solutions.it:443/geoserver"
-    ]
+    "useCORS": ["http://nominatim.openstreetmap.org", "https://nominatim.openstreetmap.org"]
   },
   "geoStoreUrl": "rest/geostore/",
-  "mailingList": "https://groups.google.com/forum/#!forum/mapstore-users",
   "printUrl": "pdf/info.json",
-  "bingApiKey": "AhuXBu7ipR1gNbBfXhtUAyCZ6rkC5PkWpxs2MnMRZ1ZupxQfivjLCch22ozKSCAn",
   "mapquestApiKey": "__API_KEY_MAPQUEST__",
   "initialMapFilter": "",
   "ignoreMobileCss" : false,
@@ -22,15 +12,6 @@
   "loadAfterTheme": true,
   "localizedLayerStyles": {
     "name": "mapstore_language"
-  },
-  "defaultMapOptions": {
-    "cesium": {
-        "flyTo": true,
-        "navigationTools": true,
-        "terrainProvider": {
-            "type": "ellipsoid"
-        }
-    }
   },
   "authenticationRules": [
     {
