@@ -26,9 +26,10 @@ const DayOfWeek = bindFilter('dow')(require('../../components/accidents/DayOfWee
 const AccidentType = bindFilter('type')(require('../../components/accidents/AccidentType'));
 const Period = bindFilter('period')(require('../../components/accidents/Period'));
 
-module.exports = () =>
-(<Row>
-    <FilterContainer title="accidents.period.title"><Period /></FilterContainer>
-    <FilterContainer title="accidents.dow.title"><DayOfWeek /></FilterContainer>
-    <FilterContainer title="accidents.type.title"><AccidentType /></FilterContainer>
-</Row>);
+module.exports = () => (
+    <Row>
+        <FilterContainer title="accidents.period.title"><Period /></FilterContainer>
+        <FilterContainer title="accidents.dow.title"><DayOfWeek /></FilterContainer>
+        <FilterContainer title="accidents.type.title"><AccidentType /></FilterContainer>
+    </Row>
+);

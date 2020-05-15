@@ -26,14 +26,14 @@ const DEFAULT_STATE = {
  */
 module.exports = (state = DEFAULT_STATE, action) => {
     switch (action.type) {
-        case ON_CHANGE:
-            return set(`values.${action.name}`, action.value, set('modified', true, state));
-        case RESET:
-            return set('values', action.values, set('modified', false, state));
-        case APPLY_CHANGES:
-            return set('modified', false, state);
-        default:
-            return state;
+    case ON_CHANGE:
+        return set(`values.${action.name}`, action.value, set('modified', true, state));
+    case RESET:
+        return set('values', action.values, set('modified', false, state));
+    case APPLY_CHANGES:
+        return set('modified', false, state);
+    default:
+        return state;
     }
 
 };

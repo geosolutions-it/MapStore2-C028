@@ -58,7 +58,7 @@ class Home extends React.Component {
             pluginsConfig={pluginsConfig}
             plugins={this.props.plugins}
             params={this.props.match.params}
-            />);
+        />);
     }
 }
 

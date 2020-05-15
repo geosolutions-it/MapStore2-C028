@@ -5,12 +5,14 @@
   },
   "geoStoreUrl": "rest/geostore/",
   "printUrl": "pdf/info.json",
-	"translationsPath": ["./MapStore2/web/client/translations", "./translations"],
   "mapquestApiKey": "__API_KEY_MAPQUEST__",
   "initialMapFilter": "",
   "ignoreMobileCss" : false,
   "useAuthenticationRules": true,
   "loadAfterTheme": true,
+  "localizedLayerStyles": {
+    "name": "mapstore_language"
+  },
   "authenticationRules": [
     {
       "urlPattern": ".*geostore.*",
@@ -21,7 +23,7 @@
     "method": "authkey"
   }],
   "monitorState": [
-    {"name": "routing", "path": "routing.location.pathname"},
+    {"name": "router", "path": "router.location.pathname"},
     {"name": "browser", "path": "browser"},
     {"name": "featuregridmode", "path": "featuregrid.mode"}],
   "projectionDefs": [{
@@ -32,24 +34,32 @@
   }],
   "initialState": {
     "defaultState": {
-       "locales": {
-          "supportedLocales": {
-              "it": {
-                  "code": "it-IT",
-                  "description": "Italiano"
-              },
-              "de": {
-                  "code": "de-DE",
-                  "description": "Deutsch"
-              }
-          }
+      "annotations": {
+        "config": {
+          "multiGeometry": true,
+          "validationErrors": {}
+        },
+        "format": "decimal",
+        "defaultTextAnnotation": "New"
       },
-	  "maptype": {
-          "mapType": "{context.mode === 'desktop' ? 'openlayers' : 'leaflet'}"
-	  },
-	  "maps": {
-		  "mapType": "openlayers"
-	  },
+      "maptype": {
+        "mapType": "{context.mode === 'desktop' ? 'openlayers' : 'leaflet'}"
+      },
+      "locales": {
+        "supportedLocales": {
+          "it": {
+            "code": "it-IT",
+            "description": "Italiano"
+          },
+          "de": {
+            "code": "de-DE",
+            "description": "Deutsch"
+          }
+        }
+      },
+      "maps": {
+        "mapType": "openlayers"
+      },
       "mapInfo": {"enabled": true, "infoFormat": "text/html"},
       "catalog":{
         "default": {
@@ -67,6 +77,50 @@
               "type": "wms",
               "title": "Comune di Bolzano Test GeoServer",
               "autoload": false
+            }
+          },
+          "staticServices": {
+            "default_map_backgrounds": {
+              "type": "backgrounds",
+              "title": "defaultMapBackgroundsServiceTitle",
+              "autoload": true,
+              "backgrounds": [{
+                  "type": "osm",
+                  "title": "Open Street Map",
+                  "name": "mapnik",
+                  "source": "osm",
+                  "group": "background"
+              }, {
+                  "type": "tileprovider",
+                  "title": "NASAGIBS Night 2012",
+                  "provider": "NASAGIBS.ViirsEarthAtNight2012",
+                  "name": "Night2012",
+                  "source": "nasagibs",
+                  "group": "background"
+              }, {
+                  "type": "tileprovider",
+                  "title": "OpenTopoMap",
+                  "provider": "OpenTopoMap",
+                  "name": "OpenTopoMap",
+                  "source": "OpenTopoMap",
+                  "group": "background"
+              }, {
+                  "format": "image/jpeg",
+                  "group": "background",
+                  "name": "s2cloudless:s2cloudless",
+                  "opacity": 1,
+                  "title": "Sentinel 2 Cloudless",
+                  "type": "wms",
+                  "url": "https://1maps.geo-solutions.it/geoserver/wms",
+                  "source": "s2cloudless",
+                  "singleTile": false
+              }, {
+                  "source": "ol",
+                  "group": "background",
+                  "title": "Empty Background",
+                  "fixed": true,
+                  "type": "empty"
+              }]
             }
           }
         },
@@ -123,7 +177,9 @@
       "cfg": {
         "activateMetedataTool": false,
         "activateMapTitle": false,
-        "activateSortLayer": false
+        "activateSortLayer": false,
+        "activateLayerFilterTool": false,
+        "activateQueryTool": false
       }
     }, {
       "name": "TOCItemsSettings",
@@ -368,7 +424,7 @@
           "enableRefresh": false
         }
       }
-   }, "ShapeFile", {
+   }, "MapImport", "MapExport", {
       "name": "Settings",
       "cfg": {
         "wrap": true
@@ -779,7 +835,11 @@
       {
         "name": "Maps",
         "cfg": {
-          "showMapDetails": false
+          "mapsOptions": {
+            "start": 0,
+            "limit": 12
+          },
+          "fluid": false
         }
       }, "Footer", {
       "name": "Cookie",

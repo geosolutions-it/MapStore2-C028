@@ -41,6 +41,6 @@ module.exports = compose(
                 tooltipId: 'accidents.toolbar.applyFilter',
                 onClick: () => onApply()
             }
-            ]
+        ]
     }))
 )(Toolbar);

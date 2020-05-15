@@ -99,7 +99,7 @@ describe('searchparcel epics', () => {
                 actions.map((action) => {
                     expect(action.type).toBe(COMPLETE_SEARCH);
                 });
-            } catch(e) {
+            } catch (e) {
                 done(e);
             }
             done();
@@ -119,7 +119,7 @@ describe('searchparcel epics', () => {
                 expect(actions[3].type).toBe(LOADING_PARCEL);
                 expect(actions[3].loading).toBe(false);
                 expect(actions[4].type).toBe(COMPLETE_SEARCH);
-            } catch(e) {
+            } catch (e) {
                 done(e);
             }
             done();
@@ -147,7 +147,7 @@ describe('searchparcel epics', () => {
                 expect(actions[7].type).toBe(TEXT_SEARCH_RESET);
                 expect(actions[8].type).toBe(SHOW_NOTIFICATION);
                 expect(actions[9].type).toBe(COMPLETE_SEARCH);
-            } catch(e) {
+            } catch (e) {
                 done(e);
             }
             done();

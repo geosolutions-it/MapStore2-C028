@@ -15,7 +15,7 @@ const LocaleUtils = require('../../MapStore2/web/client/utils/LocaleUtils');
 class Footer extends React.Component {
 
     static contextTypes = {
-       messages: PropTypes.object
+        messages: PropTypes.object
     };
 
     render() {
