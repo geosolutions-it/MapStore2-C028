@@ -33,6 +33,14 @@ module.exports = {
         name: "manager",
         path: "/manager/:tool",
         component: require('./pages/Manager')
+    }, {
+        name: "dashboard",
+        path: "/dashboard",
+        component: require('../MapStore2/web/client/product/pages/Dashboard')
+    }, {
+        name: "dashboard",
+        path: "/dashboard/:did",
+        component: require('../MapStore2/web/client/product/pages/Dashboard')
     }],
     pluginsDef: require('./plugins.js'),
     appEpics: {registerSearchServiceEpic, registerCustomLayersUtilsEpic},
