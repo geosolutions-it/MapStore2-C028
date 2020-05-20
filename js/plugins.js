@@ -49,7 +49,6 @@ module.exports = {
         // ExamplesPlugin: require('./plugins/Examples'),
         // MapTypePlugin: require('./plugins/MapType'),
         LanguagePlugin: require('../MapStore2/web/client/plugins/Language'),
-        // AttributionPlugin: require('./plugins/Attribution'),
         HeaderPlugin: require('./plugins/Header'),
         // ForkPlugin: require('./plugins/Fork'),
         FooterPlugin: require('./plugins/Footer'),
@@ -62,8 +61,8 @@ module.exports = {
         ManagerMenuPlugin: require('../MapStore2/web/client/plugins/manager/ManagerMenu'),
         RedirectPlugin: require('../MapStore2/web/client/plugins/Redirect'),
         SharePlugin: require('../MapStore2/web/client/plugins/Share'),
-        SavePlugin: require('../MapStore2/web/client/plugins/Save'),
-        SaveAsPlugin: require('../MapStore2/web/client/plugins/SaveAs'),
+        SavePlugin: require('../MapStore2/web/client/plugins/Save').default,
+        SaveAsPlugin: require('../MapStore2/web/client/plugins/SaveAs').default,
         CreateNewMapPlugin: require('../MapStore2/web/client/plugins/CreateNewMap'),
         QueryPanelPlugin: require('../MapStore2/web/client/plugins/QueryPanel'),
         WFSDownloadPlugin: require('../MapStore2/web/client/plugins/WFSDownload'),
@@ -85,7 +84,28 @@ module.exports = {
         WidgetsBuilderPlugin: require('../MapStore2/web/client/plugins/WidgetsBuilder'),
         // DetailsPlugin: require('../MapStore2/web/client/plugins/Details'),
         TOCItemsSettingsPlugin: require('../MapStore2/web/client/plugins/TOCItemsSettings'),
-        SearchParcelPlugin: require('./plugins/SearchParcel')
+        SearchParcelPlugin: require('./plugins/SearchParcel'),
+
+        Dashboard: require('../MapStore2/web/client/plugins/Dashboard'),
+        DashboardEditor: require('../MapStore2/web/client/plugins/DashboardEditor'),
+        DashboardsPlugin: require('../MapStore2/web/client/plugins/Dashboards'),
+        DashboardSavePlugin: require('../MapStore2/web/client/plugins/DashboardSave').DashboardSave,
+        DashboardSaveAsPlugin: require('../MapStore2/web/client/plugins/DashboardSave').DashboardSaveAs,
+
+        NavMenuPlugin: require('../MapStore2/web/client/product/plugins/NavMenu'),
+        AttributionPlugin: require('../MapStore2/web/client/product/plugins/Attribution'),
+        FeedbackMaskPlugin: require('../MapStore2/web/client/plugins/FeedbackMask'),
+        AddGroupPlugin: require('../MapStore2/web/client/plugins/AddGroup').default,
+        ContentTabsPlugin: require('../MapStore2/web/client/plugins/ContentTabs'),
+        FeaturedMapsPlugin: require('../MapStore2/web/client/plugins/FeaturedMaps'),
+
+        WidgetsTrayPlugin: require('../MapStore2/web/client/plugins/WidgetsTray'),
+
+        PlaybackPlugin: require('../MapStore2/web/client/plugins/Playback'),
+        TimelinePlugin: require('../MapStore2/web/client/plugins/Timeline'),
+        AnnotationsPlugin: require('../MapStore2/web/client/plugins/Annotations'),
+        // CRSSelectorPlugin: require('../MapStore2/web/client/plugins/CRSSelector'),
+        StyleEditorPlugin: require('../MapStore2/web/client/plugins/StyleEditor')
     },
     requires: {
         ReactSwipe: require('react-swipeable-views').default,

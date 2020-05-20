@@ -297,7 +297,9 @@
         "externalCookieUrl" : "",
         "declineUrl" : "http://www.google.com"
       }
-    }
+    },
+    "FeedbackMask",
+    "AddGroup"
   ],
   "desktop": [
     {
@@ -389,19 +391,13 @@
         "cfg": {
           "activateQueryTool": true,
           "activateAddLayerButton": true,
+          "activateAddGroupButton": true,
           "activateMetedataTool": false,
-          "spatialOperations": [
-              {"id": "INTERSECTS", "name": "queryform.spatialfilter.operations.intersects"},
-              {"id": "BBOX", "name": "queryform.spatialfilter.operations.bbox"},
-              {"id": "CONTAINS", "name": "queryform.spatialfilter.operations.contains"},
-              {"id": "WITHIN", "name": "queryform.spatialfilter.operations.within"}
-          ],
-          "spatialMethodOptions": [
-              {"id": "Viewport", "name": "queryform.spatialfilter.methods.viewport"},
-              {"id": "BBOX", "name": "queryform.spatialfilter.methods.box"},
-              {"id": "Circle", "name": "queryform.spatialfilter.methods.circle"},
-              {"id": "Polygon", "name": "queryform.spatialfilter.methods.poly"}
-          ]
+          "addLayersPermissions": true,
+          "removeLayersPermissions": true,
+          "sortingPermissions": true,
+          "addGroupsPermissions": true,
+          "removeGroupsPermissions": true
         }
     },
     "TOCItemsSettings", "MapFooter", {
@@ -414,7 +410,14 @@
             }
           }
         }
-    }, "Measure",
+    }, {
+      "name": "Measure",
+      "cfg": {
+        "defaultOptions": {
+          "showAddAsAnnotation": true
+        }
+      }
+  },
     {
       "name": "Print",
       "cfg": {
@@ -599,7 +602,14 @@
         }
     },
     "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "Notifications", "WidgetsBuilder", "Widgets",
-    "SearchParcel"
+    "SearchParcel",
+    "FeedbackMask",
+    "AddGroup",
+    "WidgetsTray",
+    "Annotations",
+    "Timeline",
+    "Playback",
+    "StyleEditor"
   ],
     "embedded": [
       {
@@ -818,7 +828,8 @@
                   "alwaysVisible": true
               }
           }
-      }
+      },
+      "AddGroup"
     ],
     "common": [{
       "name": "OmniBar",
@@ -829,9 +840,12 @@
     "maps": ["Header", "MapSearch", "HomeDescription", {
         "name": "CreateNewMap",
         "cfg": {
-          "showNewDashboard": false
+          "showNewDashboard": true,
+          "showNewGeostory": false
         }
       },
+      "FeaturedMaps",
+      "ContentTabs",
       {
         "name": "Maps",
         "cfg": {
@@ -841,6 +855,16 @@
           },
           "fluid": false
         }
+      },
+      {
+        "name": "Dashboards",
+        "cfg": {
+          "mapsOptions": {
+            "start": 0,
+            "limit": 12
+          },
+          "fluid": true
+        }
       }, "Footer", {
       "name": "Cookie",
       "cfg": {
@@ -848,6 +872,60 @@
         "declineUrl" : "http://www.google.com"
       }
     }],
-    "manager": ["Header", "Redirect", "Manager", "Home", "UserManager", "GroupManager", "Footer"]
+    "manager": ["Header", "Redirect", "Manager", "Home", "UserManager", "GroupManager", "Footer"],
+    "dashboard": [
+      {
+        "name": "OmniBar",
+        "cfg": {
+          "containerPosition": "header",
+          "className": "navbar shadow navbar-home"
+        }
+      },
+      "Login",
+      "Language",
+      "NavMenu",
+      "DashboardSave",
+      "DashboardSaveAs",
+      "Home",
+      {
+        "name": "DashboardEditor",
+        "cfg": {
+          "catalog": {
+            "url": "http://geoserv02:8080/geoserver/wms",
+            "type": "wms",
+            "title": "Comune di Bolzano Test GeoServer",
+            "autoload": true
+          },
+          "containerPosition": "columns"
+        }
+      },
+      {
+        "name": "QueryPanel",
+        "cfg": {
+          "toolsOptions": {
+            "hideCrossLayer": true,
+            "hideSpatialFilter": true
+          },
+          "containerPosition": "columns"
+        }
+      },
+      "BurgerMenu",
+      "Dashboard",
+      "Notifications",
+      {
+        "name": "Tutorial",
+        "cfg": {
+          "allowClicksThruHole": false,
+          "containerPosition": "header",
+          "preset": "dashboard_tutorial"
+        }
+      },
+      {
+        "name": "FeedbackMask",
+        "cfg": {
+          "containerPosition": "header"
+        }
+      }
+    ]
   }
 }
