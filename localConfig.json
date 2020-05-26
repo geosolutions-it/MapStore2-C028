@@ -330,6 +330,12 @@
           }
         }
       }
+    },
+    {
+      "name": "Annotations",
+      "cfg": {
+        "symbolsPath": "assets/symbols/"
+      } 
     }, "Tutorial", {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
     {
       "name": "Identify",
