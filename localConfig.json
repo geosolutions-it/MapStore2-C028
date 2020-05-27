@@ -104,22 +104,7 @@
                   "name": "OpenTopoMap",
                   "source": "OpenTopoMap",
                   "group": "background"
-              },
-              {
-                  "format": "image/jpeg",
-                  "group": "background",
-                  "source": "bolzano",
-                  "name": "Cartografia:ortofoto_2017",
-                  "opacity": 1,
-                  "styles": "raster",
-                  "title": "Mosaico Bolzano/Bozen 2017",
-                  "transparent": false,
-                  "tiled": true,
-                  "type": "wms",
-                  "url": "http://geoserv02:8080/geoserver/ows",
-                  "singleTile": false,
-                  "dimensions": []
-             }, {
+              }, {
                   "format": "image/jpeg",
                   "group": "background",
                   "name": "s2cloudless:s2cloudless",
