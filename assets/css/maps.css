@@ -27,7 +27,3 @@ div#mapstore-maptype {
     margin-bottom: 20px;
     margin-top: -35px;
 }
-
-#mapstore-navbar-container {
-    z-index: 10;
-}

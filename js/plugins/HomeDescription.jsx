@@ -20,7 +20,7 @@ class HomeDescription extends React.Component {
 
     render() {
         return (
-            <div style={this.props.style} className="mapstore-home-description">
+            <div style={{textAlign: "center"}} className="mapstore-home-description">
                 <HTML msgId="home.description" />
             </div>
         );

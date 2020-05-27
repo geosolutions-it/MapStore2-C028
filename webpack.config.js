@@ -27,13 +27,13 @@ module.exports = require('./MapStore2/build/buildConfig')(
     },
     {
         '/rest/geostore': {
-            target: "http://sit.comune.bolzano.it/mapstore2"
+            target: "http://sit.comune.bolzano.it/mapstore3"
         },
-        '/mapstore2/proxy': {
+        '/mapstore3/proxy': {
             target: "http://sit.comune.bolzano.it"
         },
         '/pdf': {
-            target: "http://sit.comune.bolzano.it/mapstore2"
+            target: "http://sit.comune.bolzano.it/mapstore3"
         },
         '/geoserver': {
             target: "http://sit.comune.bolzano.it"

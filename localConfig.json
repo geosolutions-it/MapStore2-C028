@@ -18,7 +18,7 @@
       "urlPattern": ".*geostore.*",
       "method": "bearer"
     }, {
-    "urlPattern": "\\/geoserver.*",
+    "urlPattern": "\\/geoserv02.*",
     "authkeyParamName": "ms2-authkey",
     "method": "authkey"
   }],
@@ -104,7 +104,22 @@
                   "name": "OpenTopoMap",
                   "source": "OpenTopoMap",
                   "group": "background"
-              }, {
+              },
+              {
+                  "format": "image/jpeg",
+                  "group": "background",
+                  "source": "bolzano",
+                  "name": "Cartografia:ortofoto_2017",
+                  "opacity": 1,
+                  "styles": "raster",
+                  "title": "Mosaico Bolzano/Bozen 2017",
+                  "transparent": false,
+                  "tiled": true,
+                  "type": "wms",
+                  "url": "http://geoserv02:8080/geoserver/ows",
+                  "singleTile": false,
+                  "dimensions": []
+             }, {
                   "format": "image/jpeg",
                   "group": "background",
                   "name": "s2cloudless:s2cloudless",
@@ -214,6 +229,7 @@
     {
         "name": "Search",
         "cfg": {
+          "showOptions": false,
           "resultsStyle": {
             "iconUrl": "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
             "shadowUrl": "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
@@ -334,6 +350,7 @@
     {
       "name": "Identify",
       "cfg": {
+          "showHighlightFeatureButton": true,
           "viewerOptions": {
               "container": "{context.ReactSwipe}"
           }
@@ -453,6 +470,7 @@
     }, {
         "name": "Search",
         "cfg": {
+          "showOptions": false,
           "resultsStyle": {
             "iconUrl": "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
             "shadowUrl": "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
@@ -601,7 +619,17 @@
         "declineUrl" : "http://www.google.com"
         }
     },
-    "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "Notifications", "WidgetsBuilder", "Widgets",
+    "OmniBar",
+    "Login",
+    "Save",
+    "SaveAs",
+    "BurgerMenu",
+    "Expander",
+    "Undo",
+    "Redo",
+    "Notifications",
+    "WidgetsBuilder",
+    "Widgets",
     "SearchParcel",
     "FeedbackMask",
     "AddGroup",
@@ -648,6 +676,7 @@
         {
           "name": "Identify",
           "cfg": {
+              "showHighlightFeatureButton": true,
               "showFullscreen": true,
               "position": "bottom",
               "size": 0.5,
@@ -700,6 +729,7 @@
       {
           "name": "Search",
           "cfg": {
+            "showOptions": false,
             "resultsStyle": {
               "iconUrl": "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
               "shadowUrl": "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
