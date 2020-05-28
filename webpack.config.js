@@ -26,6 +26,8 @@ module.exports = require('./MapStore2/build/buildConfig')(
         '@js': path.resolve(__dirname, 'js')
     },
     {
+        //  /mapstore3  test  instance
+        //  /mapstore2  prod  instance
         '/rest/geostore': {
             target: "http://sit.comune.bolzano.it/mapstore3"
         },
