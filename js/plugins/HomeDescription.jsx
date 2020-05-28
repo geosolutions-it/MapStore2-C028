@@ -1,4 +1,5 @@
 /**
+import { defaultProps } from 'recompose';
  * Copyright 2017, GeoSolutions Sas.
  * All rights reserved.
  *
@@ -18,9 +19,13 @@ class HomeDescription extends React.Component {
         className: PropTypes.object
     };
 
+    static defaultProps = {
+        style: {textAlign: "center"}
+    };
+
     render() {
         return (
-            <div style={{textAlign: "center"}} className="mapstore-home-description">
+            <div style={this.props.style} className="mapstore-home-description">
                 <HTML msgId="home.description" />
             </div>
         );
