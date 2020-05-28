@@ -330,7 +330,8 @@
           }
         }
       }
-    }, "Tutorial", {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
+    },
+    "Tutorial", {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
     {
       "name": "Identify",
       "cfg": {
@@ -427,7 +428,7 @@
           "enableRefresh": false
         }
       }
-   }, "MapImport", "MapExport", {
+    }, "MapImport", "MapExport", {
       "name": "Settings",
       "cfg": {
         "wrap": true
@@ -606,10 +607,15 @@
     "FeedbackMask",
     "AddGroup",
     "WidgetsTray",
-    "Annotations",
     "Timeline",
     "Playback",
-    "StyleEditor"
+    "StyleEditor",
+    {
+      "name": "Annotations",
+      "cfg": {
+        "symbolsPath": "assets/symbols/"
+      } 
+    }
   ],
     "embedded": [
       {
