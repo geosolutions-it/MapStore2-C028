@@ -1,19 +1,20 @@
 {
-	"map": {
+  "version": 2,
+  "map": {
 		"projection": "EPSG:900913",
 		"units": "m",
 		"center": {
-            		"x": 11.344547561048595,
-		        "y": 46.4894399418517,
-		        "crs": "EPSG:4326"
-        	},
-	        "maxExtent": [
-        	    1259091.229051,
-	            5855016.830973,
-	            1268808.28627,
-	            5863434.458712
-	        ],
-        	"zoom": 13,
+      "x": 11.344547561048595,
+		  "y": 46.4894399418517,
+		  "crs": "EPSG:4326"
+    },
+	  "maxExtent": [
+      1259091.229051,
+	    5855016.830973,
+	    1268808.28627,
+	    5863434.458712
+	  ],
+    "zoom": 13,
 		"layers": [
 			{
 				"type": "osm",
@@ -23,22 +24,6 @@
 				"group": "background",
         "visibility": false
 			},
-      {
-        "type": "google",
-        "title": "Google HYBRID",
-        "name": "HYBRID",
-        "source": "google",
-        "group": "background",
-        "visibility": false
-      },
-      {
-        "type": "mapquest",
-        "title": "MapQuest OSM",
-        "name": "osm",
-        "source": "mapquest",
-        "group": "background",
-        "visibility": false
-      },
       {
         "type": "tileprovider",
         "title": "NASAGIBS Night 2012",
@@ -59,8 +44,8 @@
       },
       {
         "format": "image/jpeg",
-         "group": "background",
-         "source": "bolzano",
+        "group": "background",
+        "source": "bolzano",
         "name": "Cartografia:ortofoto_2017",
         "opacity": 1,
         "styles": "raster",
@@ -73,6 +58,20 @@
         "singleTile": false,
         "dimensions": []
      },
+     {
+        "format": "image/jpeg",
+        "group": "background",
+        "name": "s2cloudless:s2cloudless",
+        "opacity": 1,
+        "title": "Sentinel 2 Cloudless",
+        "type": "wms",
+        "url": [
+          "https://1maps.geo-solutions.it/geoserver/wms", "https://2maps.geo-solutions.it/geoserver/wms", "https://3maps.geo-solutions.it/geoserver/wms", "https://4maps.geo-solutions.it/geoserver/wms", "https://5maps.geo-solutions.it/geoserver/wms", "https://6maps.geo-solutions.it/geoserver/wms"
+        ],
+        "source": "s2cloudless",
+        "visibility": false,
+        "singleTile": false
+      },
      {
         "source": "ol",
         "group": "background",

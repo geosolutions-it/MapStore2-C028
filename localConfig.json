@@ -18,7 +18,7 @@
       "urlPattern": ".*geostore.*",
       "method": "bearer"
     }, {
-    "urlPattern": "\\/geoserver.*",
+    "urlPattern": "\\/geoserv02.*",
     "authkeyParamName": "ms2-authkey",
     "method": "authkey"
   }],
@@ -214,6 +214,7 @@
     {
         "name": "Search",
         "cfg": {
+          "showOptions": false,
           "resultsStyle": {
             "iconUrl": "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
             "shadowUrl": "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
@@ -330,10 +331,12 @@
           }
         }
       }
-    }, "Tutorial", {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
+    },
+    "Tutorial", {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
     {
       "name": "Identify",
       "cfg": {
+          "showHighlightFeatureButton": true,
           "viewerOptions": {
               "container": "{context.ReactSwipe}"
           }
@@ -427,7 +430,7 @@
           "enableRefresh": false
         }
       }
-   }, "MapImport", "MapExport", {
+    }, "MapImport", "MapExport", {
       "name": "Settings",
       "cfg": {
         "wrap": true
@@ -453,6 +456,7 @@
     }, {
         "name": "Search",
         "cfg": {
+          "showOptions": false,
           "resultsStyle": {
             "iconUrl": "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
             "shadowUrl": "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
@@ -601,15 +605,30 @@
         "declineUrl" : "http://www.google.com"
         }
     },
-    "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "Notifications", "WidgetsBuilder", "Widgets",
+    "OmniBar",
+    "Login",
+    "Save",
+    "SaveAs",
+    "BurgerMenu",
+    "Expander",
+    "Undo",
+    "Redo",
+    "Notifications",
+    "WidgetsBuilder",
+    "Widgets",
     "SearchParcel",
     "FeedbackMask",
     "AddGroup",
     "WidgetsTray",
-    "Annotations",
     "Timeline",
     "Playback",
-    "StyleEditor"
+    "StyleEditor",
+    {
+      "name": "Annotations",
+      "cfg": {
+        "symbolsPath": "assets/symbols/"
+      } 
+    }
   ],
     "embedded": [
       {
@@ -648,6 +667,7 @@
         {
           "name": "Identify",
           "cfg": {
+              "showHighlightFeatureButton": true,
               "showFullscreen": true,
               "position": "bottom",
               "size": 0.5,
@@ -700,6 +720,7 @@
       {
           "name": "Search",
           "cfg": {
+            "showOptions": false,
             "resultsStyle": {
               "iconUrl": "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
               "shadowUrl": "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
