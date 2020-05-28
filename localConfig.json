@@ -853,7 +853,8 @@
             "start": 0,
             "limit": 12
           },
-          "fluid": false
+          "fluid": false,
+          "showAPIShare": false
         }
       },
       {
