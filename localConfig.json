@@ -865,7 +865,7 @@
           "showNewGeostory": false
         }
       },
-      "FeaturedMaps",
+      {"name": "FeaturedMaps", "cfg": {"showAPIShare": false}},
       "ContentTabs",
       {
         "name": "Maps",
