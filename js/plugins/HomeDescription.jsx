@@ -1,4 +1,5 @@
 /**
+import { defaultProps } from 'recompose';
  * Copyright 2017, GeoSolutions Sas.
  * All rights reserved.
  *
@@ -16,6 +17,10 @@ class HomeDescription extends React.Component {
     static propTypes = {
         style: PropTypes.object,
         className: PropTypes.object
+    };
+
+    static defaultProps = {
+        style: {textAlign: "center"}
     };
 
     render() {
