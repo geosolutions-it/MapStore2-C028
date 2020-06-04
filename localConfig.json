@@ -18,7 +18,7 @@
       "urlPattern": ".*geostore.*",
       "method": "bearer"
     }, {
-    "urlPattern": "\\/geoserv02.*",
+    "urlPattern": "\\/geoserver2.*",
     "authkeyParamName": "ms2-authkey",
     "method": "authkey"
   }],
@@ -90,30 +90,6 @@
                   "name": "mapnik",
                   "source": "osm",
                   "group": "background"
-              }, {
-                  "type": "tileprovider",
-                  "title": "NASAGIBS Night 2012",
-                  "provider": "NASAGIBS.ViirsEarthAtNight2012",
-                  "name": "Night2012",
-                  "source": "nasagibs",
-                  "group": "background"
-              }, {
-                  "type": "tileprovider",
-                  "title": "OpenTopoMap",
-                  "provider": "OpenTopoMap",
-                  "name": "OpenTopoMap",
-                  "source": "OpenTopoMap",
-                  "group": "background"
-              }, {
-                  "format": "image/jpeg",
-                  "group": "background",
-                  "name": "s2cloudless:s2cloudless",
-                  "opacity": 1,
-                  "title": "Sentinel 2 Cloudless",
-                  "type": "wms",
-                  "url": "https://1maps.geo-solutions.it/geoserver/wms",
-                  "source": "s2cloudless",
-                  "singleTile": false
               }, {
                   "source": "ol",
                   "group": "background",
@@ -622,12 +598,11 @@
     "WidgetsTray",
     "Timeline",
     "Playback",
-    "StyleEditor",
     {
       "name": "Annotations",
       "cfg": {
         "symbolsPath": "assets/symbols/"
-      } 
+      }
     }
   ],
     "embedded": [

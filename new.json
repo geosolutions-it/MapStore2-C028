@@ -25,24 +25,6 @@
         "visibility": false
 			},
       {
-        "type": "tileprovider",
-        "title": "NASAGIBS Night 2012",
-        "provider": "NASAGIBS.ViirsEarthAtNight2012",
-        "name": "Night2012",
-        "source": "nasagibs",
-        "group": "background",
-        "visibility": false
-      },
-      {
-        "type": "tileprovider",
-        "title": "OpenTopoMap",
-        "provider": "OpenTopoMap",
-        "name": "OpenTopoMap",
-        "source": "OpenTopoMap",
-        "group": "background",
-        "visibility": false
-      },
-      {
         "format": "image/jpeg",
         "group": "background",
         "source": "bolzano",
@@ -53,25 +35,11 @@
         "transparent": false,
         "tiled": true,
         "type": "wms",
-        "url": "http://geoserv02:8080/geoserver/ows",
+        "url": "https://sit.comune.bolzano.it/geoserver2/ows",
         "visibility": true,
         "singleTile": false,
         "dimensions": []
      },
-     {
-        "format": "image/jpeg",
-        "group": "background",
-        "name": "s2cloudless:s2cloudless",
-        "opacity": 1,
-        "title": "Sentinel 2 Cloudless",
-        "type": "wms",
-        "url": [
-          "https://1maps.geo-solutions.it/geoserver/wms", "https://2maps.geo-solutions.it/geoserver/wms", "https://3maps.geo-solutions.it/geoserver/wms", "https://4maps.geo-solutions.it/geoserver/wms", "https://5maps.geo-solutions.it/geoserver/wms", "https://6maps.geo-solutions.it/geoserver/wms"
-        ],
-        "source": "s2cloudless",
-        "visibility": false,
-        "singleTile": false
-      },
      {
         "source": "ol",
         "group": "background",
