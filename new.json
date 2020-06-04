@@ -53,7 +53,7 @@
         "transparent": false,
         "tiled": true,
         "type": "wms",
-        "url": "http://geoserv02:8080/geoserver/ows",
+        "url": "https://sit.comune.bolzano.it/geoserver2/ows",
         "visibility": true,
         "singleTile": false,
         "dimensions": []
