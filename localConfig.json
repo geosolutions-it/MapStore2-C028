@@ -622,7 +622,6 @@
     "WidgetsTray",
     "Timeline",
     "Playback",
-    "StyleEditor",
     {
       "name": "Annotations",
       "cfg": {
