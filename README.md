@@ -39,3 +39,17 @@ During the build process the credentials will be applied to geostore-spring-secu
 
  - Only locally edit the url, userDn and password in **web/ldap.properties**
  - Run build.sh
+ 
+ Test Environment
+ ----------------
+ 
+ Database configuration is configured in `setenv.sh`. 
+ Note: Test environment is mapped as externally as `mapstore3`, but deployed in tomcat as `mapstore2`. This causes an issue because the print plugin doesn't calculate the correct path to provide in `info.json` (that describes the print services).
+ For this reason MapStore2 we needed to customize `PRINT_PLUGIN` in `setenv.sh`
+ 
+ /var/lib/tomcat/mapstore2/bin/setenv.sh: 
+ ```
+ export JAVA_OPTS="$JAVA_OPTS -Dgeostore-ovr=file:///var/lib/tomcat/mapstore2/conf/geostore-datasource-ovr.properties"
+ export JAVA_OPTS="$JAVA_OPTS -DPRINT_BASE_URL=\"/mapstore3/pdf\""
+ 
+ ```
