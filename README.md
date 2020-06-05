@@ -30,7 +30,8 @@ Read more on the [wiki](git@github.com:geosolutions-it/MapStore2-C028.git/wiki).
 To Create a deployable war
 --------------------------
 
-Edit the LDAP properties file (DO NOT COMMIT CREDENTIALS) web/ldap.properties
+Edit the LDAP properties file (DO NOT COMMIT CREDENTIALS) web/ldap.properties.
+
 You can find LDAP credentials [here](https://docs.google.com/document/d/1ASz55b7LDXW5CL6ULmmFnT-dMSjj7fB4c-iN2tW8d_s/edit?usp=sharing)
 
 During the build process the credentials will be applied to geostore-spring-security.xml, so after a deploy is only necessary to check that spring-security file is properly configured
