@@ -1,6 +1,6 @@
 {
   "proxyUrl": {
-    "url": "/mapstore2/proxy/?url=",
+    "url": "/mapstore3/proxy/?url=",
     "useCORS": ["http://nominatim.openstreetmap.org", "https://nominatim.openstreetmap.org"]
   },
   "geoStoreUrl": "rest/geostore/",
