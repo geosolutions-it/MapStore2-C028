@@ -884,7 +884,7 @@
         "name": "DashboardEditor",
         "cfg": {
           "catalog": {
-            "url": "https://sit.comune.bolzano.it/geoserver2/wms",
+            "url": "https://sit.comune.bolzano.it/geoserver/wms",
             "type": "wms",
             "title": "Comune di Bolzano Test GeoServer",
             "autoload": true,
