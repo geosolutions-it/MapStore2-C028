@@ -47,8 +47,8 @@ module.exports = withProps( ({values}) => ({
 /**
  * Component that renders 1 date field for each item in `items` property.
  */
-)(({values = {}, onChange = () => {}, items = []}) =>
-(<div>
-    {items.map(({name, title, max, min}) => <DateField key={name} max={max} min={min} value={values[name]} name={name} title={title} onChange={onChange} />)}
-</div>));
-
+)(({values = {}, onChange = () => {}, items = []}) => (
+    <div>
+        {items.map(({name, title, max, min}) => <DateField key={name} max={max} min={min} value={values[name]} name={name} title={title} onChange={onChange} />)}
+    </div>
+));

@@ -7,7 +7,7 @@
 */
 const Rx = require('rxjs');
 const {MAP_CONFIG_LOADED} = require('../../MapStore2/web/client/actions/config');
-const {LOCATION_CHANGE} = require('react-router-redux');
+const {LOCATION_CHANGE} = require('connected-react-router');
 const {API} = require('../../MapStore2/web/client/api/searchText');
 const url = require('url');
 const {selectNestedService, selectSearchItem, resultsPurge, resetSearch, searchTextChanged} = require('../../MapStore2/web/client/actions/search');
@@ -16,6 +16,7 @@ const {head, trim} = require('lodash');
 const {optionsSelector} = require('../selectors/searchparcel');
 const {warning, error} = require('../../MapStore2/web/client/actions/notifications');
 const {loadingParcel, COMPLETE_SEARCH, completeSearch} = require('../actions/searchparcel');
+const {get} = require('lodash');
 
 const loadedParcelResults = (state, {results, codice, nestedService, comcatObj, style, mapConfig}) => {
     const item = results && head((results || [])
@@ -62,7 +63,7 @@ const searchParcel = (action$, store, locale, map) => {
         .switchMap(comuniCatastali => {
             const mapConfig = map || mapSelector(state);
 
-            const search = locale && locale.payload && locale.payload.search || '';
+            const search = get(locale, 'payload.location.search', '');
             const query = url.parse(search, true).query;
 
             const comcat = searchKeys && searchKeys.comcat && query[searchKeys.comcat] || query && query.comcat;
@@ -102,7 +103,7 @@ const searchParcel = (action$, store, locale, map) => {
                                 completeSearch()
                             );
                         })
-            );
+                );
         })
         .startWith(loadingParcel(false))
         .takeUntil(action$.ofType(COMPLETE_SEARCH))
@@ -115,15 +116,15 @@ const searchParcelEpic = (action$, store) =>
         .switchMap((locale) => {
             const map = mapSelector(store.getState());
             return map && map.bbox && Rx.Observable.concat(
-                    Rx.Observable.of(
-                        resultsPurge(),
-                        resetSearch()
-                    ),
-                    searchParcel(action$, store, locale, map)
-                ) ||
-                action$.ofType(MAP_CONFIG_LOADED)
-                    .switchMap(() => searchParcel(action$, store, locale))
-                    .takeUntil(action$.ofType(COMPLETE_SEARCH));
+                Rx.Observable.of(
+                    resultsPurge(),
+                    resetSearch()
+                ),
+                searchParcel(action$, store, locale, map)
+            ) ||
+            action$.ofType(MAP_CONFIG_LOADED)
+                .switchMap(() => searchParcel(action$, store, locale))
+                .takeUntil(action$.ofType(COMPLETE_SEARCH));
         });
 
 module.exports = {

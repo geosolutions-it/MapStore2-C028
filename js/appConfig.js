@@ -7,7 +7,6 @@
  */
 const {registerSearchServiceEpic} = require('./epics/search');
 const {registerCustomLayersUtilsEpic} = require('./epics/layers');
-const {addLayersStyleLocalization, checkEmptyAvailableStyles, closePrintOnChangeLocale} = require('./epics/locale');
 module.exports = {
     printingEnabled: true,
     pages: [{
@@ -17,14 +16,14 @@ module.exports = {
     }, {
         name: "viewer",
         path: "/viewer",
-        component: require('./pages/MapViewer')
+        component: require('../MapStore2/web/client/product/pages/MapViewer')
     }, {
         name: "mapviewer",
         path: "/viewer/:mapType/:mapId",
-        component: require('./pages/MapViewer')
+        component: require('../MapStore2/web/client/product/pages/MapViewer')
     }, {
         name: "roadAccidents",
-            path: "/roadAccidents/:mapType/:mapId",
+        path: "/roadAccidents/:mapType/:mapId",
         component: require('./pages/RoadAccidents')
     }, {
         name: "manager",
@@ -34,9 +33,17 @@ module.exports = {
         name: "manager",
         path: "/manager/:tool",
         component: require('./pages/Manager')
+    }, {
+        name: "dashboard",
+        path: "/dashboard",
+        component: require('../MapStore2/web/client/product/pages/Dashboard')
+    }, {
+        name: "dashboard",
+        path: "/dashboard/:did",
+        component: require('../MapStore2/web/client/product/pages/Dashboard')
     }],
     pluginsDef: require('./plugins.js'),
-    appEpics: {registerSearchServiceEpic, registerCustomLayersUtilsEpic, addLayersStyleLocalization, checkEmptyAvailableStyles, closePrintOnChangeLocale},
+    appEpics: {registerSearchServiceEpic, registerCustomLayersUtilsEpic},
     initialState: {
         defaultState: {
             mousePosition: {enabled: false, "crs": "EPSG:4326"},
@@ -60,7 +67,7 @@ module.exports = {
                 }
             },
             "maps": {
-                    "mapType": "leaflet"
+                "mapType": "leaflet"
             },
             catalog: {
                 format: "wms",
@@ -71,10 +78,10 @@ module.exports = {
             mapInfo: {enabled: true, infoFormat: 'text/html' },
             mousePosition: {enabled: true, crs: "EPSG:4326", showCenter: true},
             "maps": {
-                    "mapType": "leaflet"
+                "mapType": "leaflet"
             },
             "home": {
-                    "mapType": "leaflet"
+                "mapType": "leaflet"
             },
             catalog: {
                 format: "wms",

@@ -30,5 +30,26 @@ Read more on the [wiki](git@github.com:geosolutions-it/MapStore2-C028.git/wiki).
 To Create a deployable war
 --------------------------
 
- - Edit the LDAP properties file (DO NOT COMMIT CREDENTIALS) web/ldap.properties
+Edit the LDAP properties file (DO NOT COMMIT CREDENTIALS) web/ldap.properties.
+
+You can find LDAP credentials [here](https://docs.google.com/document/d/1ASz55b7LDXW5CL6ULmmFnT-dMSjj7fB4c-iN2tW8d_s/edit?usp=sharing)
+
+During the build process the credentials will be applied to geostore-spring-security.xml, so after a deploy is only necessary to check that spring-security file is properly configured
+
+
+ - Only locally edit the url, userDn and password in **web/ldap.properties**
  - Run build.sh
+ 
+ Test Environment
+ ----------------
+ 
+ Database configuration is configured in `setenv.sh`. 
+ Note: Test environment is mapped as externally as `mapstore3`, but deployed in tomcat as `mapstore2`. This causes an issue because the print plugin doesn't calculate the correct path to provide in `info.json` (that describes the print services).
+ For this reason MapStore2 we needed to customize `PRINT_BASE_URL` in `setenv.sh`
+ 
+ /var/lib/tomcat/mapstore2/bin/setenv.sh: 
+ ```
+ export JAVA_OPTS="$JAVA_OPTS -Dgeostore-ovr=file:///var/lib/tomcat/mapstore2/conf/geostore-datasource-ovr.properties"
+ export JAVA_OPTS="$JAVA_OPTS -DPRINT_BASE_URL=\"/mapstore3/pdf\""
+ 
+ ```

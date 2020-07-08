@@ -94,10 +94,10 @@ const registerSearchServiceEpic = (action$, store) => action$.ofType(LOCAL_CONFI
             ["Particella Edificabile / Bauparzelle", "partedif"]
         ];
         const entries = comuni.map(createEntry(...types[0]))
-        .concat(
-            comuni.map(createEntry(...types[1]))
-        );
-        const results = entries.filter( ({properties={}}) =>
+            .concat(
+                comuni.map(createEntry(...types[1]))
+            );
+        const results = entries.filter( ({ properties = {} }) =>
             properties.title.toLowerCase().indexOf(searchText.toLowerCase()) >= 0
             || properties.descTipo.toLowerCase().indexOf(searchText.toLowerCase()) >= 0
         );
