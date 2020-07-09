@@ -94,7 +94,6 @@
           "EPSG:900913": true
         },
         "catalogURL": null,
-        "style": "",
         "availableStyles": null,
         "id": "Cartografia:strade_inf",
         "loading": false,

@@ -39,13 +39,14 @@ class MapViewerPage extends React.Component {
         let pluginsConfigs = ConfigUtils.getConfigProp("plugins") || {};
         this.setState({
             pluginsConfig: {
-            "desktop": [
-                ...(pluginsConfigs.desktop || []),
-                ...(pluginsConfigs.roadAccidents || ["RoadAccidents"])],
-            "mobile": [
-                ...(pluginsConfigs.mobile || []),
-                ...(pluginsConfigs.roadAccidents || ["RoadAccidents"])]
-        }});
+                "desktop": [
+                    ...(pluginsConfigs.desktop || []),
+                    ...(pluginsConfigs.roadAccidents || ["RoadAccidents"])],
+                "mobile": [
+                    ...(pluginsConfigs.mobile || []),
+                    ...(pluginsConfigs.roadAccidents || ["RoadAccidents"])]
+            }
+        });
     }
     render() {
         return (<MapViewerCmp {...this.props} pluginsConfig={this.state.pluginsConfig}/>);
@@ -55,7 +56,7 @@ class MapViewerPage extends React.Component {
 module.exports = connect((state) => ({
     mode: urlQuery.mobile || state.browser && state.browser.mobile ? 'mobile' : 'desktop'
 }),
-    {
-        loadMapConfig,
-        onInit: initMap
-    })(MapViewerPage);
+{
+    loadMapConfig,
+    onInit: initMap
+})(MapViewerPage);

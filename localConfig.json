@@ -1,16 +1,18 @@
 {
   "proxyUrl": {
-    "url": "/mapstore2/proxy/?url=",
+    "url": "/mapstore3/proxy/?url=",
     "useCORS": ["http://nominatim.openstreetmap.org", "https://nominatim.openstreetmap.org"]
   },
   "geoStoreUrl": "rest/geostore/",
   "printUrl": "pdf/info.json",
-	"translationsPath": ["./MapStore2/web/client/translations", "./translations"],
   "mapquestApiKey": "__API_KEY_MAPQUEST__",
   "initialMapFilter": "",
   "ignoreMobileCss" : false,
   "useAuthenticationRules": true,
   "loadAfterTheme": true,
+  "localizedLayerStyles": {
+    "name": "mapstore_language"
+  },
   "authenticationRules": [
     {
       "urlPattern": ".*geostore.*",
@@ -21,7 +23,7 @@
     "method": "authkey"
   }],
   "monitorState": [
-    {"name": "routing", "path": "routing.location.pathname"},
+    {"name": "router", "path": "router.location.pathname"},
     {"name": "browser", "path": "browser"},
     {"name": "featuregridmode", "path": "featuregrid.mode"}],
   "projectionDefs": [{
@@ -32,24 +34,32 @@
   }],
   "initialState": {
     "defaultState": {
-       "locales": {
-          "supportedLocales": {
-              "it": {
-                  "code": "it-IT",
-                  "description": "Italiano"
-              },
-              "de": {
-                  "code": "de-DE",
-                  "description": "Deutsch"
-              }
-          }
+      "annotations": {
+        "config": {
+          "multiGeometry": true,
+          "validationErrors": {}
+        },
+        "format": "decimal",
+        "defaultTextAnnotation": "New"
       },
-	  "maptype": {
-          "mapType": "{context.mode === 'desktop' ? 'openlayers' : 'leaflet'}"
-	  },
-	  "maps": {
-		  "mapType": "openlayers"
-	  },
+      "maptype": {
+        "mapType": "{context.mode === 'desktop' ? 'openlayers' : 'leaflet'}"
+      },
+      "locales": {
+        "supportedLocales": {
+          "it": {
+            "code": "it-IT",
+            "description": "Italiano"
+          },
+          "de": {
+            "code": "de-DE",
+            "description": "Deutsch"
+          }
+        }
+      },
+      "maps": {
+        "mapType": "openlayers"
+      },
       "mapInfo": {"enabled": true, "infoFormat": "text/html"},
       "catalog":{
         "default": {
@@ -67,6 +77,26 @@
               "type": "wms",
               "title": "Map Service - Bolzano/Bozen",
               "autoload": false
+            }
+          },
+          "staticServices": {
+            "default_map_backgrounds": {
+              "type": "backgrounds",
+              "title": "defaultMapBackgroundsServiceTitle",
+              "autoload": true,
+              "backgrounds": [{
+                  "type": "osm",
+                  "title": "Open Street Map",
+                  "name": "mapnik",
+                  "source": "osm",
+                  "group": "background"
+              }, {
+                  "source": "ol",
+                  "group": "background",
+                  "title": "Empty Background",
+                  "fixed": true,
+                  "type": "empty"
+              }]
             }
           }
         },
@@ -123,7 +153,9 @@
       "cfg": {
         "activateMetedataTool": false,
         "activateMapTitle": false,
-        "activateSortLayer": false
+        "activateSortLayer": false,
+        "activateLayerFilterTool": false,
+        "activateQueryTool": false
       }
     }, {
       "name": "TOCItemsSettings",
@@ -158,6 +190,7 @@
     {
         "name": "Search",
         "cfg": {
+          "showOptions": false,
           "resultsStyle": {
             "iconUrl": "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
             "shadowUrl": "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
@@ -238,7 +271,9 @@
         "externalCookieUrl" : "",
         "declineUrl" : "http://www.google.com"
       }
-    }
+    },
+    "FeedbackMask",
+    "AddGroup"
   ],
   "desktop": [
     {
@@ -269,10 +304,12 @@
           }
         }
       }
-    }, "Tutorial", {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
+    },
+    "Tutorial", {"name": "Share", "cfg": {"showAPI": false}}, "DrawerMenu",
     {
       "name": "Identify",
       "cfg": {
+          "showHighlightFeatureButton": true,
           "viewerOptions": {
               "container": "{context.ReactSwipe}"
           }
@@ -320,7 +357,7 @@
           "spatialMethodOptions": [
               {"id": "Viewport", "name": "queryform.spatialfilter.methods.viewport"},
               {"id": "BBOX", "name": "queryform.spatialfilter.methods.box"},
-              {"id": "Circle", "name": "queryform.spatialfilter.methods.circle", "geodesic": true},
+              {"id": "Circle", "name": "queryform.spatialfilter.methods.circle"},
               {"id": "Polygon", "name": "queryform.spatialfilter.methods.poly"}
           ]
       }
@@ -330,19 +367,13 @@
         "cfg": {
           "activateQueryTool": true,
           "activateAddLayerButton": true,
+          "activateAddGroupButton": true,
           "activateMetedataTool": false,
-          "spatialOperations": [
-              {"id": "INTERSECTS", "name": "queryform.spatialfilter.operations.intersects"},
-              {"id": "BBOX", "name": "queryform.spatialfilter.operations.bbox"},
-              {"id": "CONTAINS", "name": "queryform.spatialfilter.operations.contains"},
-              {"id": "WITHIN", "name": "queryform.spatialfilter.operations.within"}
-          ],
-          "spatialMethodOptions": [
-              {"id": "Viewport", "name": "queryform.spatialfilter.methods.viewport"},
-              {"id": "BBOX", "name": "queryform.spatialfilter.methods.box"},
-              {"id": "Circle", "name": "queryform.spatialfilter.methods.circle"},
-              {"id": "Polygon", "name": "queryform.spatialfilter.methods.poly"}
-          ]
+          "addLayersPermissions": true,
+          "removeLayersPermissions": true,
+          "sortingPermissions": true,
+          "addGroupsPermissions": true,
+          "removeGroupsPermissions": true
         }
     },
     "TOCItemsSettings", "MapFooter", {
@@ -356,7 +387,14 @@
             }
           }
         }
-    }, "Measure",
+    }, {
+      "name": "Measure",
+      "cfg": {
+        "defaultOptions": {
+          "showAddAsAnnotation": true
+        }
+      }
+  },
     {
       "name": "Print",
       "cfg": {
@@ -364,9 +402,12 @@
         "mapPreviewOptions": {
           "enableScalebox": true,
           "enableRefresh": false
+        },
+        "overrideOptions": {
+          "geodetic": true
         }
       }
-   }, "ShapeFile", {
+    }, "MapImport", "MapExport", {
       "name": "Settings",
       "cfg": {
         "wrap": true
@@ -392,6 +433,7 @@
     }, {
         "name": "Search",
         "cfg": {
+          "showOptions": false,
           "resultsStyle": {
             "iconUrl": "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
             "shadowUrl": "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
@@ -537,8 +579,29 @@
         "declineUrl" : "http://www.google.com"
         }
     },
-    "OmniBar", "Login", "Save", "SaveAs", "BurgerMenu", "Expander", "Undo", "Redo", "Notifications", "WidgetsBuilder", "Widgets",
-    "SearchParcel"
+    "OmniBar",
+    "Login",
+    "Save",
+    "SaveAs",
+    "BurgerMenu",
+    "Expander",
+    "Undo",
+    "Redo",
+    "Notifications",
+    "WidgetsBuilder",
+    "Widgets",
+    "SearchParcel",
+    "FeedbackMask",
+    "AddGroup",
+    "WidgetsTray",
+    "Timeline",
+    "Playback",
+    {
+      "name": "Annotations",
+      "cfg": {
+        "symbolsPath": "assets/symbols/"
+      }
+    }
   ],
     "embedded": [
       {
@@ -577,6 +640,7 @@
         {
           "name": "Identify",
           "cfg": {
+              "showHighlightFeatureButton": true,
               "showFullscreen": true,
               "position": "bottom",
               "size": 0.5,
@@ -630,6 +694,7 @@
       {
           "name": "Search",
           "cfg": {
+            "showOptions": false,
             "resultsStyle": {
               "iconUrl": "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
               "shadowUrl": "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
@@ -755,7 +820,8 @@
                   "alwaysVisible": true
               }
           }
-      }
+      },
+      "AddGroup"
     ],
     "common": [{
       "name": "OmniBar",
@@ -766,13 +832,31 @@
     "maps": ["Header", "MapSearch", "HomeDescription", {
         "name": "CreateNewMap",
         "cfg": {
-          "showNewDashboard": false
+          "showNewDashboard": true,
+          "showNewGeostory": false
         }
       },
+      {"name": "FeaturedMaps", "cfg": {"showAPIShare": false}},
+      "ContentTabs",
       {
         "name": "Maps",
         "cfg": {
-          "showMapDetails": false
+          "mapsOptions": {
+            "start": 0,
+            "limit": 12
+          },
+          "fluid": false,
+          "showAPIShare": false
+        }
+      },
+      {
+        "name": "Dashboards",
+        "cfg": {
+          "mapsOptions": {
+            "start": 0,
+            "limit": 12
+          },
+          "fluid": true
         }
       }, "Footer", {
       "name": "Cookie",
@@ -781,6 +865,61 @@
         "declineUrl" : "http://www.google.com"
       }
     }],
-    "manager": ["Header", "Redirect", "Manager", "Home", "UserManager", "GroupManager", "Footer"]
+    "manager": ["Header", "Redirect", "Manager", "Home", "UserManager", "GroupManager", "Footer"],
+    "dashboard": [
+      {
+        "name": "OmniBar",
+        "cfg": {
+          "containerPosition": "header",
+          "className": "navbar shadow navbar-home"
+        }
+      },
+      "Login",
+      "Language",
+      "NavMenu",
+      "DashboardSave",
+      "DashboardSaveAs",
+      "Home",
+      {
+        "name": "DashboardEditor",
+        "cfg": {
+          "catalog": {
+            "url": "https://sit.comune.bolzano.it/geoserver/wms",
+            "type": "wms",
+            "title": "Comune di Bolzano Test GeoServer",
+            "autoload": true,
+            "localizedLayerStyles": true
+          },
+          "containerPosition": "columns"
+        }
+      },
+      {
+        "name": "QueryPanel",
+        "cfg": {
+          "toolsOptions": {
+            "hideCrossLayer": true,
+            "hideSpatialFilter": true
+          },
+          "containerPosition": "columns"
+        }
+      },
+      "BurgerMenu",
+      "Dashboard",
+      "Notifications",
+      {
+        "name": "Tutorial",
+        "cfg": {
+          "allowClicksThruHole": false,
+          "containerPosition": "header",
+          "preset": "dashboard_tutorial"
+        }
+      },
+      {
+        "name": "FeedbackMask",
+        "cfg": {
+          "containerPosition": "header"
+        }
+      }
+    ]
   }
 }

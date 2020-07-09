@@ -13,7 +13,6 @@ const ProjectUtils = require('../utils/ProjectUtils');
 const LayersUtils = require('../../MapStore2/web/client/utils/LayersUtils');
 const {REFRESH_LAYERS, layersRefreshed, updateNode, layersRefreshError} = require('../../MapStore2/web/client/actions/layers');
 const {groupsSelector} = require('../../MapStore2/web/client/selectors/layers');
-const {currentLocaleSelector} = require('../../MapStore2/web/client/selectors/locale');
 
 const assign = require('object-assign');
 const {isString, isArray, head} = require('lodash');
@@ -46,58 +45,48 @@ const updateMapEpic = (action$, store) =>
                     })
                 : Rx.Observable.empty()
             ).concat(
-            Rx.Observable.from(
-                action.layers.map((layer) =>
-                    Rx.Observable.forkJoin(
-                        Api.getCapabilities(LayersUtils.getCapabilitiesUrl(layer), true)
-                            .then( (json) => {
-                                const root = (json.WMS_Capabilities || json.WMT_MS_Capabilities).Capability;
-                                const layersObj = Api.flatLayers(root);
-                                const layers = isArray(layersObj) ? layersObj : [layersObj];
-                                return head(layers.filter((l) => l.Name === removeWorkspace(layer.name) || l.Name === layer.name));
-                            }).catch((e) => ({layer: layer.id, fullLayer: layer, error: e})),
-                        Api.describeLayer(layer.url, layer.name)
-                            .then( (result) => {
-                                if (result && result.name === layer.name && result.owsType === 'WFS') {
-                                    return {
-                                        url: result.owsURL,
-                                        type: 'wfs'
-                                    };
-                                }
-                                return null;
-                            }).catch((e) => ({layer: layer.id, fullLayer: layer, error: e}))
-                    ).concatMap(([caps, describe]) => {
-                        if (!caps) {
-                            return Rx.Observable.of({layer: layer.id, fullLayer: layer, error: 'Missing layer'});
-                        }
-                        if (caps.error) {
-                            return Rx.Observable.of(caps.error && caps);
-                        }
-
-                        // set style by language
-                        const availableStyles = isArray(caps.Style) ? ProjectUtils.formatAvailableStyles(caps.Style) : null;
-                        const currentLocale = head(currentLocaleSelector(store.getState()).split('-'));
-                        const style = ProjectUtils.getLocalizedStyle(layer.style, availableStyles, currentLocale || 'it');
-
-                        return Rx.Observable.of(assign({layer: layer.id, title: ProjectUtils.getKeywordsTranslations(caps), style, availableStyles, bbox: Api.getBBox(caps, true), dimensions: Api.getDimensions(caps)}, (describe && !describe.error) ? {search: describe} : {}));
-                    })
-                )
-            )
-            .mergeAll()
-            .map((layer) => {
-                if (layer.error) {
-                    return Rx.Observable.of(layersRefreshError([layer], layer.error.message));
-                }
-                return Rx.Observable.from([layersRefreshed([layer]), updateNode(layer.layer, "id", getUpdates({
-                    bbox: layer.bbox,
-                    search: layer.search,
-                    title: layer.title,
-                    dimensions: layer.dimensions,
-                    availableStyles: layer.availableStyles,
-                    style: layer.style
-                }, action.options))]);
-            })
-            .mergeAll());
+                Rx.Observable.from(
+                    action.layers.map((layer) =>
+                        Rx.Observable.forkJoin(
+                            Api.getCapabilities(LayersUtils.getCapabilitiesUrl(layer), true)
+                                .then( (json) => {
+                                    const root = (json.WMS_Capabilities || json.WMT_MS_Capabilities).Capability;
+                                    const layersObj = Api.flatLayers(root);
+                                    const layers = isArray(layersObj) ? layersObj : [layersObj];
+                                    return head(layers.filter((l) => l.Name === removeWorkspace(layer.name) || l.Name === layer.name));
+                                }).catch((e) => ({layer: layer.id, fullLayer: layer, error: e})),
+                            Api.describeLayer(layer.url, layer.name)
+                                .then( (result) => {
+                                    if (result && result.name === layer.name && result.owsType === 'WFS') {
+                                        return {
+                                            url: result.owsURL,
+                                            type: 'wfs'
+                                        };
+                                    }
+                                    return null;
+                                }).catch((e) => ({layer: layer.id, fullLayer: layer, error: e}))
+                        ).concatMap(([caps, describe]) => {
+                            if (!caps) {
+                                return Rx.Observable.of({layer: layer.id, fullLayer: layer, error: 'Missing layer'});
+                            }
+                            if (caps.error) {
+                                return Rx.Observable.of(caps.error && caps);
+                            }
+                            return Rx.Observable.of(assign({layer: layer.id, title: ProjectUtils.getKeywordsTranslations(caps), bbox: Api.getBBox(caps, true), dimensions: Api.getDimensions(caps)}, (describe && !describe.error) ? {search: describe} : {}));
+                        })
+                    )
+                ).mergeAll().map((layer) => {
+                    if (layer.error) {
+                        return Rx.Observable.of(layersRefreshError([layer], layer.error.message));
+                    }
+                    return Rx.Observable.from([layersRefreshed([layer]), updateNode(layer.layer, "id", getUpdates({
+                        bbox: layer.bbox,
+                        search: layer.search,
+                        title: layer.title,
+                        dimensions: layer.dimensions
+                    }, action.options))]);
+                }).mergeAll()
+            );
         });
 
 

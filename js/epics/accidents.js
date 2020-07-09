@@ -1,5 +1,5 @@
 const Rx = require('rxjs');
-const { pathnameSelector } = require('../../MapStore2/web/client/selectors/routing');
+const { pathnameSelector } = require('../../MapStore2/web/client/selectors/router');
 
 const { setControlProperty, RESET_CONTROLS } = require('../../MapStore2/web/client/actions/controls');
 
@@ -77,13 +77,14 @@ module.exports = {
     accidentsAutoApplyOnReset: action$ => action$.ofType(RESET).switchMap(() => Rx.Observable.of(applyChanges())),
     accidentsInitialSetup: (action$, store) => action$
         .ofType(MAP_CONFIG_LOADED)
-        .filter(() => shouldInit(store))
+        .filter(() => {
+            return shouldInit(store);
+        })
         .switchMap(() => Rx.Observable.of(
-                reset(),
-                setControlProperty("drawer", "enabled", true),
-                setControlProperty("drawer", "menu", '2')
-            ).merge(
-                action$.ofType(RESET_CONTROLS).take(1).map(() => setControlProperty("drawer", "menu", '1'))
-            )
-        )
+            reset(),
+            setControlProperty("drawer", "enabled", true),
+            setControlProperty("drawer", "menu", '2')
+        ).merge(
+            action$.ofType(RESET_CONTROLS).take(1).map(() => setControlProperty("drawer", "menu", '1'))
+        ))
 };
