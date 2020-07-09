@@ -59,8 +59,6 @@ During the build process the credentials will be applied to geostore-spring-secu
 First: We update the project by updating the submodule to a specific stable branch
 Second: After a deploy has been tested we create a tag version.
 
-Se
-
 #### Tag name
 
 For test the convention for the tag name is: v[major].[minor].[patch]-rc
