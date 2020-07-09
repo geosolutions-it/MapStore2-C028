@@ -53,3 +53,34 @@ During the build process the credentials will be applied to geostore-spring-secu
  export JAVA_OPTS="$JAVA_OPTS -DPRINT_BASE_URL=\"/mapstore3/pdf\""
  
  ```
+
+### Release
+
+First: We update the project by updating the submodule to a specific stable branch
+Second: After a deploy has been tested we create a tag version.
+
+#### Tag name
+
+For test the convention for the tag name is: v[major].[minor].[patch]-rc
+example: v1.1.5-rc
+
+For production the convention for the tag name is: v[major].[minor].[patch]
+example: v1.1.5
+
+Note that if the update is big enough you can increase the minor with a patch set to 0, otherwise just increase the patch
+
+To [create a tag](https://git-scm.com/book/en/v2/Git-Basics-Tagging) for test, use these steps:
+```sh
+git checkout master
+git tag v1.1.5-rc
+git push origin v1.1.5-rc
+
+```
+
+For Production use these steps:
+```sh
+git checkout production
+git tag v1.1.5
+git push origin v1.1.5
+
+```
