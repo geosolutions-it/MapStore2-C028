@@ -1,6 +1,6 @@
 {
   "proxyUrl": {
-    "url": "/mapstore3/proxy/?url=",
+    "url": "/mapstore2/proxy/?url=",
     "useCORS": ["http://nominatim.openstreetmap.org", "https://nominatim.openstreetmap.org"]
   },
   "geoStoreUrl": "rest/geostore/",
@@ -18,7 +18,7 @@
       "urlPattern": ".*geostore.*",
       "method": "bearer"
     }, {
-    "urlPattern": "\\/geoserver.*",
+    "urlPattern": ".*sit.comune.bolzano.it\\/geoserver.*",
     "authkeyParamName": "ms2-authkey",
     "method": "authkey"
   }],
