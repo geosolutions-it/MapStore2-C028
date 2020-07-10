@@ -586,45 +586,45 @@
     "Notifications",
     "WidgetsBuilder",
     "Widgets",
-     {
-	"name": "SearchParcel",
-	"cfg": {
-	  "service": {
-	    "priority": 2,
-	    "type": "bzComuniCatastali",
-	    "displayName": "${properties.title}",
-	    "subTitle": "${properties.description}",
-	    "geomService": {
-	      "type": "wfs",
-	      "options": {
-	        "url": "/geoserver/wfs",
-	        "typeName": "Ambiente:comuni_catast",
-	        "srsName": "EPSG:4326",
-	        "staticFilter": "CCAT_CODIC = ${properties.code}"
-	      }
-	    },
-	    "then": [
-	      {
-	        "type": "bzParticella",
-	        "displayName": "${properties.codice}",
-	        "searchTextTemplate": "${properties.codice}",
-	        "subTitle": "${properties.descTipo}",
-	        "geomService": {
-	          "type": "wfs",
-	          "options": {
-	            "url": "/geoserver/wfs",
-	            "typeName": "Cartografia:particelle",
-	            "srsName": "EPSG:4326",
-	            "staticFilter": "(NUM = '${properties.codice}' OR DSUP_SOTTO = '${properties.codice}') AND COM = ${properties.comcat}"
-	          }
-	        },
-	        "options": {
-	          "pathname": "/GeoInfo/ParticelleServlet"
-	        }
-	      }
-	    ]
-	  }	
-	}
+    {
+       "name": "SearchParcel",
+	     "cfg": {
+	       "service": {
+	          "priority": 2,
+       	    "type": "bzComuniCatastali",
+	          "displayName": "${properties.title}",
+	          "subTitle": "${properties.description}",
+	          "geomService": {
+	            "type": "wfs",
+	              "options": {
+        	        "url": "/geoserver/wfs",
+	                "typeName": "Ambiente:comuni_catast",
+	                "srsName": "EPSG:4326",
+	                "staticFilter": "CCAT_CODIC = ${properties.code}"
+                }
+	          },
+	          "then": [
+	            {
+	              "type": "bzParticella",
+	              "displayName": "${properties.codice}",
+	              "searchTextTemplate": "${properties.codice}",
+	              "subTitle": "${properties.descTipo}",
+	              "geomService": {
+	                "type": "wfs",
+	                "options": {
+	                  "url": "/geoserver/wfs",
+	                  "typeName": "Cartografia:particelle",
+	                  "srsName": "EPSG:4326",
+	                  "staticFilter": "(NUM = '${properties.codice}' OR DSUP_SOTTO = '${properties.codice}') AND COM = ${properties.comcat}"
+	                }
+	              },
+	              "options": {
+	                "pathname": "/GeoInfo/ParticelleServlet"
+	              }
+	            }
+	          ]
+	        }	
+	     }
     },
     "FeedbackMask",
     "AddGroup",
