@@ -73,7 +73,7 @@
           "selectedService": "Comune di Bolzano Test GeoServer",
           "services": {
             "Comune di Bolzano Test GeoServer": {
-              "url": "http://geoserv02:8080/geoserver/wms",
+              "url": "/geoserver2/wms",
               "type": "wms",
               "title": "Comune di Bolzano Test GeoServer",
               "autoload": false
@@ -167,7 +167,7 @@
       "cfg": {
         "thumbs":{
           "bolzano":{
-            "Cartografia:mosaico_2016": "assets/img/bolzano-2016.png",
+            "Cartografia:ortofoto_2017": "assets/img/bolzano-2016.png",
             "Cartografia:ortofoto2014": "assets/img/bolzano-2014.png"
           }
         },
@@ -210,8 +210,6 @@
               "displayName": "${properties.desc}",
               "subTitle": "Bolzano / Bozen",
               "options": {
-                "protocol": "http",
-                "host": "sit.comune.bolzano.it",
                 "pathname": "/GeoInfo/VieServlet",
                 "lang": "it"
               },
@@ -220,7 +218,7 @@
               "geomService" : {
                 "type": "wfs",
                 "options": {
-                  "url": "http://geoserv02:8080/geoserver/wfs",
+                  "url": "/geoserver2/wfs",
                   "typeName": "ctn_base:grafo_vie",
                   "srsName": "EPSG:4326",
                   "staticFilter": "ID_STRASSE = ${properties.code}"
@@ -233,8 +231,6 @@
                   "displayName": "${properties.desc}",
                   "subTitle": "Bolzano / Bozen",
                   "options": {
-                    "protocol": "http",
-                    "host": "sit.comune.bolzano.it",
                     "pathname": "/GeoInfo/CiviciServlet",
                     "idVia": "${properties.code}"
                   },
@@ -242,7 +238,7 @@
                 "geomService" : {
                   "type": "wfs",
                   "options": {
-                    "url": "http://geoserv02:8080/geoserver/wfs",
+                    "url": "/geoserver2/wfs",
                     "typeName": "Cartografia:civici",
                     "srsName": "EPSG:4326",
                     "staticFilter": "ID = ${properties.code}"
@@ -384,6 +380,7 @@
         "cfg":{
           "thumbs":{
             "bolzano":{
+              "Cartografia:ortofoto_2017": "assets/img/bolzano-2016.png",
               "Cartografia:mosaico_2016": "assets/img/bolzano-2016.png",
               "Cartografia:ortofoto2014": "assets/img/bolzano-2014.png"
             }
@@ -457,7 +454,7 @@
               "geomService" : {
                 "type": "wfs",
                 "options": {
-                  "url": "http://geoserv02:8080/geoserver/wfs",
+                  "url": "/geoserver2/wfs",
                   "typeName": "Ambiente:comuni_catast",
                   "srsName": "EPSG:4326",
                   "staticFilter": "CCAT_CODIC = ${properties.code}"
@@ -472,15 +469,13 @@
                   "geomService" : {
                     "type": "wfs",
                     "options": {
-                      "url": "http://geoserv02:8080/geoserver/wfs",
+                      "url": "/geoserver2/wfs",
                       "typeName": "Cartografia:particelle",
                       "srsName": "EPSG:4326",
                       "staticFilter": "(NUM = '${properties.codice}' OR DSUP_SOTTO = '${properties.codice}') AND COM = ${properties.comcat}"
                     }
                   },
                   "options": {
-                    "protocol": "http",
-                    "host": "sit.comune.bolzano.it",
                     "pathname": "/GeoInfo/ParticelleServlet"
                   }
                 }]
@@ -490,8 +485,6 @@
               "displayName": "${properties.desc}",
               "subTitle": "Bolzano / Bozen",
               "options": {
-                "protocol": "http",
-                "host": "sit.comune.bolzano.it",
                 "pathname": "/GeoInfo/VieServlet",
                 "lang": "it"
               },
@@ -500,7 +493,7 @@
               "geomService" : {
                 "type": "wfs",
                 "options": {
-                  "url": "http://geoserv02:8080/geoserver/wfs",
+                  "url": "/geoserver2/wfs",
                   "typeName": "ctn_base:grafo_vie",
                   "srsName": "EPSG:4326",
                   "staticFilter": "ID_STRASSE = ${properties.code}"
@@ -513,8 +506,6 @@
                   "displayName": "${properties.desc}",
                   "subTitle": "Bolzano / Bozen",
                   "options": {
-                    "protocol": "http",
-                    "host": "sit.comune.bolzano.it",
                     "pathname": "/GeoInfo/CiviciServlet",
                     "idVia": "${properties.code}"
                   },
@@ -522,7 +513,7 @@
                 "geomService" : {
                   "type": "wfs",
                   "options": {
-                    "url": "http://geoserv02:8080/geoserver/wfs",
+                    "url": "/geoserver2/wfs",
                     "typeName": "Cartografia:civici",
                     "srsName": "EPSG:4326",
                     "staticFilter": "ID = ${properties.code}"
@@ -595,7 +586,46 @@
     "Notifications",
     "WidgetsBuilder",
     "Widgets",
-    "SearchParcel",
+     {
+	"name": "SearchParcel",
+	"cfg": {
+	  "service": {
+	    "priority": 2,
+	    "type": "bzComuniCatastali",
+	    "displayName": "${properties.title}",
+	    "subTitle": "${properties.description}",
+	    "geomService": {
+	      "type": "wfs",
+	      "options": {
+	        "url": "/geoserver/wfs",
+	        "typeName": "Ambiente:comuni_catast",
+	        "srsName": "EPSG:4326",
+	        "staticFilter": "CCAT_CODIC = ${properties.code}"
+	      }
+	    },
+	    "then": [
+	      {
+	        "type": "bzParticella",
+	        "displayName": "${properties.codice}",
+	        "searchTextTemplate": "${properties.codice}",
+	        "subTitle": "${properties.descTipo}",
+	        "geomService": {
+	          "type": "wfs",
+	          "options": {
+	            "url": "/geoserver/wfs",
+	            "typeName": "Cartografia:particelle",
+	            "srsName": "EPSG:4326",
+	            "staticFilter": "(NUM = '${properties.codice}' OR DSUP_SOTTO = '${properties.codice}') AND COM = ${properties.comcat}"
+	          }
+	        },
+	        "options": {
+	          "pathname": "/GeoInfo/ParticelleServlet"
+	        }
+	      }
+	    ]
+	  }	
+	}
+    },
     "FeedbackMask",
     "AddGroup",
     "WidgetsTray",
@@ -677,6 +707,7 @@
             "thumbs":{
               "bolzano":{
                 "Cartografia:mosaico_2016": "assets/img/bolzano-2016.png",
+                "Cartografia:ortofoto_2017": "assets/img/bolzano-2016.png",
                 "Cartografia:ortofoto2014": "assets/img/bolzano-2014.png"
               }
             },
@@ -720,7 +751,7 @@
               "geomService" : {
                 "type": "wfs",
                 "options": {
-                  "url": "http://sit.comune.bolzano.it/geoserver/wfs",
+                  "url": "/geoserver2/wfs",
                   "typeName": "Ambiente:comuni_catast",
                   "srsName": "EPSG:4326",
                   "staticFilter": "CCAT_CODIC = ${properties.code}"
@@ -735,15 +766,13 @@
                   "geomService" : {
                     "type": "wfs",
                     "options": {
-                      "url": "http://sit.comune.bolzano.it/geoserver/wfs",
+                      "url": "/geoserver2/wfs",
                       "typeName": "Cartografia:particelle",
                       "srsName": "EPSG:4326",
                       "staticFilter": "(NUM = '${properties.codice}' OR DSUP_SOTTO = '${properties.codice}') AND COM = ${properties.comcat}"
                     }
                   },
                   "options": {
-                    "protocol": "http",
-                    "host": "sit.comune.bolzano.it",
                     "pathname": "/GeoInfo/ParticelleServlet"
                   }
                 }]
@@ -753,8 +782,6 @@
                 "displayName": "${properties.desc}",
                 "subTitle": "Bolzano / Bozen",
                 "options": {
-                  "protocol": "http",
-                  "host": "sit.comune.bolzano.it",
                   "pathname": "/GeoInfo/VieServlet",
                   "lang": "it"
                 },
@@ -763,7 +790,7 @@
                 "geomService" : {
                   "type": "wfs",
                   "options": {
-                    "url": "http://geoserv02:8080/geoserver/wfs",
+                    "url": "/geoserver2/wfs",
                     "typeName": "ctn_base:grafo_vie",
                     "srsName": "EPSG:4326",
                     "staticFilter": "ID_STRASSE = ${properties.code}"
@@ -776,8 +803,6 @@
                     "displayName": "${properties.desc}",
                     "subTitle": "Bolzano / Bozen",
                     "options": {
-                      "protocol": "http",
-                      "host": "sit.comune.bolzano.it",
                       "pathname": "/GeoInfo/CiviciServlet",
                       "idVia": "${properties.code}"
                     },
@@ -785,7 +810,7 @@
                   "geomService" : {
                     "type": "wfs",
                     "options": {
-                      "url": "http://geoserv02:8080/geoserver/wfs",
+                      "url": "/geoserver2/wfs",
                       "typeName": "Cartografia:civici",
                       "srsName": "EPSG:4326",
                       "staticFilter": "ID = ${properties.code}"
@@ -891,7 +916,7 @@
         "name": "DashboardEditor",
         "cfg": {
           "catalog": {
-            "url": "https://sit.comune.bolzano.it/geoserver2/wms",
+            "url": "/geoserver2/wms",
             "type": "wms",
             "title": "Comune di Bolzano Test GeoServer",
             "autoload": true,
