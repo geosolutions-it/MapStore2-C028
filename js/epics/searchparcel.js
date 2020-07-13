@@ -80,7 +80,7 @@ const searchParcel = (action$, store, locale, map) => {
                 }
             })));
 
-            return !comcatObj || !codice || !type || !nestedService || !(mapConfig && mapConfig.bbox) ?
+            return !comcatObj || !codice || !type || !nestedService ?
                 Rx.Observable.of(resultsPurge(), resetSearch(), loadingParcel(false), completeSearch())
                 : Rx.Observable.concat(
                     Rx.Observable.of(
@@ -115,7 +115,7 @@ const searchParcelEpic = (action$, store) =>
     action$.ofType(LOCATION_CHANGE)
         .switchMap((locale) => {
             const map = mapSelector(store.getState());
-            return map && map.bbox && Rx.Observable.concat(
+            return map && map.center && Rx.Observable.concat(
                 Rx.Observable.of(
                     resultsPurge(),
                     resetSearch()

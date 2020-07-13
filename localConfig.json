@@ -18,9 +18,13 @@
       "urlPattern": ".*geostore.*",
       "method": "bearer"
     }, {
-    "urlPattern": ".*sit.comune.bolzano.it\\/geoserver.*",
-    "authkeyParamName": "ms2-authkey",
-    "method": "authkey"
+      "urlPattern": "^\\/geoserver.*",
+      "authkeyParamName": "ms2-authkey",
+      "method": "authkey"
+    }, {
+      "urlPattern": ".*sit.comune.bolzano.it\\/geoserver.*",
+      "authkeyParamName": "ms2-authkey",
+      "method": "authkey"
   }],
   "monitorState": [
     {"name": "router", "path": "router.location.pathname"},
@@ -356,7 +360,7 @@
           "spatialMethodOptions": [
               {"id": "Viewport", "name": "queryform.spatialfilter.methods.viewport"},
               {"id": "BBOX", "name": "queryform.spatialfilter.methods.box"},
-              {"id": "Circle", "name": "queryform.spatialfilter.methods.circle"},
+              {"id": "Circle", "name": "queryform.spatialfilter.methods.circle", "geodesic": true},
               {"id": "Polygon", "name": "queryform.spatialfilter.methods.poly"}
           ]
       }
@@ -623,7 +627,7 @@
               }
             }
           ]
-        }	
+        }
       }
     },
     "FeedbackMask",
