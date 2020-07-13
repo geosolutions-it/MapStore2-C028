@@ -18,9 +18,13 @@
       "urlPattern": ".*geostore.*",
       "method": "bearer"
     }, {
-    "urlPattern": ".*sit.comune.bolzano.it\\/geoserver.*",
-    "authkeyParamName": "ms2-authkey",
-    "method": "authkey"
+      "urlPattern": "^\\/geoserver.*",
+      "authkeyParamName": "ms2-authkey",
+      "method": "authkey"
+    }, {
+      "urlPattern": ".*sit.comune.bolzano.it\\/geoserver.*",
+      "authkeyParamName": "ms2-authkey",
+      "method": "authkey"
   }],
   "monitorState": [
     {"name": "router", "path": "router.location.pathname"},
@@ -623,7 +627,7 @@
               }
             }
           ]
-        }	
+        }
       }
     },
     "FeedbackMask",
