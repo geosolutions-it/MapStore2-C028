@@ -56,18 +56,20 @@ During the build process the credentials will be applied to geostore-spring-secu
 
 ### Release
 
-First: We update the project by updating the submodule to a specific stable branch
-Second: After a deploy has been tested we create a tag version.
+MapStore update procedure: 
+
+1. Update the project by updating the submodule to a specific stable branch, and apply the needed changes (see migration guide of MapStore).
+2. After a deploy has been tested create a new tag version.
 
 #### Tag name
 
-For test the convention for the tag name is: v[major].[minor].[patch]-rc
-example: v1.1.5-rc
+For test (master) the convention for the tag names is: `v[major].[minor].[patch]-rc`
+example: `v1.1.5-rc`
 
-For production the convention for the tag name is: v[major].[minor].[patch]
-example: v1.1.5
+For production the convention for the tag names is: `v[major].[minor].[patch]`
+example: `v1.1.5`
 
-Note that if the update is big enough you can increase the minor with a patch set to 0, otherwise just increase the patch
+**Note**: The major here represent a very big change to the application. For normal updates (e.g. New MapStore version) increase the `minor` version number, for a fix, increase the `patch `number.
 
 To [create a tag](https://git-scm.com/book/en/v2/Git-Basics-Tagging) for test, use these steps:
 ```sh
