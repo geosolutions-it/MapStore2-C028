@@ -99,7 +99,7 @@
     "@turf/polygon-to-linestring": "4.1.0",
     "ag-grid-community": "20.2.0",
     "ag-grid-react": "20.2.0",
-    "axios": "0.18.1",
+    "axios": "1.6.0",
     "b64-to-blob": "1.2.19",
     "babel-polyfill": "6.8.0",
     "babel-standalone": "6.7.7",
